@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="fr-fr">
+<head>
+    <base href=".">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" sizes="180x180" href="assets/img/AMISLogo.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
+    <title>Ariane | CAO_CRM Documentation</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        p, li {
+            text-align: justify;
+        }
+        .dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+        .doc-section {
+            margin-bottom: 3rem;
+        }
+        .doc-section h2 {
+            color: #8f0006;
+            border-bottom: 2px solid #8f0006;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .doc-section h3 {
+            color: #333;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .doc-section h4 {
+            color: #555;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .example-accordion .accordion-button {
+            background-color: #f8f9fa;
+            color: #8f0006;
+            font-weight: 600;
+        }
+        .example-accordion .accordion-button:not(.collapsed) {
+            background-color: #8f0006;
+            color: white;
+        }
+        .example-accordion .accordion-body {
+            background-color: #f8f9fa;
+            border-left: 4px solid #8f0006;
+        }
+        .table-of-contents {
+            position: sticky;
+            top: 20px;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .table-of-contents h4 {
+            color: #8f0006;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .table-of-contents ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+        }
+        .table-of-contents a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        .table-of-contents a:hover {
+            color: #8f0006;
+        }
+        .intro-box {
+            background: linear-gradient(135deg, #8f0006 0%, #c41e3a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .intro-box h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .entity-card {
+            border-left: 4px solid #8f0006;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+        }
+        .hierarchy-flow {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, #f8f9fa, white, #f8f9fa);
+            border-radius: 8px;
+        }
+        .hierarchy-flow strong {
+            color: #8f0006;
+            font-size: 1.3rem;
+        }
+        header.relative {
+            box-shadow: 0 0 10px rgba(143, 0, 6, 0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .header-logos img {
+            height: 60px;
+            margin-right: 1rem;
+        }
+        nav ul {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header consortium -->
+    <header class="relative bg-white mb-2 w-100" style="box-shadow: 0 0 10px rgba(143, 0, 6, 0.1);">
+        <div class="border-top border-danger"></div>
+        <div class="header-content container">
+            <div class="header-logos d-flex align-items-center">
+                <!--Logo Ariane-->
+                <a href="https://cst-ariane.huma-num.fr/" class="me-2">
+                    <img src="assets/img/logoAriane.jpg" alt="CST-HN ARIANE logo">
+                </a>
+                <!--Logo Humanum-->
+                <a href="https://www.huma-num.fr/"> 
+                    <img src="assets/img/HN.png" alt="Huma-Num logo">
+                </a>
+            </div>
+            <!--Menu-->
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="axesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Axes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="axesDropdown">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe1">Axe 1</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT1/GT1.html">GT1 - Labellisation</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT2/GT2.html">GT2 - Acquisition de données et transcription par ordinateur</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT3/GT3.html">GT3 - Outils et pratiques éditoriales</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe2">Axe 2</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT4/GT4.html">GT4 - Analyse automatique de textes</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT5/GT5.html">GT5 - Métadonnées et modélisation de données</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT6/GT6.html">GT6 - Open French Corpus</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe3">Axe 3</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/ethique/ethique.html">Enjeux éthiques</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/juridique/juridique.html">Questions juridiques</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="travauxDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Travaux
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="travauxDropdown">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Axe 1</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT1.html">GT1 - Labellisation</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT2.html">GT2 - Acquisition de données et transcription par ordinateur</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT3.html">GT3 - Outils et pratiques éditoriales</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Axe 2</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT4.html">GT4 - Analyse automatique de textes</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT5.html">GT5 - Métadonnées et modélisation de données</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT6.html">GT6 - Open French Corpus</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Axe 3</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/html_pages/travaux_ethique.html">Enjeux éthiques</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/html_pages/travaux_juridique.html">Questions juridiques</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75" href="https://consortiumariane.gitpages.huma-num.fr/outils/index.html">Outils</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="actualitesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Actualités
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="actualitesDropdown">
+                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_1.html">Axe 1</a></li>
+                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_2.html">Axe 2</a></li>
+                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_3.html">Axe 3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75" href="https://docs.google.com/forms/d/1nxWiaj88LY7R-poxxlTiUxdvyIH5hL5eBHFjgsfsKGg/viewform?edit_requested=true">Nous rejoindre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-xl transition" href="https://consortiumariane.gitpages.huma-num.fr/site_amis/index.html" style="color: rgb(143 0 6);">AMIS Project</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Contenu principal -->
+            <main class="col-md-9 content">
+                <!-- Introduction -->
+                <div class="intro-box">
+                    <h1>Le modèle ontologique Corpus Author Ontology CRM (CAO_CRM)</h1>
+                    <p class="lead">Présentation et guide d'utilisation</p>
+                    <p class="mb-0">Un cadre sémantique structuré pour l'organisation, la description et l'interopérabilité des métadonnées générées pour des corpus textuels</p>
+                </div>
+
+                <!-- Présentation générale -->
+                <div class="doc-section" id="presentation">
+                    <h2>Présentation générale</h2>
+                    <p>Le modèle ontologique <a href="https://axe-2-gt5.gitpages.huma-num.fr/ontologie/CAO_CRM_V4.html">CAO_CRM</a> élaboré par le Consortium HN Ariane, a pour objectif de modéliser les relations entre les métadonnées associées à des objets culturels ou intellectuels, tels qu'un document, une œuvre littéraire ou une ressource numérique.</p>
+                    
+                    <p>S'appuyant sur le <a href="https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html"><strong>CIDOC CRM</strong></a>, une norme internationale de modélisation des connaissances du patrimoine culturel, ce modèle intègre également les extensions <a href="https://cidoc-crm.org/lrmoo"><strong>LRM</strong></a> (Library Reference Model) et <a href="https://cidoc-crm.org/crmdig"><strong>CRMdig</strong></a> (CRM Digital), qui permettent respectivement de représenter les entités bibliographiques et la provenance des objets numériques.</p>
+
+                    <p>Pensé pour fonctionner en synergie avec des systèmes d’intelligence artificielle, notamment dans le cadre du <strong>RAG</strong> (Retrieval-Augmented Generation) — une méthode combinant recherche documentaire et génération de contenu par IA — de l’application web AMIS, ce modèle ontologique offre un cadre sémantique structuré pour organiser, décrire et assurer l’interopérabilité des métadonnées des corpus textuels. Il aborde des problématiques clés telles que la standardisation des pratiques descriptives, l’identification des métadonnées pertinentes en fonction des types de ressources, ainsi que l’optimisation de la recherche documentaire grâce à l’exploitation des relations sémantiques.</p>
+
+                    <h3>Organisation modulaire</h3>
+                    <p>Le modèle est organisé en <strong>modules récurrents</strong>, c’est-à-dire des éléments qui se retrouvent dans plusieurs parties du modèle. Cette organisation facilite son adaptation à différents types de contenus et contextes d’utilisation. Grâce à sa souplesse et sa capacité à évoluer, il peut servir à de nombreux usages, depuis la description détaillée d’œuvres patrimoniales jusqu’à l’alimentation de systèmes de recommandation ou d’analyse automatisée dans des domaines comme la recherche, l’enseignement ou la valorisation culturelle.</p>
+                    <p>Il permet d'organiser et d'analyser des métadonnées précises tout en prenant en compte les <strong>données manquantes ou incertaines</strong>, ce qui est essentiel pour traiter des objets culturels ou intellectuels souvent partiellement documentés. Cette adaptabilité est un atout majeur pour les systèmes d’intelligence artificielle et les outils d’analyse automatisée, qui ont besoin d’une compréhension fine et dynamique des objets et des relations qui les caractérisent.</p>
+
+                    <h3>Objectifs du document</h3>
+                    <p>Ce document a pour objectif d'expliquer en détail les différentes branches du modèle ontologique et leurs interrelations, en illustrant ces concepts à partir d'un exemple concret : l'œuvre littéraire <em>Le Rouge et le Noir</em> de Stendhal. Cette approche permet de clarifier les choix méthodologiques de la modélisation, en précisant les entités et relations utilisées pour représenter les différentes facettes de l’œuvre et des objets associés. L’exemple sert également à tester la pertinence et la robustesse du modèle face à un cas complexe. Il convient de souligner que certaines informations utilisées pour alimenter l’ontologie ne proviennent pas toujours de données explicitement documentées ou vérifiables. Par conséquent, ces informations doivent être considérées non pas comme des vérités absolues, mais comme des hypothèses plausibles, illustrant la flexibilité du modèle. Le processus décrit permet de mettre en lumière la capacité de l’ontologie à supporter l’intégration de différents niveaux de connaissances, explicites ou implicites, tout en offrant une certaine marge d’interprétation dans le traitement des métadonnées. Cette approche est essentielle pour confronter le modèle à des situations réelles, où des lacunes ou des incertitudes peuvent exister dans les données disponibles, et pour tester sa robustesse dans la gestion de ces ambiguïtés.</p>
+                </div>
+
+                <!-- Structure du CAO_CRM -->
+                <div class="doc-section" id="structure">
+                    <h2>1. Structure et modularité du CAO_CRM</h2>
+                    
+                    <h3>Architecture modulaire</h3>
+                    <p>CAO_CRM repose sur une architecture stable, cohérente et, surtout, <strong>modulaire</strong>. Cette modularité permet d'utiliser ou d'ignorer certaines branches spécifiques du modèle en fonction des données disponibles et du niveau de granularité souhaité. Une telle approche est particulièrement utile lorsque les informations concernant une œuvre sont incomplètes ou fragmentaires. Grâce à ses mécanismes relationnels sophistiqués, le modèle conserve une cohérence globale.</p>
+
+                    <p>L'architecture modulaire établit des liens sémantiques entre différentes entités. Ces connexions permettent d'inférer des informations implicites à partir de données explicites. Par exemple, à partir de l’identification d’un objet physique, tel qu’un manuscrit, le modèle peut inférer des informations sur l’œuvre intellectuelle sous-jacente (F1_Work) ou sur son auteur (E21_Person) à partir du reste des informations présentes dans le modèle ou en allant chercher des informations dans les bases de données externes (Wikidata, Geonames…). Ces inférences sont possibles grâce aux propriétés et relations ontologiques héritées de standards internationaux tels que le CIDOC CRM et le LRM, qui assurent à la fois la robustesse logique et la cohérence sémantique du modèle.</p>
+
+                    <h3>Vue simplifiée et didactique</h3>
+                    <p>Le modèle CAO_CRM est présenté dans ce document sous une forme simplifiée, conçue spécifiquement dans un but exploratoire et pédagogique. Cette vue simplifiée a pour objectif de rendre explicites les relations sémantiques fondamentales ainsi que les propriétés clés susceptibles d’exister entre les différentes entités conceptuelles. Elle propose ainsi un cadre de réflexion structuré sur l’architecture générale du modèle, en mettant l’accent sur ses composants essentiels et sur les éléments qui peuvent être inclus ou omis en fonction des besoins spécifiques de chaque projet.</p>
+
+                    <p>Dans un souci de lisibilité et d’accessibilité, le document ne présente pas l’intégralité des entités et relations, qui sont souvent nombreuses et complexes. La description qui suit se veut une base conceptuelle claire et compréhensible, qui permet de saisir les potentialités du modèle. La version complète de ce dernier peut, en effet, devenir dense et difficile à appréhender sans recourir à des outils informatiques dédiés.</p>
+
+                    <h3>Méthodologie et principes fondamentaux</h3>
+                    <p>Le modèle repose sur une distinction claire et fondamentale entre quatre entités clés, conformes aux standards LRMoo et CIDOC CRM :</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F1_Work - Œuvre intellectuelle</h5>
+                                <p class="mb-0">Il s'agit de l'idée ou du concept abstrait d’une œuvre, indépendamment de sa forme matérielle ou de sa réalisation spécifique. Cette entité représente l'intention créative ou l'œuvre dans sa dimension purement conceptuelle.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F2_Expression</h5>
+                                <p class="mb-0">Cette entité désigne la mise en forme intellectuelle d’une œuvre, c’est-à-dire la réflexion, l’imagination et les brouillons d’une œuvre (les différents “états” conceptuels d’élaboration). Par exemple, il peut s’agir d’un texte manuscrit (complet ou non), d’un scénario plus ou moins abouti, ou d’un enregistrement sonore ou visuel. L’expression suppose une mise en forme, embryonnaire ou plus élaborée, de l’idée originale. Elle peut avoir une ou plusieurs manifestations.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F3_Manifestation</h5>
+                                <p class="mb-0">Il s'agit de la matérialisation tangible d’une expression, comme un manuscrit autographe, un livre imprimé, un film monté ou une édition audiovisuelle. La manifestation suppose un processus d’élaboration d’un objet physique ou médiatique qui rend l’expression accessible au public (la rédaction d’un brouillon, ou l’édition d’un texte, par exemple).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F5_Item / D1_Digital_Object</h5>
+                                <p class="mb-0">Cette entité fait référence au support matériel ou numérique contenant la manifestation, comme un feuillet, un livre, une pellicule, ou un fichier numérique (image, vidéo). Il s'agit de l’objet que l’on peut posséder et manipuler. Il peut exister plusieurs objets qui ont trait à la même manifestation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Hiérarchie des entités</h3>
+                    <p>La hiérarchie des entités suit une progression logique qui part de l'idée originelle de l'œuvre jusqu'à sa matérialisation tangible ou numérique :</p>
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/structure_CAO_CRM_V4.html" style="border:none; width:100%;">Hiérarchie du CAO-CRM</iframe>
+                    </div>
+
+                    <ul>
+                        <li><strong>F1_Work → F2_Expression :</strong> l'œuvre intellectuelle (F1_Work) est le concept originel, une idée ou un projet créatif. Elle donne naissance à une Expression (F2_Expression), qui est sa première concrétisation immatérielle sous une forme spécifique. L'Expression reflète l'intention de l'œuvre.</li>
+                        <li><strong>F2_Expression → F3_Manifestation :</strong> l'Expression (F2_Expression) peut être matérialisée sous une forme tangible ou numérique, devenant une Manifestation (F3_Manifestation). Cette étape correspond à la version physique ou numérique de l'Expression, comme un livre imprimé, un enregistrement sonore ou un film monté. C'est le premier niveau où l'œuvre peut être perçue, manipulée ou distribuée.</li>
+                        <li><strong>F3_Manifestation → F5_Item / D1_Digital_Object :</strong> la Manifestation (F3_Manifestation) est stockée sur un support physique ou numérique, désigné par l'entité F5_Item (objet physique) ou D1_Digital_Object (objet numérique). Ce support contient l'œuvre dans sa forme tangible ou numérique, permettant à l'utilisateur de la consulter, de la posséder ou de l'utiliser.</li>
+                    </ul>
+
+                    <p>Ce résumé met en lumière <strong>la progression logique et hiérarchique</strong> des entités, qui va de l’idée abstraite de l'œuvre à sa matérialisation sous forme de support matériel ou numérique. Chaque relation décrite représente une étape clé dans la concrétisation de l'œuvre, transformant l’idée initiale en un objet consultable et manipulable. Cette structure garantit non seulement une évolution cohérente du concept vers l'objet, mais aussi une <strong>continuité sémantique et structurelle</strong> entre les différentes étapes du modèle.</p>
+                    <p>L’architecture hiérarchique et modulaire du CAO_CRM permet de modéliser avec une grande précision et flexibilité <strong>une large diversité d'objets culturels et intellectuels</strong>. Elle préserve une cohérence forte entre les différents niveaux de description, facilitant ainsi la gestion des données tout en restant adaptable à des besoins variés. En outre, cette flexibilité permet <strong>une réutilisation étendue du modèle dans des contextes multiples</strong>, qu’il s’agisse des archives patrimoniales, des bibliothèques numériques, ou des bases de données dédiées à la recherche et à la valorisation du patrimoine culturel. Grâce à cette hiérarchie, il devient également possible <strong>d’ajuster le niveau de détail</strong> selon les exigences spécifiques de chaque projet ou domaine d’application, tout en garantissant une approche homogène et interopérable des métadonnées. Cette capacité d'adaptation et de personnalisation est essentielle pour répondre aux défis de diversité et de complexité rencontrés dans la gestion des objets culturels.</p>
+                </div>
+
+                <!-- Branches spécifiques -->
+                <div class="doc-section" id="branches">
+                    <h2>2. Les branches spécifiques</h2>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/CAO_CRM_V4-modules_complet.html" style="border:none; width:100%;">Ensemble des modules du CAO-CRM</iframe> 
+                    </div>
+
+                    <h3 id="branche-creation">a) La branche "Création de l'œuvre" (F1_Work)</h3>
+                    <div>
+                        <iframe src="V4/modules/CAO_CRM_V4_concepte.html" style="border:none; width:100%;">Branche Création de l'œuvre</iframe>
+                    </div>
+
+                    <p>Cette section du modèle ontologique est dédiée à la représentation de l’œuvre en tant qu’entité abstraite, et à l’ensemble des éléments conceptuels qui l’entourent. L’entité <strong>F1_Work</strong>, issue du CIDOC CRM, permet d’identifier une œuvre comme le résultat d’un processus intellectuel, indépendant de toute manifestation physique. Il ne s’agit donc pas ici de l’objet matériel (par exemple un exemplaire imprimé de Le Rouge et le Noir), d’une version ou du processus d’écriture de l’oeuvre, mais de l’idée et des réflexions qui ont conduit à son élaboration.</p>
+                    
+                    <p>La classe <strong>F1_Work</strong> appartient au domaine de l’abstrait et permet de lier différentes formes d'expressions d'une même œuvre, même si celles-ci se manifestent sous des formes physiques ou numériques distinctes. L'objectif ici est de conserver l'intégrité intellectuelle ou artistique de l'œuvre, malgré ses multiples représentations. Cette abstraction offre une flexibilité de modélisation, permettant à l'œuvre d'être vue comme une entité unique, indépendamment des diverses matérialisations qui peuvent en découler.</p>
+
+                    <p>L'entité <strong>F27_Work_Creation</strong> est associée à <strong>F1_Work</strong> et permet de documenter le processus de création de l'œuvre. Elle rend compte des activités qui ont conduit à l'élaboration de l'œuvre en tant qu'objet intellectuel.Cette classe permet notamment d’indiquer la période de création (<strong>E52_Time-Span</strong>), les circonstances historiques de cette création, ainsi que la ou les personnes ayant participé à ce processus (<strong>E21_Person</strong>).</p>
+
+                    <p>Dans le cas du <em>Rouge et le Noir</em>, ces données incluent la date de création de l’œuvre, la période historique à laquelle elle est rattachée, et le mouvement littéraire (<strong>E89_Propositional_Object</strong>) dans lequel elle s’inscrit. Ces éléments contribuent à établir un ancrage temporel et culturel clair. Ils peuvent être enrichis à l’aide de référentiels partagés tels que Periodo ou Wikidata de façon à assurer une définition standardisée des concepts temporels ou esthétiques utilisés. Le recours à des référentiels communs garantit ainsi une cohérence interprétative, en limitant les variations subjectives dans l’analyse ou la description des œuvres et ainsi garantir l’interopérabilité du modèle ontologique.</p>
+
+                    <p>La modélisation de la création de l’œuvre permet également de lier l’œuvre à ses auteurs (<strong>E21_Person</strong>). De nouveau, il est recommandé de s’appuyer sur des liens vers des bases de données d'autorité comme IdRef, Wikidata ou VIAF. Ces liens permettent de récupérer des informations biographiques sur l’auteur, comme sa date et lieu de naissance, ainsi que des événements marquants de sa vie. Ces données contextuelles permettent de mieux situer l'œuvre dans son cadre historique, géographique et culturel. Ce travail de contextualisation enrichit non seulement la compréhension de l'œuvre, mais permet aussi de naviguer entre différentes œuvres d’un même auteur, ou de comparer des créateurs d’époques similaires, en ayant accès à des informations cohérentes et interconnectées.</p>
+
+
+                    <div class="accordion example-accordion mt-3" id="accordionF1">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF1">
+                                    Exemple : Le Rouge et le Noir
+                                </button>
+                            </h2>
+                            <div id="collapseF1" class="accordion-collapse collapse" data-bs-parent="#accordionF1">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work :</strong> Le Rouge et le Noir (œuvre littéraire en tant qu'entité intellectuelle)</li>
+                                        <li><strong>(LRMoo) F27_Work_Creation :</strong> processus de création de l'œuvre par Stendhal entre 1828 et 1830</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> période de création : 1828–1830 ; date de publication : novembre 1830</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (Marie-Henri Beyle), auteur de l'œuvre</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> Paris</li>
+                                        <li><strong>(CIDOC CRM) E67_Birth/E69_Death :</strong> Stendhal, né à Grenoble en 1783, mort à Paris en 1842</li>
+                                        <li><strong>(CIDOC CRM) E89_Propositional_Object :</strong> mouvement littéraire "réalisme", contexte post-révolutionnaire</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Période historique permettant d'indiquer un événement majeur : Révolution de 1830</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_Work.html" style="border:none; width:100%;">Exemple Création de l'œuvre</iframe>
+                    </div>
+
+                    <h3 id="branche-expression">b) La branche "Expression" (F2_Expression)</h3>
+
+                    <h3 id="branche-manifestation">c) La branche "Manifestation" (F3_Manifestation)</h3>
+                    <p>Dans le modèle ontologique CAO_CRM, une manifestation (représentée par la classe <strong>F3_Manifestation</strong>) correspond à l'étape où l'œuvre intellectuelle prend une forme physique ou numérique tangible. Cette notion de manifestation est inspirée du modèle LRMoo (Library Reference Model).</p>
+
+                    <h4>Propriétés clés de F3_Manifestation :</h4>
+                    <ul>
+                        <li><strong>Type d'objet :</strong> identification du type d'objet produit (livre, manuscrit, brochure, édition audiovisuelle)</li>
+                        <li><strong>Caractéristiques physiques :</strong> nombre de pages, format (in-18, folio, etc.), poids</li>
+                        <li><strong>Date et lieu de création :</strong> associés à un événement F30_Manifestation_Creation</li>
+                    </ul>
+
+                    <div class="accordion example-accordion mt-3" id="accordionF3">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF3">
+                                    Exemple : Édition originale de Le Rouge et le Noir
+                                </button>
+                            </h2>
+                            <div id="collapseF3" class="accordion-collapse collapse" data-bs-parent="#accordionF3">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Édition originale imprimée de Le Rouge et le Noir (1830)</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (type d'objet) :</strong> Livre imprimé, in-18</li>
+                                        <li><strong>(CIDOC CRM) P43_has_dimension :</strong> environ 560 pages</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Processus d'impression de l'édition originale</li>
+                                        <li><strong>(CIDOC CRM) E21_Person (agent responsable) :</strong> Charles Gosselin (éditeur)</li>
+                                        <li><strong>(CIDOC CRM) E53_Place (lieu de création) :</strong> Imprimerie Charles Gosselin, Paris</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span (période de création) :</strong> Janvier – Mars 1830</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 id="branche-numerique">d) La branche "Objet numérique" (D1_Digital_Object)</h3>
+                    <p>L'époque contemporaine est marquée par la numérisation progressive des contenus. L'intégration de ces objets numériques dans le modèle ontologique CAO_CRM est essentielle pour assurer la cohérence et l'interopérabilité des métadonnées.</p>
+
+                    <p>L'entité <strong>D1_Digital_Object</strong> peut être enrichie par une série de propriétés techniques et contextuelles, telles que :</p>
+                    <ul>
+                        <li>Le format de fichier (PDF, EPUB, TXT)</li>
+                        <li>Le standard technique utilisé (normes ISO, Dublin Core, TEI)</li>
+                        <li>La version du document</li>
+                        <li>Le titre attribué à l'objet numérique</li>
+                        <li>Les dimensions numériques (volume de stockage)</li>
+                        <li>Le lieu de conservation ou la plateforme de diffusion</li>
+                    </ul>
+
+                    <div class="accordion example-accordion mt-3" id="accordionD1">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD1">
+                                    Exemple : Édition numérique EPUB
+                                </button>
+                            </h2>
+                            <div id="collapseD1" class="accordion-collapse collapse" data-bs-parent="#accordionD1">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>(LRMoo) F2_Expression :</strong> traduction anglaise en ligne de Le Rouge et le Noir, publiée en 2004</li>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> édition numérique EPUB publiée sur le site Project Gutenberg</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> création de l'édition numérique en 2004</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> période de création : 2003–2004</li>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> fichier rouge_et_noir.epub</li>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> processus de numérisation d'une édition papier</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> indication du format, EPUB (Electronic Publication)</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> indication du standard utilisé, balisage en XML/TEI ou EPUB 3.0</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> numéro de version enrichie avec notes éditoriales ajoutées en 2012</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> The Red and the Black – Digital Edition</li>
+                                        <li><strong>(CIDOC CRM) E53_Dimension :</strong> 1,2 Mo</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 id="branche-numerisation">e) La branche "Numérisation" (CRMdig)</h3>
+                    <p>La numérisation des objets physiques joue un rôle essentiel dans la conservation, la diffusion et la valorisation scientifique des œuvres et documents. Dans CAO_CRM, le processus de numérisation d'un objet physique est représenté par la classe <strong>D2_Digitization_Process</strong> de l'extension CRMdig.</p>
+
+                    <h4>Éléments du processus de numérisation :</h4>
+                    <ul>
+                        <li><strong>E21_Person ou E39_Actor :</strong> La personne ou entité responsable de la numérisation</li>
+                        <li><strong>E52_Time-Span :</strong> La période de numérisation</li>
+                        <li><strong>D1_Digital_Object :</strong> L'objet numérique créé</li>
+                    </ul>
+
+                    <h4>Propriétés de l'objet numérique :</h4>
+                    <ul>
+                        <li><strong>E35_Title :</strong> le titre attribué au document numérisé</li>
+                        <li><strong>L57_has_pixel_height et L56_has_pixel_width :</strong> les dimensions de l'image</li>
+                        <li><strong>D13_Digital_Information_Carrier :</strong> l'entrepôt où le fichier est stocké</li>
+                        <li><strong>E42_Identifier :</strong> la version ou l'identifiant du fichier (ex. : DOI)</li>
+                        <li><strong>E55_Type :</strong> le format numérique (PDF, TIFF, JPEG)</li>
+                        <li><strong>E55_Type :</strong> le standard informatique utilisé (TEI, METS/ALTO, ISO 19005)</li>
+                    </ul>
+
+                    <div class="accordion example-accordion mt-3" id="accordionD2">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseD2">
+                                    Exemple : Numérisation BnF
+                                </button>
+                            </h2>
+                            <div id="collapseD2" class="accordion-collapse collapse" data-bs-parent="#accordionD2">
+                                <div class="accordion-body">
+                                    <p><strong>Objet physique d'origine :</strong> un exemplaire imprimé de 1830 conservé à la Bibliothèque nationale de France</p>
+                                    <ul>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> numérisation réalisée en 2015 par un opérateur de la BnF</li>
+                                        <li><strong>(CIDOC CRM) E21_Person / E39_Actor :</strong> agent ou service de numérisation de la BnF</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> période de numérisation : février–mars 2015</li>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> fichier PDF du roman complet</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> Le Rouge et le Noir – édition originale numérisée</li>
+                                        <li><strong>(CRMdig) L57_has_pixel_height / L56_has_pixel_width :</strong> 3500 px × 2400 px</li>
+                                        <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> stockage sur la plateforme Gallica (BnF)</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> ID Gallica : ark:/12148/bpt6k5743969x</li>
+                                        <li><strong>(LRMoo) E55_Type :</strong> format PDF</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="doc-section" id="item">
+                    <h2>3. Les "Items"</h2>
+                    <h3>
+
+                    </h3>
+
+                </div>
+                <div class="doc-section" id="bibliographie">
+                    <h2>Bibliographie</h2>
+                    <h3 id="documentation">a) Documentation CIDOC et extensions</h3>
+                    <div class="bibliography-list">
+                        <ul>
+                            <li><a href="https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html">CIDOC CRM v7.1.3</a></li>
+                            <li><a href="https://cidoc-crm.org/lrmoo">LRMoo (Library Reference Model)</a></li>
+                            <li><a href="https://cidoc-crm.org/crmdig">CRMdig (CRM Digital)</a></li>
+                        </ul>
+                    </div>
+                    <h3 id="exemple">b) Exemples utilisés</h3>
+                    <div>
+                        <ul>
+                            <li><a href="https://gallica.bnf.fr/ark:/12148/bpt6k6212441w/f13">Exemple de manuscrit Le Rouge et le Noir</a></li>
+                            <li><a href="https://gallica.bnf.fr/ark:/12148/bpt6k4580848s/f9.image.r=le%20rouge%20et">Exemple de presse sur Le Rouge et le Noir</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+            <!-- Table des matières (aside) -->
+            <aside class="col-md-3">
+                <div class="table-of-contents">
+                    <h4>Sommaire</h4>
+                    <nav>
+                        <ul>
+                            <li><a href="#presentation" class="toc-link">Présentation générale</a></li>
+                            <li><a href="#structure" class="toc-link">1. Structure et modularité</a></li>
+                            <li><a href="#branches" class="toc-link">2. Les branches spécifiques</a>
+                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                    <li><a href="#branche-creation" class="toc-link">a) Création de l'œuvre</a></li>
+                                    <li><a href="#branche-manifestation" class="toc-link">b) Manifestation</a></li>
+                                    <li><a href="#branche-numerique" class="toc-link">c) Objet numérique</a></li>
+                                    <li><a href="#branche-numerisation" class="toc-link">d) Numérisation</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#item" class="toc-link">3. Les "Items"</a></li>
+                            <li><a href="#bibliographie" class="toc-link">Bibliographie</a></li>
+                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                    <li><a href="#documentation" class="toc-link">a) Documentation CIDOC et extensions</a></li>
+                                    <li><a href="#exemple" class="toc-link">b) Exemples utilisés</a></li>
+                                </ul>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-light py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="text-center flex-grow-1 me-5">
+                <p class="mb-0">&copy; 2024 Consortium HN Ariane. Tous droits réservés.</p>
+            </div>
+            <div class="ms-5">
+                <a href="https://consortiumariane.gitpages.huma-num.fr/axe1/credits.html" class="mx-2">Crédits</a>
+            </div>
+            <div class="ms-5">
+                <a href="https://hal.science/CONSORTIUM-HN-ARIANE" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/HAL_logotype-rvb_fond-clair_fr.png" class="img-fluid">
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts JS -->
+     <script>
+    // Smooth scroll avec offset pour le header
+    document.querySelectorAll('.toc-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 20; // 20px de marge
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
