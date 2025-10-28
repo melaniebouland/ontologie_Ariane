@@ -371,7 +371,7 @@
                                         <li><strong>(CIDOC CRM) E53_Place :</strong> Paris</li>
                                         <li><strong>(CIDOC CRM) E67_Birth/E69_Death :</strong> Stendhal, né à Grenoble en 1783, mort à Paris en 1842</li>
                                         <li><strong>(CIDOC CRM) E89_Propositional_Object :</strong> mouvement littéraire "réalisme", contexte post-révolutionnaire</li>
-                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Période historique permettant d'indiquer un événement majeur : Révolution de 1830</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> période historique permettant d’indiquer un événement majeur de la période avec E5_Event : Révolution de 1830 (contexte historique influençant l’œuvre).</li>
                                     </ul>
                                 </div>
                             </div>
@@ -382,16 +382,30 @@
                         <iframe src="V4/exemple_rouge_noir/exemple_Work.html" style="border:none; width:100%;">Exemple Création de l'œuvre</iframe>
                     </div>
 
-                    <h3 id="branche-expression">b) La branche "Expression" (F2_Expression)</h3>
+                    <h3 id="branche-expression">b) La branche "Expression" (F2_Expression)</h3><!--A modifier-->
 
                     <h3 id="branche-manifestation">c) La branche "Manifestation" (F3_Manifestation)</h3>
-                    <p>Dans le modèle ontologique CAO_CRM, une manifestation (représentée par la classe <strong>F3_Manifestation</strong>) correspond à l'étape où l'œuvre intellectuelle prend une forme physique ou numérique tangible. Cette notion de manifestation est inspirée du modèle LRMoo (Library Reference Model).</p>
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/modules/CAO_CRM_V4_manifestation.html" style="border:none; width:100%;">Branche Manifestation</iframe>
+                    </div>
 
-                    <h4>Propriétés clés de F3_Manifestation :</h4>
+                    <p>Dans le modèle ontologique CAO_CRM, une manifestation (représentée par la classe <strong>F3_Manifestation</strong>) correspond à l'étape où l'œuvre intellectuelle prend une forme physique ou numérique tangible. Cette notion de manifestation est inspirée du modèle <strong>LRMoo</strong> (Library Reference Model) et fait référence à la production d’un exemplaire concret de l’œuvre, que ce soit sous forme imprimée, manuscrite, audiovisuelle ou numérique.</p>
+
+                    <p>La <strong>F3_Manifestation</strong> structure et agrège les informations liées à cette matérialisation, en fournissant des détails cruciaux concernant la production physique de l’œuvre. Dans le modèle, une manifestation est directement liée à un événement de création de la manifestation (<strong>F30_Manifestation_Creation</strong>), qui permet de décrire les circonstances spécifiques de la production de l’exemplaire. Cette étape est essentielle, car elle enregistre des éléments tels que le responsable de la production, les dates associées, et le lieu où l’objet a été fabriqué.</p>
+
+                    <h4>Propriétés clés de la branche F3_Manifestation :</h4>
                     <ul>
-                        <li><strong>Type d'objet :</strong> identification du type d'objet produit (livre, manuscrit, brochure, édition audiovisuelle)</li>
-                        <li><strong>Caractéristiques physiques :</strong> nombre de pages, format (in-18, folio, etc.), poids</li>
-                        <li><strong>Date et lieu de création :</strong> associés à un événement F30_Manifestation_Creation</li>
+                        <li><strong>Type d'objet :</strong> il s'agit de l’identification du type d'objet produit, par exemple, un livre, un manuscrit, une brochure, ou une édition audiovisuelle. Ces informations permettent de spécifier la nature du support physique ou numérique dans lequel l’œuvre est incarnée.</li>
+                        <li><strong>Caractéristiques physiques :</strong> ces propriétés incluent des dimensions comme le nombre de pages, le format (par exemple, in-18, folio, etc.), ou encore le poids du document. Ces éléments permettent de décrire précisément les spécifications matérielles de la manifestation.</li>
+                        <li><strong>Date et lieu de création :</strong> la manifestation est associée à un événement de création (<strong>F30_Manifestation_Creation</strong>), qui précise la période exacte pendant laquelle la production a eu lieu, ainsi que l’entité responsable de la création (éditeur, imprimeur, atelier, etc.), et l’emplacement de cette production.</li>
+                    </ul>
+
+                    <h4>Propriétés clés de la branche F3_Manifestation selon l'exemple <em>Le Rouge et le Noir</em> de Stendhal :</h4>
+                    <ul>
+                        <li><strong>Manifestation :</strong> la première édition imprimée de Le Rouge et le Noir, publiée en 1830 par l'éditeur Charles Gosselin à Paris, constitue une manifestation clé de l’œuvre.</li>
+                        <li><strong>Type d'objet :</strong> le livre est une édition imprimée, spécifiée comme étant une œuvre en format in-18, composée de 560 pages.</li>
+                        <li><strong>Événement de création (F30_Manifestation_Creation) :</strong> l’événement de création correspond à l’impression de cette édition, réalisée par l’imprimerie Charles Gosselin à Paris, entre janvier et mars 1830.</li>
+                        <li><strong>Entités associées :</strong> le responsable de cette édition est une personne morale responsable l'édition présente sur le livre (<strong>E74_Group</strong>), l’imprimerie est située à <strong>Paris (E53_Place)</strong>, et la période d’impression est enregistrée dans <strong>E52_Time-Span</strong>, correspondant à l’intervalle de temps précis (janvier-mars 1830).</li>
                     </ul>
 
                     <div class="accordion example-accordion mt-3" id="accordionF3">
@@ -404,11 +418,11 @@
                             <div id="collapseF3" class="accordion-collapse collapse" data-bs-parent="#accordionF3">
                                 <div class="accordion-body">
                                     <ul>
-                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Édition originale imprimée de Le Rouge et le Noir (1830)</li>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Édition originale imprimée de <em>Le Rouge et le Noir</em> (1830)</li>
                                         <li><strong>(CIDOC CRM) E55_Type (type d'objet) :</strong> Livre imprimé, in-18</li>
                                         <li><strong>(CIDOC CRM) P43_has_dimension :</strong> environ 560 pages</li>
                                         <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Processus d'impression de l'édition originale</li>
-                                        <li><strong>(CIDOC CRM) E21_Person (agent responsable) :</strong> Charles Gosselin (éditeur)</li>
+                                        <li><strong>(CIDOC CRM) E74_Group (agent responsable) :</strong> Charles Gosselin (éditeur)</li>
                                         <li><strong>(CIDOC CRM) E53_Place (lieu de création) :</strong> Imprimerie Charles Gosselin, Paris</li>
                                         <li><strong>(CIDOC CRM) E52_Time-Span (période de création) :</strong> Janvier – Mars 1830</li>
                                     </ul>
@@ -417,17 +431,34 @@
                         </div>
                     </div>
 
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_module_manifestation.html" style="border:none; width:100%;">Exemple Manifestation</iframe>
+                    </div>
+
+                    <p>Cette branche est donc essentielle pour modéliser précisément la production matérielle des œuvres, tout en offrant une interopérabilité optimale avec d’autres systèmes de gestion d’informations culturelles et patrimoniales.</p>
+
                     <h3 id="branche-numerique">d) La branche "Objet numérique" (D1_Digital_Object)</h3>
-                    <p>L'époque contemporaine est marquée par la numérisation progressive des contenus. L'intégration de ces objets numériques dans le modèle ontologique CAO_CRM est essentielle pour assurer la cohérence et l'interopérabilité des métadonnées.</p>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/modules/CAO_CRM_V4_objet-numerique.html" style="border:none; width:100%;">Branche Objet numérique</iframe>
+                    </div>
+
+                    <p>L’époque contemporaine est marquée par la numérisation progressive des contenus, ce qui a introduit une nouvelle catégorie d'objets culturels. Aujourd’hui, les œuvres littéraires existent non seulement en tant qu’objets physiques mais aussi comme des objets nativement numériques ou numérisés. Bien que ces objets numériques diffèrent de par leur nature matérielle, ils conservent une valeur documentaire et intellectuelle équivalente à celle des objets physiques. Ils jouent un rôle clé dans le processus créatif, la transmission, et la conservation des œuvres, en particulier dans un contexte où la préservation du patrimoine culturel passe de plus en plus par le numérique.</p>
+
+                    <p>L’intégration de ces objets numériques dans le modèle ontologique CAO_CRM est essentielle pour assurer la cohérence et l'interopérabilité des métadonnées, quel que soit le type de représentation choisi pour l’œuvre. Cette branche du modèle s’articule autour de l’entité <strong>F2_Expression</strong>, qui permet d’associer un objet numérique à une version précise de l’œuvre intellectuelle, en le considérant comme une matérialisation spécifique de cette œuvre, mais dans un format numérique.</p>
+
+                    <p>L’édition numérique de l’œuvre est ensuite représentée par <strong>F3_Manifestation</strong>, qui décrit les conditions matérielles et techniques sous lesquelles l’expression numérique de l'œuvre a été réalisée. Cette Manifestation numérique peut inclure des aspects tels que le format du fichier, la résolution, ou la plateforme sur laquelle l’œuvre est accessible. La création de cette manifestation numérique est modélisée par <strong>F30_Manifestation_Creation</strong>, qui suppose une temporalité (<strong>E52_Time-Span</strong>) pour préciser la période durant laquelle cette version numérique a été produite. Cela permet de situer l’objet dans le temps, offrant un ancrage contextuel à son évolution.</p>
+
+                    <p>Lorsqu’un objet numérique résulte d’un <strong>processus de numérisation</strong> d’un objet physique, celui-ci est modélisé via les classes spécifiques du <strong>CRMdig</strong>, une extension du CIDOC CRM dédiée à la description des objets numériques et de leur provenance. Le processus de numérisation est représenté par <strong>D2_Digitization_Process</strong>, tandis que l’objet numérique lui-même est modélisé par <strong>D1_Digital_Object</strong>. Cette classe permet de décrire les caractéristiques du fichier numérique résultant de la numérisation, ainsi que son lien avec le support original.</p>
 
                     <p>L'entité <strong>D1_Digital_Object</strong> peut être enrichie par une série de propriétés techniques et contextuelles, telles que :</p>
                     <ul>
-                        <li>Le format de fichier (PDF, EPUB, TXT)</li>
-                        <li>Le standard technique utilisé (normes ISO, Dublin Core, TEI)</li>
-                        <li>La version du document</li>
+                        <li>Le format de fichier (ex : PDF, EPUB, TXT)</li>
+                        <li>Le standard technique utilisé (ex : normes ISO, Dublin Core, TEI)</li>
+                        <li>La version du document (version originale ou enrichie)</li>
                         <li>Le titre attribué à l'objet numérique</li>
-                        <li>Les dimensions numériques (volume de stockage)</li>
-                        <li>Le lieu de conservation ou la plateforme de diffusion</li>
+                        <li>Les dimensions numériques, notamment le volume de stockage nécessaire</li>
+                        <li>Le lieu de conservation ou la plateforme de diffusion (ex. : Gallica, Internet Archive, repository institutionnel)</li>
                     </ul>
 
                     <div class="accordion example-accordion mt-3" id="accordionD1">
@@ -457,25 +488,39 @@
                         </div>
                     </div>
 
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_module_numerique.html" style="border:none; width:100%;">Exemple Objet numérique</iframe> 
+                    </div>
+
+                    <p>Cette branche du modèle permet donc de garantir que les objets numériques sont correctement intégrés dans la chaîne de représentation de l’œuvre, tout en préservant leur valeur documentaire et intellectuelle, et en permettant leur gestion, préservation et exploitation sur le long terme dans des environnements numériques.</p>
+
                     <h3 id="branche-numerisation">e) La branche "Numérisation" (CRMdig)</h3>
-                    <p>La numérisation des objets physiques joue un rôle essentiel dans la conservation, la diffusion et la valorisation scientifique des œuvres et documents. Dans CAO_CRM, le processus de numérisation d'un objet physique est représenté par la classe <strong>D2_Digitization_Process</strong> de l'extension CRMdig.</p>
 
-                    <h4>Éléments du processus de numérisation :</h4>
-                    <ul>
-                        <li><strong>E21_Person ou E39_Actor :</strong> La personne ou entité responsable de la numérisation</li>
-                        <li><strong>E52_Time-Span :</strong> La période de numérisation</li>
-                        <li><strong>D1_Digital_Object :</strong> L'objet numérique créé</li>
-                    </ul>
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/modules/CAO_CRM_V4_numerisation.html" style="border:none; width:100%;">Branche Numérisation</iframe>
+                    </div>
 
-                    <h4>Propriétés de l'objet numérique :</h4>
+                    <p>La numérisation des objets physiques, qu’il s’agisse d’archives personnelles, de manuscrits ou d’éditions imprimées, joue un rôle essentiel dans la conservation, la diffusion et la valorisation scientifique des œuvres et documents. Cette pratique est désormais courante dans les projets de recherche, de médiation et d’archivage. Intégrer un module spécifique pour la numérisation dans un modèle ontologique est donc crucial afin de documenter de manière cohérente et structurée ces processus techniques.</p>
+
+                    <p>Dans CAO_CRM, le processus de numérisation d’un objet physique est représenté par la classe <strong>D2_Digitization_Process</strong> de l’extension <strong>CRMdig</strong>. Ce processus enregistre toutes les informations relatives à la numérisation d'un objet, qu’il soit une archive personnelle, un manuscrit ou une édition imprimée. Il permet de retracer et de décrire les étapes, les acteurs et les conditions de cette opération. Plus précisément, le processus de numérisation se compose des éléments suivants :</p>
+                    <ol>
+                        <li><strong>La personne ou entité responsable de la numérisation (E21_Person ou E39_Actor)</strong> : ces classes permettent de lier le processus de numérisation à l’entité responsable de sa réalisation, qu’il s’agisse d’un individu ou d’une organisation. Cette association permet d’identifier qui a réalisé la numérisation et, le cas échéant, d’accéder à des informations sur l’entité ou la personne.</li>
+                        <li><strong>La période de numérisation (E52_Time-Span)</strong> : cette propriété renseigne la période exacte pendant laquelle le processus de numérisation a eu lieu, facilitant ainsi la contextualisation de l’action.</li>
+                    </ol>
+
+                    <p>Après la numérisation, un objet numérique (<strong>D1_Digital_Object</strong>) est créé. Cet objet regroupe tous les fichiers numériques générés par le processus de numérisation, qu’il s’agisse de fichiers d’images, de texte, ou de toute autre forme de reproduction numérique. L’objet numérique peut ensuite être détaillé à l’aide de descripteurs techniques spécifiques qui garantissent sa traçabilité, sa lisibilité, et son interopérabilité à travers différents systèmes et plateformes.</p>
+
+                    <h4>Principales propriétés d'un objet numérique :</h4>
                     <ul>
                         <li><strong>E35_Title :</strong> le titre attribué au document numérisé</li>
                         <li><strong>L57_has_pixel_height et L56_has_pixel_width :</strong> les dimensions de l'image</li>
-                        <li><strong>D13_Digital_Information_Carrier :</strong> l'entrepôt où le fichier est stocké</li>
+                        <li><strong>D13_Digital_Information_Carrier :</strong> l'entrepôt où le fichier est stocké (ex. : serveur, plateforme)</li>
                         <li><strong>E42_Identifier :</strong> la version ou l'identifiant du fichier (ex. : DOI)</li>
                         <li><strong>E55_Type :</strong> le format numérique (PDF, TIFF, JPEG)</li>
                         <li><strong>E55_Type :</strong> le standard informatique utilisé (TEI, METS/ALTO, ISO 19005)</li>
                     </ul>
+
+                    <p>Il est fréquent qu'un document numérisé soit constitué de plusieurs objets numériques distincts, chacun correspondant à une partie de l'objet physique original. Par exemple, une œuvre imprimée ou un manuscrit numérisé seront souvent découpés en plusieurs images numérisées représentant chacune une page du document. Dans ce cas, chaque page scannée sera modélisée comme un <strong>D1_Digital_Object</strong> distinct. Ces objets numériques seront ensuite reliés à des entités <strong>F5_Item</strong>, qui représentent les éléments physiques du document original (par exemple, une page, un feuillet, ou un article spécifique).</p>
 
                     <div class="accordion example-accordion mt-3" id="accordionD2">
                         <div class="accordion-item">
@@ -492,25 +537,263 @@
                                         <li><strong>(CIDOC CRM) E21_Person / E39_Actor :</strong> agent ou service de numérisation de la BnF</li>
                                         <li><strong>(CIDOC CRM) E52_Time-Span :</strong> période de numérisation : février–mars 2015</li>
                                         <li><strong>(CRMdig) D1_Digital_Object :</strong> fichier PDF du roman complet</li>
-                                        <li><strong>(CIDOC CRM) E35_Title :</strong> Le Rouge et le Noir – édition originale numérisée</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir – édition originale numérisée</em></li>
                                         <li><strong>(CRMdig) L57_has_pixel_height / L56_has_pixel_width :</strong> 3500 px × 2400 px</li>
                                         <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> stockage sur la plateforme Gallica (BnF)</li>
                                         <li><strong>(CIDOC CRM) E42_Identifier :</strong> ID Gallica : ark:/12148/bpt6k5743969x</li>
-                                        <li><strong>(LRMoo) E55_Type :</strong> format PDF</li>
+                                        <li><strong>(LRMoo) E55_Type :</strong>  indication du format de l’objet, par exemple, PDF</li>
+                                        <li><strong>(CIDOC CRM) E55_Type : indication du standard utilisé, par exemple, standard IIIF</strong></li>
+                                    </ul>
+                                    <p>Pages individuelles → <strong>(CRMdig) D1_Digital_Object</strong> pour chaque page JPEG + relation au <strong>(LRMoo) F5_Item</strong> correspondant (ex. : p.1 = page de titre ; p.12 = début du chapitre I)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_module_numerisation.html" style="border:none; width:100%;">Exemple Numérisation</iframe> 
+                    </div>
+
+                    <p>Cette branche du modèle ontologique permet de formaliser la numérisation des objets culturels et intellectuels de manière rigoureuse, garantissant à la fois la documentation technique et la préservation des objets numériques dans un cadre interopérable. Elle joue ainsi un rôle clé dans les projets de conservation, d’archivage, et de mise à disposition des œuvres numérisées.</p>
+
+                </div>
+
+                <div class="doc-section" id="item">
+                    <h2>3. Les "Items"</h2>
+                    <h3 id="manuscrit">a) Le Manuscrit</h3>
+                    
+                    <p>Dans le cadre du modèle ontologique CAO_CRM, les “Items” représentent des exemplaires physiques ou numériques spécifiques d'une œuvre, permettant ainsi de documenter leur existence, leur conservation et leur transformation. Pour mieux comprendre cette branche, prenons l'exemple du manuscrit original de <em>Le Rouge et le Noir de Stendhal</em>, publié en 1830, pour illustrer cette structure. Ce manuscrit, tout comme les archives personnelles de l'auteur (comprenant brouillons, versions révisées, et corrections), peut être modélisé à travers différents niveaux : de l'œuvre en tant qu'entité abstraite (<strong>F1_Work</strong>) à ses premières expressions (<strong>F2_Expression</strong>), en passant par la matérialisation sous forme de manifestation (<strong>F3_Manifestation</strong>) et enfin par son exemplaire physique ou numérique spécifique (<strong>F5_Item</strong>).</p>
+
+                    <p>L’entité <strong>F1_Work</strong> représente l’idée ou le concept de l’œuvre, indépendamment de sa matérialisation physique. Les brouillons manuscrits de Stendhal, par exemple, seraient classés comme des expressions spécifiques (<strong>F2_Expression</strong>) de cette idée, tandis que la première édition imprimée de <em>Le Rouge et le Noir</em> constituerait une manifestation physique (<strong>F3_Manifestation</strong>). L’entité <strong>F5_Item</strong> désigne un exemplaire unique de cette manifestation, qu’il soit conservé dans une bibliothèque ou numérisé pour une consultation à distance. Dans ce contexte, le modèle ontologique offre également une flexibilité pour gérer la numérisation de ces objets. Par exemple, un processus de numérisation (<strong>D2_Digitization_Process</strong>) peut être appliqué au manuscrit physique pour créer une version numérique (<strong>D1_Digital_Object</strong>). Ce processus produit des objets numériques distincts, comme des fichiers représentant chaque page numérisée, et les associe à des métadonnées techniques détaillées (dimensions, format, identifiant unique) afin de garantir leur traçabilité et leur interopérabilité. Ce système permet ainsi de conserver l'intégrité de l’œuvre tout en facilitant son accès et son analyse dans différents formats.</p>
+
+                    <div class="doc-section">
+                        <h3>Progression logique du modèle</h3>
+                        <p>Chaque étape du processus est donc détaillée dans le modèle </p>
+                        
+                        <div class="hierarchy-flow">
+                            <strong>F1_Work</strong> → <strong>F2_Expression</strong> → <strong>F3_Manifestation</strong> → <strong>F5_Item</strong>
+                        </div>
+                        <ul>
+                            <li><strong>F1_Work (Œuvre intellectuelle)</strong> : cette entité représente l'idée abstraite et le concept fondamental de l’œuvre, indépendant de toute matérialisation physique.</li>
+                            <li><strong>F2_Expression (Expression)</strong> : une Expression est une forme immatérielle de l’œuvre, issue de la créativité intellectuelle. Elle constitue un ensemble d’éléments qui matérialisent l’œuvre sous une forme donnée. Dans notre exemple, les brouillons manuscrits de Stendhal sont des expressions de l’œuvre qui incarnent la première phase de sa concrétisation avant qu'elle ne devienne un texte publié.</li>
+                            <li><strong>F3_Manifestation (Manifestation)</strong> : les manifestations sont des copies tangibles de l’œuvre dans une forme spécifique (par exemple, un livre imprimé ou une édition audiovisuelle). Pour <em>Le Rouge et le Noir</em>, la première édition imprimée de 1830 constitue une manifestation physique. Les manifestations sont souvent accompagnées d’un événement de création (<strong>F30_Manifestation_Creation</strong>) qui documente les informations liées à la production matérielle de l’œuvre, comme le lieu de publication, l’éditeur, et la date.</li>
+                            <li><strong>F5_Item (Objet physique ou numérique)</strong> : un Item représente un exemplaire particulier d'une manifestation. Dans ce cas, un exemplaire physique du manuscrit de Le Rouge et le Noir fait partie de la classe <strong>F5_Item</strong>. Cela inclut des métadonnées classiques de gestion d’objet, telles que la date de publication, le matériau, la dimension physique, le titre, etc.</li>
+                        </ul>
+
+                        <h3>Les traces matérielles de la création</h3>
+                        <p>Le modèle ontologique permet de capturer toute la complexité des relations entre ces différentes entités, particulièrement en ce qui concerne les traces matérielles de la création de l’œuvre. Par exemple, comment un brouillon manuscrit (un objet physique) est lié à une expression particulière de l’œuvre, ou comment les différentes versions d’un texte évoluent à travers des corrections successives et des révisions. Ces liens sont capturés à travers des entités spécifiques comme :</p>
+
+                        <ul>
+                            <li><strong>F2_Expression</strong> : cette entité permet de lier un manuscrit (une version spécifique de l’œuvre) à l’œuvre originale, par exemple un brouillon ou une révision. Cette expression fait partie intégrante du processus créatif qui a donné naissance à l’œuvre publiée.</li>
+                            <li><strong>F3_Manifestation</strong> : lorsqu’un manuscrit est formalisé sous forme imprimée (ou autre support), il prend la forme d'une manifestation. Par exemple, une première édition imprimée de Le Rouge et le Noir peut être cataloguée comme une manifestation distincte, tout en restant liée à l’expression du texte sous-jacent.</li>
+                        </ul>
+
+                        <h3>Description d’un manuscrit dans le modèle</h3>
+                        <p>Le modèle ontologique permet de documenter non seulement la forme finale de l’œuvre (la publication), mais également son processus de création. Dans le cas d'un manuscrit de Stendhal, ce dernier pourrait être modélisé comme suit :</p>
+                        <ul>
+                            <li><strong>F2_Expression (Expression)</strong> : les brouillons manuscrits de Stendhal sont des expressions de l’œuvre qui témoignent de l’évolution du texte avant sa publication. Chaque brouillon peut être associé à des métadonnées relatives à l’auteur (Stendhal) et à la période durant laquelle il a travaillé sur ces écrits.</li>
+                            <li><strong>F30_Manifestation_Creation</strong> : ce processus de création est documenté dans l’entité <strong>F30_Manifestation_Creation</strong>, qui renseigne des informations sur l'édition de l’œuvre imprimée, comme l'éditeur responsable, la date de publication, le lieu, et d’autres aspects relatifs à la production matérielle de l’œuvre.</li>
+                            <li><strong>F5_Item (Manuscrit physique)</strong> : l'objet physique (par exemple, un manuscrit autographe ou une copie manuscrite) est représenté par un Item. Ce <strong>F5_Item</strong> peut contenir des métadonnées supplémentaires comme la cote d’archive, l'état de conservation, la propriété intellectuelle associée, et même la possibilité de lier cet objet physique à un processus de numérisation.</li>
+                        </ul>
+
+                        <h3>Numérisation et conservation digitale</h3>
+                        <p>Les brouillons manuscrits ou autres objets physiques peuvent ensuite être numérisés pour assurer leur conservation et leur accessibilité numérique. Ce processus de numérisation peut être modélisé comme suit :</p>
+                        <ul>
+                            <li><strong>D2_Digitization_Process</strong> : le processus de numérisation d’un manuscrit physique est représenté par l’entité <strong>D2_Digitization_Process</strong>. Cette entité documente des informations comme la personne en charge de la numérisation (<strong>E21_Person</strong>), la période de numérisation (<strong>E52_Time-Span</strong>), ainsi que les caractéristiques techniques du processus (par exemple, le scanner utilisé, la résolution de l’image).</li>
+                            <li><strong>D1_Digital_Object</strong> : après la numérisation, l’objet physique est transformé en un objet numérique (par exemple, une image scannée d’une page). Ces objets numériques peuvent être documentés avec des métadonnées spécifiques, telles que les dimensions en pixels (<strong>L57_has_pixel_height</strong> et <strong>L56_has_pixel_width</strong>), le titre numérique (<strong>E35_Title</strong>), et l'entrepôt numérique où l’objet est stocké (<strong>D13_Digital_Information_Carrier</strong>).</li>
+                            <li><strong>F5_Item</strong> et <strong>D1_Digital_Object</strong> : chaque page numérisée du manuscrit peut être représentée comme un <strong>D1_Digital_Object</strong> distinct, lié à un <strong>F5_Item</strong> physique correspondant à une page spécifique du manuscrit. Cela permet de garantir l'intégrité et la traçabilité des différentes versions du manuscrit, tant physique que numérique.</li>
+                        </ul>
+                    </div>
+
+                    <h3>Résumé des relations</h3>
+                    <ul>
+                        <li><strong>F1_Work → F2_Expression</strong> : l’œuvre intellectuelle (<strong>F1_Work</strong>) se traduit par une ou plusieurs expressions (<strong>F2_Expression</strong>) comme les brouillons manuscrits présentant une version partielle de l’œuvre ou autres créations intermédiaires.</li>
+                        <li><strong>F2_Expression → F3_Manifestation</strong> : ces expressions peuvent être publiées sous forme de manifestations physiques ou numériques (<strong>F3_Manifestation</strong>).</li>
+                        <li><strong>F3_Manifestation → F5_Item</strong> : chaque manifestation prend une forme tangible, ou un exemplaire spécifique, qui devient un <strong>F5_Item</strong> (par exemple, un manuscrit physique ou une édition imprimée).</li>
+                        <li><strong>D2_Digitization_Process → D1_Digital_Object</strong> : un Item physique peut être numérisé, donnant lieu à des objets numériques (<strong>D1_Digital_Object</strong>) qui reproduisent les pages du manuscrit ou de l’édition.</li>
+                    </ul>
+
+                    <p>Cette approche détaillée du modèle ontologique permet de capturer l'intégralité du processus de création, de la première ébauche manuscrite à la version finale imprimée, tout en assurant une conservation efficace à travers la numérisation des objets physiques.</p>
+
+                    <p>La modélisation permet d’identifier et de compléter les métadonnées manquantes en fonction des données disponibles. Chaque entité peut être qualifiée de manière plus ou moins détaillée selon l'information accessible. Par exemple, bien que la période historique ne soit pas explicitement indiquée dans les données, elle peut être déduite grâce à des repères contextuels comme le mouvement littéraire du romantisme, auquel Stendhal appartient, ainsi que ses dates de naissance et de décès, ou encore les dates de publication de ses œuvres. Cette approche permet de combler les lacunes sans perdre de vue la cohérence globale du modèle.</p>
+
+                    <p>Le modèle offre une flexibilité pour intégrer ces informations manquantes tout en maintenant un cadre de relations structurées entre les différentes entités. À mesure que des données sont ajoutées, le modèle peut proposer des entités ou des informations absentes, facilitant ainsi la mise à jour et l’enrichissement des métadonnées. Cependant, il est important de noter que le modèle ontologique ne comprend pas de processus de vérification des données en soi. En revanche, son alignement avec des vocabulaires contrôlés et des thésaurus permet de clarifier des éléments clés tels que les dates, les personnes ou les lieux. Cette intégration renforce la capacité à situer une œuvre dans son contexte géographique, social et temporel, tout en garantissant la précision et l'interopérabilité des métadonnées.</p>
+
+                    <div class="accordion example-accordion mt-3" id="accordionComplet">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComplet">
+                                    Exemple complet : Du manuscrit à l'objet numérique
+                                </button>
+                            </h2>
+                            <div id="collapseComplet" class="accordion-collapse collapse" data-bs-parent="#accordionComplet">
+                                <div class="accordion-body">
+                                    <h5 class="text-danger mt-3 mb-2">Œuvre intellectuelle</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work :</strong> <em>Le Rouge et le Noir</em> (idée créatrice)</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (auteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 1829–1830 (période de création)</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> Paris</li>
+                                        <li><strong>(CIDOC CRM) E89_Propositional_Object :</strong> Mouvement littéraire "réalisme", "romantisme"</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em></li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Expression</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F2_Expression :</strong> Version manuscrite intermédiaire</li>
+                                        <li><strong>(LRMoo) F28_Expression_Creation :</strong> Acte de rédaction des brouillons</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Droits d'auteur – Domaine public</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Manifestation</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Manuscrit autographe de Stendhal</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Rédaction matérielle du manuscrit</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (rédacteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Déc. 1829 – janv. 1830</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> Manuscrit autographe (état génétique intermédiaire)</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> Manuscrit du chapitre I</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Domaine public</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet physique</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F5_Item :</strong> Feuillet manuscrit n°52</li>
+                                        <li><strong>(CIDOC CRM) E12_Production :</strong> Fabrication du feuillet</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> Cote BnF : RES-Y2-189</li>
+                                        <li><strong>(CIDOC CRM) E57_Material :</strong> Papier, encre noire</li>
+                                        <li><strong>(CIDOC CRM) E54_Dimension :</strong> 21 × 29,7 cm</li>
+                                        <li><strong>(CIDOC CRM) E90_Symbolic_Object :</strong> Langue : français</li>
+                                        <li><strong>(CIDOC CRM) E3_Condition_State :</strong> Bon état général</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Numérisation</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> Numérisation du feuillet manuscrit</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Agent numérisateur (BnF – pôle Gallica)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Avril 2015</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet numérique</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> Image numérique de la page 52</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em> – Manuscrit, page 52</li>
+                                        <li><strong>(CRMdig) L56_has_pixel_width :</strong> 2400 px</li>
+                                        <li><strong>(CRMdig) L57_has_pixel_height :</strong> 3500 px</li>
+                                        <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> Gallica</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> ark:/12148/btv1b52503047w/f52</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (format) :</strong> JPEG haute résolution</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (standard) :</strong> IIIF / METS-ALTO</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="doc-section" id="item">
-                    <h2>3. Les "Items"</h2>
-                    <h3>
+                    
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_Manuscrit.html" style="border:none; width:100%;">Exemple Item Manuscrit</iframe>
+                    </div>
 
-                    </h3>
+                    <p>La modélisation ontologique permet de structurer les métadonnées disponibles tout en suggérant celles qui manquent. Le modèle offre une grande flexibilité, permettant de qualifier chaque entité — qu’il s’agisse d’une œuvre, d’une manifestation ou d’un objet numérique — en fonction des données disponibles, tout en respectant un niveau d’abstraction précis. Ainsi, la complétude des informations peut être progressive, sans compromettre la cohérence du modèle.</p>
+
+                    <p>Concernant la partie conceptuelle (modèle LRMoo), bien que la période historique ne soit pas explicitement renseignée, elle peut être inférée à partir des dates de naissance et de mort de Stendhal (<strong>E21_Person, CIDOC CRM</strong>), ainsi que de son appartenance au mouvement romantique (<strong>E89_Propositional_Object, CIDOC CRM</strong>), lui-même ancré dans une période temporelle spécifique (<strong>E4_Period, CIDOC CRM</strong>). Les autres branches du modèle, comme celles des manuscrits, des objets numériques et de la numérisation, permettent de reporter les informations concrètes collectées (dimensions, formats, titres, etc.) tout en signalant les informations manquantes. Ces lacunes pourraient être automatiquement suggérées par un système intelligent, grâce à des inférences ontologiques.</p>
+
+                    <p>Il est toutefois important de noter que le modèle ontologique ne vérifie pas la validité des données. Ce rôle est assuré par son alignement avec des vocabulaires contrôlés, des thésaurus ou des référentiels comme Wikidata, IdRef ou PeriodO, qui permettent de clarifier les ambiguïtés autour des entités (dates, lieux, personnes) et de situer l’œuvre avec précision dans son contexte géographique, temporel et culturel.</p>
+
+                    <h3 id="correspondance">b) Les Correspondances</h3>
+
+                    <p>Dans les archives de Stendhal, on pourrait retrouver la correspondance liée à la genèse de l’œuvre <em>Le Rouge et le Noir</em>. Ces documents épistolaires jouent un rôle essentiel dans la documentation des échanges intellectuels et contextuels ayant entouré la création de l’œuvre. Les lettres échangées avec des amis, des éditeurs ou des critiques permettent de mieux comprendre les réflexions d’un écrivain, ses influences, ainsi que les ajustements apportés à son texte. Dans le modèle ontologique, ces lettres sont considérées comme des objets physiques spécifiques (<strong>F5_Item</strong>), représentant des manifestations matérielles d’un contenu épistolaire, en lien avec une expression particulière du discours de l’auteur (<strong>F2_Expression</strong>).</p>
+
+                    <p>Chaque lettre peut être détaillée selon plusieurs critères : sa production (<strong>E12_Production</strong>), son auteur (<strong>E21_Person</strong>), son destinataire (<strong>E39_Actor</strong>), la date d’envoi (<strong>E52_Time-Span</strong>) et le lieu de rédaction (<strong>E53_Place</strong>). Lorsqu’elles sont numérisées, ces lettres deviennent des objets numériques (<strong>D1_Digital_Object</strong>) et bénéficient de métadonnées supplémentaires, telles que la personne responsable de la numérisation (<strong>E21_Person</strong>), la période de numérisation (<strong>E52_Time-Span</strong>), ainsi que les dimensions numériques (<strong>L56_has_pixel_width</strong> et <strong>L57_has_pixel_height</strong>). Elles peuvent être conservées dans un entrepôt numérique (<strong>D13_Digital_Information_Carrier</strong>), avec un identifiant unique (<strong>E42_Identifier</strong>) pour assurer une traçabilité et une conservation adéquate.</p>
+
+                    <p>Les lettres manuscrites, tapuscrits ou courriels sont modélisés selon leur support spécifique. Par exemple, une lettre manuscrite et son enveloppe sont traitées comme deux objets distincts, ayant chacun leur propre date de production — la lettre selon la date inscrite par l’auteur et l’enveloppe selon le cachet postal. Si ces objets sont numérisés, chaque page d’une lettre est convertie en un objet numérique distinct (D1_Digital_Object) via un processus de numérisation (D2_Digitization_Process). Concernant la correspondance électronique, les courriels sont traités directement comme des objets numériques, avec des métadonnées adaptées à leur nature électronique, comme le format (.eml, .pdf), le standard de structuration (ex. XML-TEI, MIME), et l’entrepôt de stockage du message (D13_Digital_Information_Carrier).</p>
+
+                    <p></p>
+
+                    
+
+                    <div class="accordion example-accordion mt-3" id="accordionCorrespondance">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCorrespondance">
+                                    Exemple : Correspondance Stendhal-Balzac
+                                </button>
+                            </h2>
+                            <div id="collapseCorrespondance" class="accordion-collapse collapse" data-bs-parent="#accordionCorrespondance">
+                                <div class="accordion-body">
+                                    <h5 class="text-danger mt-3 mb-2">Œuvre intellectuelle</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work :</strong> <em>Le Rouge et le Noir</em> (idée créatrice)</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (auteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 1829–1830 (période de création)</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> Paris</li>
+                                        <li><strong>(CIDOC CRM) E89_Propositional_Object :</strong> Mouvement littéraire "réalisme", "romantisme"</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em></li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Expression</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F2_Expression :</strong> Correspondance autour du <em>Rouge et le Noir</em></li>
+                                        <li><strong>(LRMoo) F28_Expression_Creation :</strong> Acte de rédaction et de réception des lettres</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Droits d'auteur – Domaine public</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Manifestation</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Correspondance Stendhal - Balzac</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Rédaction de lettre adressée à Honoré de Balzac</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (rédacteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 1810-1824</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> Lettre manuscrite</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Domaine public</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet physique</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F5_Item :</strong> Lettre de Balzac à Stendhal</li>
+                                        <li><strong>(CIDOC CRM) E12_Production :</strong> Fabrication du feuillet</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> ID43</li>
+                                        <li><strong>(CIDOC CRM) E57_Material :</strong> Papier, encre noire</li>
+                                        <li><strong>(CIDOC CRM) E54_Dimension :</strong> 21 × 29,7 cm</li>
+                                        <li><strong>(CIDOC CRM) E90_Symbolic_Object :</strong> Langue : français</li>
+                                        <li><strong>(CIDOC CRM) E3_Condition_State :</strong> Bon état général</li>
+                                        <li><strong>(CIDOC CRM) F5_Item :</strong> Lettre composant l'ensemble de l'objet physique</li>
+                                        <li><strong>(CIDOC CRM) F5_Item :</strong> Enveloppe composant l'ensemble de l'objet physique</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Numérisation</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> Numérisation du feuillet manuscrit</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> L. Simonnet</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Avril 2012</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet numérique</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> Image numérique de la lettre de Balzac à Stendhal</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> Balzac à Stendhal – Lettre manuscrite ID43</li>
+                                        <li><strong>(CRMdig) L56_has_pixel_width :</strong> 2400 px</li>
+                                        <li><strong>(CRMdig) L57_has_pixel_height :</strong> 3500 px</li>
+                                        <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> Gallica</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> ark:/</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (format) :</strong> JPEG haute résolution et TIFF</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (standard) :</strong> IIIF / METS-ALTO</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_Corres.html" style="border:none; width:100%;">Exemple Item Correspondance</iframe>
+                    </div>
+
+                    <h3 id="presse">c) La Presse</h3>
+
+                    <h3 id="art">d) Les oeuvres plastiques, artistiques et audio-visuelles</h3>
 
                 </div>
+
                 <div class="doc-section" id="bibliographie">
                     <h2>Bibliographie</h2>
                     <h3 id="documentation">a) Documentation CIDOC et extensions</h3>
@@ -546,7 +829,14 @@
                                     <li><a href="#branche-numerisation" class="toc-link">d) Numérisation</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#item" class="toc-link">3. Les "Items"</a></li>
+                            <li><a href="#item" class="toc-link">3. Les "Items"</a>
+                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                    <li><a href="#manuscrit" class="toc-link">a) Le Manuscrit</a></li>
+                                    <li><a href="#correspondance" class="toc-link">b) Les Correspondances</a></li>
+                                    <li><a href="#presse" class="toc-link">c) La Presse</a></li>
+                                    <li><a href="#art" class="toc-link">d) Les oeuvres plastiques, artistiques et audio-visuelles</a>
+                                </ul>
+                            </li>
                             <li><a href="#bibliographie" class="toc-link">Bibliographie</a></li>
                                 <ul style="padding-left: 1rem; margin-top: 0.3rem;">
                                     <li><a href="#documentation" class="toc-link">a) Documentation CIDOC et extensions</a></li>
