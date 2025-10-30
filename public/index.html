@@ -382,8 +382,6 @@
                         <iframe src="V4/exemple_rouge_noir/exemple_Work.html" style="border:none; width:100%;">Exemple Création de l'œuvre</iframe>
                     </div>
 
-                    <h3 id="branche-expression">b) La branche "Expression" (F2_Expression)</h3><!--A modifier-->
-
                     <h3 id="branche-manifestation">c) La branche "Manifestation" (F3_Manifestation)</h3>
                     <div class="hierarchy-flow">
                         <iframe src="V4/modules/CAO_CRM_V4_manifestation.html" style="border:none; width:100%;">Branche Manifestation</iframe>
@@ -560,7 +558,7 @@
 
                 <div class="doc-section" id="item">
                     <h2>3. Les "Items"</h2>
-                    <h3 id="manuscrit">a) Le Manuscrit</h3>
+                    <h3 id="manuscrit">a) Le manuscrit</h3>
                     
                     <p>Dans le cadre du modèle ontologique CAO_CRM, les “Items” représentent des exemplaires physiques ou numériques spécifiques d'une œuvre, permettant ainsi de documenter leur existence, leur conservation et leur transformation. Pour mieux comprendre cette branche, prenons l'exemple du manuscrit original de <em>Le Rouge et le Noir de Stendhal</em>, publié en 1830, pour illustrer cette structure. Ce manuscrit, tout comme les archives personnelles de l'auteur (comprenant brouillons, versions révisées, et corrections), peut être modélisé à travers différents niveaux : de l'œuvre en tant qu'entité abstraite (<strong>F1_Work</strong>) à ses premières expressions (<strong>F2_Expression</strong>), en passant par la matérialisation sous forme de manifestation (<strong>F3_Manifestation</strong>) et enfin par son exemplaire physique ou numérique spécifique (<strong>F5_Item</strong>).</p>
 
@@ -700,17 +698,43 @@
 
                     <p>Il est toutefois important de noter que le modèle ontologique ne vérifie pas la validité des données. Ce rôle est assuré par son alignement avec des vocabulaires contrôlés, des thésaurus ou des référentiels comme Wikidata, IdRef ou PeriodO, qui permettent de clarifier les ambiguïtés autour des entités (dates, lieux, personnes) et de situer l’œuvre avec précision dans son contexte géographique, temporel et culturel.</p>
 
-                    <h3 id="correspondance">b) Les Correspondances</h3>
+                    <h3 id="correspondance">b) Les correspondances</h3>
 
                     <p>Dans les archives de Stendhal, on pourrait retrouver la correspondance liée à la genèse de l’œuvre <em>Le Rouge et le Noir</em>. Ces documents épistolaires jouent un rôle essentiel dans la documentation des échanges intellectuels et contextuels ayant entouré la création de l’œuvre. Les lettres échangées avec des amis, des éditeurs ou des critiques permettent de mieux comprendre les réflexions d’un écrivain, ses influences, ainsi que les ajustements apportés à son texte. Dans le modèle ontologique, ces lettres sont considérées comme des objets physiques spécifiques (<strong>F5_Item</strong>), représentant des manifestations matérielles d’un contenu épistolaire, en lien avec une expression particulière du discours de l’auteur (<strong>F2_Expression</strong>).</p>
 
                     <p>Chaque lettre peut être détaillée selon plusieurs critères : sa production (<strong>E12_Production</strong>), son auteur (<strong>E21_Person</strong>), son destinataire (<strong>E39_Actor</strong>), la date d’envoi (<strong>E52_Time-Span</strong>) et le lieu de rédaction (<strong>E53_Place</strong>). Lorsqu’elles sont numérisées, ces lettres deviennent des objets numériques (<strong>D1_Digital_Object</strong>) et bénéficient de métadonnées supplémentaires, telles que la personne responsable de la numérisation (<strong>E21_Person</strong>), la période de numérisation (<strong>E52_Time-Span</strong>), ainsi que les dimensions numériques (<strong>L56_has_pixel_width</strong> et <strong>L57_has_pixel_height</strong>). Elles peuvent être conservées dans un entrepôt numérique (<strong>D13_Digital_Information_Carrier</strong>), avec un identifiant unique (<strong>E42_Identifier</strong>) pour assurer une traçabilité et une conservation adéquate.</p>
 
-                    <p>Les lettres manuscrites, tapuscrits ou courriels sont modélisés selon leur support spécifique. Par exemple, une lettre manuscrite et son enveloppe sont traitées comme deux objets distincts, ayant chacun leur propre date de production — la lettre selon la date inscrite par l’auteur et l’enveloppe selon le cachet postal. Si ces objets sont numérisés, chaque page d’une lettre est convertie en un objet numérique distinct (D1_Digital_Object) via un processus de numérisation (D2_Digitization_Process). Concernant la correspondance électronique, les courriels sont traités directement comme des objets numériques, avec des métadonnées adaptées à leur nature électronique, comme le format (.eml, .pdf), le standard de structuration (ex. XML-TEI, MIME), et l’entrepôt de stockage du message (D13_Digital_Information_Carrier).</p>
+                    <p>Les lettres manuscrites, tapuscrits ou courriels sont modélisés selon leur support spécifique. Par exemple, une lettre manuscrite et son enveloppe sont traitées comme deux objets distincts, ayant chacun leur propre date de production — la lettre selon la date inscrite par l’auteur et l’enveloppe selon le cachet postal. Si ces objets sont numérisés, chaque page d’une lettre est convertie en un objet numérique distinct (<strong>D1_Digital_Object</strong>) via un processus de numérisation (<strong>D2_Digitization_Process</strong>). Concernant la correspondance électronique, les courriels sont traités directement comme des objets numériques, avec des métadonnées adaptées à leur nature électronique, comme le format (.eml, .pdf), le standard de structuration (ex. XML-TEI, MIME), et l’entrepôt de stockage du message (<strong>D13_Digital_Information_Carrier</strong>).</p>
 
-                    <p></p>
+                    <p>Cette modélisation permet de structurer et de contextualiser chaque objet de manière précise, facilitant ainsi la gestion des archives et la compréhension des liens intellectuels et historiques qui relient ces documents à l’œuvre principale.</p>
+                  
+                    <h3>Attribution des métadonnées spécifiques à chaque objet numérique</h3>
+                    <ul>
+                        <li>Le titre (<strong>E35_Title</strong>), éventuellement différent de celui de l’œuvre originale</li>
+                        <li>Les dimensions numériques (<strong>L56_has_pixel_width</strong> et <strong>L57_has_pixel_height</strong>)</li>
+                        <li>L’entrepôt de données de conservation (<strong>D13_Digital_Information_Carrier</strong>)</li>
+                        <li>Le format et le standard utilisés (<strong>E55_Type</strong>, ex. PDF, XML-TEI, IIIF)</li>
+                        <li>La version du fichier (<strong>E42_Identifier</strong>)</li>
+                        <li>Et la date de création du fichier numérique (<strong>E52_Time-Span</strong>)</li>
+                    </ul>
 
-                    
+                    <p>La lettre numérisée peut être composée de plusieurs pages : chaque page constitue une instance de <strong>D1_Digital_Object</strong>, issue du processus de numérisation (<strong>D2_Digitization_Process</strong>) de chaque page physique (<strong>F5_Item</strong>). Par exemple, une page manuscrite d’une lettre de Stendhal mentionnant <em>Le Rouge et le Noir</em>, datée et cotée, sera modélisée en tant qu’objet distinct, tout en faisant partie de l’unité archivistique globale.</p>
+
+                    <p>En ce qui concerne la correspondance électronique, celle-ci fait également l’objet d’une entité <strong>F3_Manifestation</strong> liée à un processus de création de manifestation (<strong>F30_Manifestation_Creation</strong>). Les courriels, en tant qu’objets entièrement numériques, peuvent être modélisés directement comme <strong>D1_Digital_Object</strong>, créés via un processus de production numérique natif (<strong>E12_Production</strong>).</p>
+
+                    <h3>Métadonnées spécifique de la correspondance électronique</h3>
+                    <ul>
+                        <li>Le titre (<strong>E35_Title</strong>)</li>
+                        <li>Le format informatique (ex. : .eml, .pdf) - (<strong>E55_Type</strong>)</li>
+                        <li>Le standard de structuration utilisé (ex. XML-TEI, MIME) – (<strong>E55_Type</strong>)</li>
+                        <li>La version du message (<strong>E42_Identifier</strong>)</li>
+                        <li>L’entrepôt de données (ex. serveur ou plateforme) (<strong>D13_Digital_Information_Carrier</strong>)</li>
+                        <li>Et, éventuellement, des dimensions de stockage (<strong>E54_Dimension</strong>)</li>
+                    </ul>
+
+                    <p>La structure conceptuelle du modèle ontologique demeure uniforme, quelle que soit la nature des ressources archivées. Toutefois, dans le cas précis d’une lettre et de son enveloppe, chaque objet se voit attribuer des métadonnées spécifiques, permettant de différencier clairement leurs rôles respectifs. Bien que faisant partie de la même unité documentaire, la lettre et l’enveloppe n’ont pas la même valeur intellectuelle ni la même fonction : la lettre, en tant que support principal du discours, contient l’essentiel des échanges intellectuels et créatifs, tandis que l’enveloppe joue un rôle plus logistique et contextuel, offrant des informations telles que les dates, les cachets postaux et les adresses.</p>
+
+                    <p>Cette distinction, bien qu'importante, ne rompt pas la cohérence du modèle, car les deux objets sont traités selon une logique archivistique commune. Ainsi, chaque entité bénéficie de métadonnées qui permettent de documenter sa production (<strong>E12_Production</strong>), ses dimensions (<strong>E54_Dimension</strong>), son état de conservation (<strong>E3_Condition_State</strong>), ainsi que son identifiant unique (<strong>E42_Identifier</strong>). En outre, cette granularité descriptive garantit que chaque élément reste fermement rattaché à l’œuvre principale (<strong>F1_Work</strong>) et à son expression épistolaire (<strong>F2_Expression</strong>), maintenant ainsi leur lien sémantique tout en préservant la spécificité de chaque objet.</p>
 
                     <div class="accordion example-accordion mt-3" id="accordionCorrespondance">
                         <div class="accordion-item">
@@ -788,10 +812,250 @@
                         <iframe src="V4/exemple_rouge_noir/exemple_Corres.html" style="border:none; width:100%;">Exemple Item Correspondance</iframe>
                     </div>
 
-                    <h3 id="presse">c) La Presse</h3>
+                    <h3 id="presse">c) La presse</h3>
+                    <p>Dans le fonds d'archives de Stendhal, il est tout à fait possible de retrouver des coupures de presse concernant <em>Le Rouge et le Noir</em>, qu'il s'agisse d'articles critiques, de revues de publication ou d'événements associés à l’œuvre. Tout comme la correspondance, la presse représente une forme d’expression (<strong>F2_Expression</strong>) de l’œuvre (<strong>F1_Work</strong>). Cette expression est soumise à des droits de propriété intellectuelle (<strong>E30_Right</strong>), et sa création (<strong>F28_Expression_Creation</strong>) permet de renseigner sa genèse, bien que sans fournir de nouvelles informations factuelles.</p>
+
+                    <p>Cependant, la modélisation de la presse s'avère complexe. En effet, il faut non seulement prendre en compte l'article individuel — par exemple un article qui critique <em>Le Rouge et le Noir</em> — mais aussi le journal qui le publie. Le journal, en tant qu'entité distincte, doit être considéré dans sa globalité, avec sa ligne éditoriale, sa structure, sa localisation et son type de publication. Une première manifestation (<strong>F3_Manifestation</strong>) correspond ainsi à l’édition complète du journal, en tant qu’entité porteuse d'une vision éditoriale. Cette manifestation permet de capturer les données relatives à la création du journal, telles que la période de publication, le lieu d’édition et les informations spécifiques à l’édition (dimensions, type de contenu diffusé).</p>
+
+                    <p>Les journaux modernes existent en version physique et numérique. Les deux versions peuvent être modélisées comme des manifestations distinctes, chacune résultant d’un processus de création propre (<strong>F30_Manifestation_Creation</strong>). Dans le cas de l'édition physique, l'objet physique (<strong>F5_Item</strong>) documente les détails archivistiques classiques : numéro du journal, dimensions, matériau, cote d’archivage et état de conservation. Pour les versions numérisées, un processus de numérisation (<strong>D2_Digitization_Process</strong>) permet de créer une copie numérique (<strong>D1_Digital_Object</strong>), avec des métadonnées supplémentaires spécifiques aux objets numériques, comme la taille en pixels, le format du fichier, la version numérique et la date de numérisation (<strong>E52_Time-Span</strong>). Cette copie numérique du journal peut être composée de plusieurs pages, chacune numérisée individuellement et identifiée comme une instance distincte de <strong>D1_Digital_Object</strong>. Ces pages numériques correspondent aux pages physiques du journal et sont toutes indexées par des métadonnées comme l’identifiant unique (<strong>E42_Identifier</strong>) et le lieu de stockage (<strong>D13_Digital_Information_Carrier</strong>). Les versions numériques des journaux, bien que nées d’une procédure numérique, contiennent aussi des métadonnées propres à leur nature numérique, telles que le standard utilisé (ex. XML-TEI, IIIF).</p>
+
+                    <p>Un autre aspect crucial de la presse concerne les articles qu’elle contient, indépendamment du support. Un article est modélisé en tant que manifestation (<strong>F3_Manifestation</strong>) intégrant l’expression créative spécifique de l'auteur (<strong>F2_Expression</strong>). Les articles sont donc analysés comme des objets intellectuels indépendants, et peuvent être associés à des informations telles que l’auteur (<strong>E21_Person</strong>) et son rôle dans la production de l'article. Les textes, images et autres éléments qui composent l’article (<strong>F5_Item</strong>) sont à la fois des objets physiques ou numériques, et peuvent être décrits par des métadonnées plus classiques comme le titre (<strong>E35_Title</strong>), la langue utilisée (<strong>E90_Symbolic_Object</strong>) et leur état de conservation.</p>
+
+                    <p>Enfin, la distinction entre supports physique et numérique pour un même journal ou article n'altère pas la continuité du modèle, permettant ainsi de relier les différentes expressions de l’œuvre sous toutes ses formes, tout en conservant une gestion efficace des informations contextuelles, physiques et numériques.</p>
+
+                    <div class="accordion example-accordion mt-3" id="accordionJournalDebats">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJournalDebats">
+                                    Exemple : Journal des débats politiques et littéraires | 1920-06-29 | Gallica
+                                </button>
+                            </h2>
+                            <div id="collapseJournalDebats" class="accordion-collapse collapse" data-bs-parent="#accordionJournalDebats">
+                                <div class="accordion-body">
+                                    <h5 class="text-danger mt-3 mb-2">Œuvre intellectuelle</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work :</strong> <em>Le Rouge et le Noir</em> (œuvre littéraire)</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (auteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 1829–1830 (période de création)</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> Paris</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em></li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Expression</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F2_Expression :</strong> Article critique sur Stendhal <em>Le Rouge et le Noir</em></li>
+                                        <li><strong>(LRMoo) F28_Expression_Creation :</strong> Rédaction de l'article dans le journal</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Droits de reproduction – Domaine public (période XXe)</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Manifestation</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Numéro du <em>Journal des débats</em> du 29 juin 1920</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Impression de ce numéro</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Rédacteur en chef / Éditeur (non précisé)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 29 juin 1920</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> Journal imprimé (édition papier)</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Journal des débats</em> — Numéro du 29/06/1920</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet physique</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F5_Item :</strong> Exemplaire physique du <em>Journal des débats</em> du 29 juin 1920</li>
+                                        <li><strong>(CIDOC CRM) E12_Production :</strong> Impression du journal</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> Cote BnF : cb39294634r</li>
+                                        <li><strong>(CIDOC CRM) E57_Material :</strong> Papier, encre noire</li>
+                                        <li><strong>(CIDOC CRM) E54_Dimension :</strong> 42 × 32 cm</li>
+                                        <li><strong>(CIDOC CRM) E3_Condition_State :</strong> Bon état général</li>
+                                        <li><strong>(CIDOC CRM) E90_Symbolic_Object :</strong> Langue : français</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Numérisation</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> Numérisation de l'exemplaire du <em>Journal des débats</em></li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Agent numérisateur BnF – département numérique</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Juin 2012</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet numérique</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> Fichier numérique contenant l'article sur <em>Le Rouge et le Noir</em></li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> Article <em>Le Rouge et le Noir</em> – <em>Journal des débats</em> 29/06/1920</li>
+                                        <li><strong>(CRMdig) L56_has_pixel_width :</strong> 3200 px</li>
+                                        <li><strong>(CRMdig) L57_has_pixel_height :</strong> 4000 px</li>
+                                        <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> Gallica (BnF)</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> ark:/12148/bpt6k489375f</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (format) :</strong> JPEG haute résolution</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (standard) :</strong> IIIF</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_Presse.html" style="border:none; width:100%;">Exemple Item Presse</iframe>
+                    </div>
 
                     <h3 id="art">d) Les oeuvres plastiques, artistiques et audio-visuelles</h3>
+                    <p>Dans le cadre des archives de Stendhal, l’œuvre <em>Le Rouge et le Noir</em> a pu inspirer diverses créations artistiques, telles que des peintures, des sculptures, des œuvres audiovisuelles ou autres productions issues du champ artistique. Ces nouvelles créations, qu’elles soient directement ou indirectement liées à l’œuvre de Stendhal, constituent des expressions (<strong>F2_Expression</strong>) qui trouvent leur origine dans l’œuvre de l’auteur (<strong>F1_Work</strong>).</p>
 
+                    <p>La modélisation ontologique de ces œuvres suit la même structure que celle des autres manifestations artistiques. Ces nouvelles créations sont perçues comme des manifestations (<strong>F3_Manifestation</strong>) représentant l’expression d’une idée artistique, directement ou indirectement inspirée de l’œuvre de Stendhal. La propriété intellectuelle (<strong>E30_Right</strong>) applicable à cette expression peut être spécifiée, tout comme la période de création (<strong>F28_Expression_Creation</strong>), permettant de positionner dans le temps cette œuvre dérivée.</p>
+
+                    <p>Le processus de création artistique est modélisé à travers la manifestation (<strong>F30_Manifestation_Creation</strong>), qui est détaillée par des métadonnées comme le lieu de création (<strong>E53_Place</strong>), la période (<strong>E52_Time-Span</strong>) et l’auteur (<strong>E21_Person</strong>). La dimension de l’œuvre (<strong>E54_Dimension</strong>) peut être renseignée si elle est normalisée, afin de permettre une compréhension commune de l’œuvre produite. Cette étape garantit que la manifestation de l'œuvre est précisément définie en termes de support, de type d’œuvre (peinture, sculpture, installation numérique, etc.), et de contexte de production.</p>
+
+                    <p>L’objet physique (<strong>F5_Item</strong>) est l'instance concrète de la manifestation. Pour des œuvres plastiques, cet objet regroupe des métadonnées standardisées typiques des pratiques bibliothéconomiques ou archivistiques : titre (<strong>E35_Title</strong>), cote ou identifiant (<strong>E42_Identifier</strong>), matériau (<strong>E57_Material</strong>), dimensions (<strong>E54_Dimension</strong>) et type de support (<strong>E55_Type</strong>). Le suivi de l'état de conservation de l'œuvre (<strong>E3_Condition_State</strong>) est également une composante essentielle de la gestion de l’objet dans une perspective archivistique.</p>
+
+                    <p>Dans un cadre numérique, ces œuvres peuvent faire l’objet d’un processus de numérisation (<strong>D2_Digitization_Process</strong>) pour en créer une copie digitale. Cette copie numérique (<strong>D1_Digital_Object</strong>) est accompagnée de métadonnées spécifiques aux objets numériques. Ces informations incluent la taille en pixels (<strong>L56_has_pixel_width, L57_has_pixel_height</strong>), le titre (<strong>E35_Title</strong>), le format (<strong>E55_Type</strong>), le standard de numérisation utilisé (ex. IIIF, XML-TEI), la version numérique (<strong>E42_Identifier</strong>) et la date de création numérique (<strong>E52_Time-Span</strong>).</p>
+
+                    <p>Lorsqu’une œuvre d’art numérisée est composée de plusieurs éléments, comme différentes vues d’une sculpture ou d’une peinture, chaque vue est représentée comme un objet numérique distinct (<strong>D1_Digital_Object</strong>) issu du processus de numérisation (<strong>D2_Digitization_Process</strong>). Ces éléments numériques sont reliés entre eux et peuvent être identifiés à l’aide d’un identifiant unique, facilitant ainsi leur gestion dans les systèmes informatiques.</p>
+
+                    <p>Le modèle permet également de décrire les œuvres purement numériques, telles que des créations artistiques réalisées spécifiquement pour des supports informatiques. Ces œuvres numériques sont des manifestations (<strong>F30_Manifestation_Creation</strong>) dont la création est définie par des métadonnées propres, comme la taille du fichier, le lieu de stockage (<strong>D13_Digital_Information_Carrier</strong>), le format, le type de fichier et la version.</p>
+
+                    <p>Ainsi, bien que les œuvres directement inspirées de <em>Le Rouge et le Noir</em> n’aient pas encore été intégrées dans des bases de données accessibles en libre accès, le modèle ontologique proposé reste entièrement applicable à ce type de créations. En effet, la structure conceptuelle définie permet de décrire de manière rigoureuse et cohérente toute œuvre artistique dérivée, qu’il s’agisse de peinture, sculpture, création numérique ou autre. La séparation claire entre les niveaux conceptuels de l’œuvre intellectuelle (<strong>F1_Work</strong>), de l’expression (<strong>F2_Expression</strong>), de la manifestation (<strong>F3_Manifestation</strong>) et de l’objet physique ou numérique (<strong>F5_Item / D1_Digital_Object</strong>) s’adapte naturellement aux divers types de créations artistiques.</p>
+
+                    <p>Dès qu’une œuvre dérivée de <em>Le Rouge et le Noir</em> sera documentée dans des archives ou des bases patrimoniales, le modèle assurera une gestion structurée et cohérente, tant pour sa conservation que pour sa consultation, en garantissant la pérennité et la clarté des informations associées à cette œuvre.</p>
+
+                    <div class="accordion example-accordion mt-3" id="accordionAdaptationFilm">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdaptationFilm">
+                                    Exemple : Adaptation cinématographique du Rouge et le Noir
+                                </button>
+                            </h2>
+                            <div id="collapseAdaptationFilm" class="accordion-collapse collapse" data-bs-parent="#accordionAdaptationFilm">
+                                <div class="accordion-body">
+                                    <h5 class="text-danger mt-3 mb-2">Œuvre intellectuelle (œuvre originale)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work :</strong> <em>Le Rouge et le Noir</em> (roman de Stendhal)</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (auteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 1829–1830</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em></li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Expression (adaptation cinématographique)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F2_Expression :</strong> Scénario et adaptation du roman en film</li>
+                                        <li><strong>(LRMoo) F28_Expression_Creation :</strong> Rédaction du scénario par le scénariste</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Marie Dupont (scénariste)</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Droits d'adaptation – Licence cinématographique</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Manifestation (film produit)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Film « Le Rouge et le Noir » (version 2020)</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Tournage et montage du film</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Jean Martin (réalisateur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 2018–2020</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> Studios de cinéma, Paris</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> Film long métrage</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em> (film, 2020)</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet physique (support filmique)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F5_Item :</strong> Copie physique du film sur pellicule 35 mm</li>
+                                        <li><strong>(CIDOC CRM) E12_Production :</strong> Production du support pellicule</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> Inventaire Cinémathèque #F2020-001</li>
+                                        <li><strong>(CIDOC CRM) E57_Material :</strong> Pellicule 35 mm</li>
+                                        <li><strong>(CIDOC CRM) E54_Dimension :</strong> Format 35 mm, durée 120 minutes</li>
+                                        <li><strong>(CIDOC CRM) E3_Condition_State :</strong> Bon état</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Numérisation (digitalisation du film)</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> Numérisation 4K du film sur pellicule</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Technicien numérisation, Cinémathèque Française</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Juin 2022</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet numérique (version numérique du film)</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> Fichier numérique haute définition du film</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em> (film numérique 4K)</li>
+                                        <li><strong>(CRMdig) L56_has_pixel_width :</strong> 3840 px</li>
+                                        <li><strong>(CRMdig) L57_has_pixel_height :</strong> 2160 px</li>
+                                        <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> Serveur de la Cinémathèque Française</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> NumF2020-001-4K</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (format) :</strong> MP4</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (standard) :</strong> MPEG-4 AVC</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion example-accordion mt-3" id="accordionOeuvrePlastique">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOeuvrePlastique">
+                                    Exemple : Œuvre plastique inspirée du Rouge et le Noir
+                                </button>
+                            </h2>
+                            <div id="collapseOeuvrePlastique" class="accordion-collapse collapse" data-bs-parent="#accordionOeuvrePlastique">
+                                <div class="accordion-body">
+                                    <h5 class="text-danger mt-3 mb-2">Œuvre intellectuelle (œuvre originale)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work :</strong> <em>Le Rouge et le Noir</em> (roman de Stendhal)</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Stendhal (auteur)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 1829–1830</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> <em>Le Rouge et le Noir</em></li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Expression (œuvre plastique inspirée)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F2_Expression :</strong> Peinture inspirée par <em>Le Rouge et le Noir</em></li>
+                                        <li><strong>(LRMoo) F28_Expression_Creation :</strong> Création de la peinture par l'artiste</li>
+                                        <li><strong>(CIDOC CRM) E30_Right :</strong> Droits d'auteur – Protection en vigueur</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Manifestation (œuvre plastique matérielle)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation :</strong> Peinture « Scène du Rouge et le Noir » (version finale)</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation :</strong> Réalisation matérielle de la peinture</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Jean Dupont (peintre contemporain)</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> 2018</li>
+                                        <li><strong>(CIDOC CRM) E53_Place :</strong> Atelier de Jean Dupont, Paris</li>
+                                        <li><strong>(CIDOC CRM) E55_Type :</strong> Peinture à l'huile sur toile</li>
+                                        <li><strong>(CIDOC CRM) E54_Dimension :</strong> 100 cm × 150 cm</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> « Scène du Rouge et le Noir »</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet physique (peinture originale)</h5>
+                                    <ul>
+                                        <li><strong>(LRMoo) F5_Item :</strong> Toile peinte par Jean Dupont</li>
+                                        <li><strong>(CIDOC CRM) E12_Production :</strong> Production de la toile</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> Inv. Musée d'Art Moderne #2018-45</li>
+                                        <li><strong>(CIDOC CRM) E57_Material :</strong> Toile, peinture à l'huile</li>
+                                        <li><strong>(CIDOC CRM) E54_Dimension :</strong> 100 cm × 150 cm</li>
+                                        <li><strong>(CIDOC CRM) E3_Condition_State :</strong> Excellent état</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Numérisation (digitalisation de la peinture)</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D2_Digitization_Process :</strong> Photographie numérique de la peinture</li>
+                                        <li><strong>(CIDOC CRM) E21_Person :</strong> Photographe – Musée d'Art Moderne</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span :</strong> Mars 2023</li>
+                                    </ul>
+
+                                    <h5 class="text-danger mt-3 mb-2">Objet numérique (image digitale)</h5>
+                                    <ul>
+                                        <li><strong>(CRMdig) D1_Digital_Object :</strong> Fichier image haute définition de la peinture</li>
+                                        <li><strong>(CIDOC CRM) E35_Title :</strong> « Scène du Rouge et le Noir » – image numérique</li>
+                                        <li><strong>(CRMdig) L56_has_pixel_width :</strong> 6000 px</li>
+                                        <li><strong>(CRMdig) L57_has_pixel_height :</strong> 4000 px</li>
+                                        <li><strong>(CRMdig) D13_Digital_Information_Carrier :</strong> Serveur Musée d'Art Moderne</li>
+                                        <li><strong>(CIDOC CRM) E42_Identifier :</strong> IMG_2018_45_HD_2023</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (format) :</strong> TIFF</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (standard) :</strong> ISO 19005-1 (PDF/A)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_Arts.html" style="border:none; width:100%;">Exemple Item Œuvre plastique</iframe> 
+                    </div>
                 </div>
 
                 <div class="doc-section" id="bibliographie">
@@ -831,9 +1095,9 @@
                             </li>
                             <li><a href="#item" class="toc-link">3. Les "Items"</a>
                                 <ul style="padding-left: 1rem; margin-top: 0.3rem;">
-                                    <li><a href="#manuscrit" class="toc-link">a) Le Manuscrit</a></li>
-                                    <li><a href="#correspondance" class="toc-link">b) Les Correspondances</a></li>
-                                    <li><a href="#presse" class="toc-link">c) La Presse</a></li>
+                                    <li><a href="#manuscrit" class="toc-link">a) Le manuscrit</a></li>
+                                    <li><a href="#correspondance" class="toc-link">b) Les correspondances</a></li>
+                                    <li><a href="#presse" class="toc-link">c) La presse</a></li>
                                     <li><a href="#art" class="toc-link">d) Les oeuvres plastiques, artistiques et audio-visuelles</a>
                                 </ul>
                             </li>
