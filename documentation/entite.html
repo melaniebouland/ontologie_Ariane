@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modèle d'entités temporelles (3x3 par Page)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #e0e0e0;
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            /* Styles pour simuler une page A4 */
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 20mm;
+            margin-bottom: 2rem;
+            break-after: page; /* Important pour les sauts de page à l'impression */
+            break-inside: avoid;
+        }
+
+        /* Conteneur principal pour toutes les cartes de la page */
+        .card-grid {
+            /* La grille 3x3 est appliquée ici */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr); /* Assure 3 lignes */
+            gap: 1.5rem 1rem; /* Marge entre les cartes */
+            margin: 1rem 0;
+            /* Hauteur approximative pour 9 cartes sur A4 (297mm - 40mm de padding - 2rem de margin/gap) */
+            height: calc(297mm - 40mm - 2rem); 
+            break-inside: avoid;
+        }
+        
+        /* Les conteneurs internes ne doivent pas interférer avec la grille 3x3 */
+        .main-container, .container, .definitions-container {
+            display: contents; /* Permet aux éléments enfants d'être dans la grille de .card-grid */
+        }
+        /* Fin des modifications de structure pour 3x3 */
+
+        .card {
+            background: white;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 0; 
+            break-inside: avoid;
+            page-break-inside: avoid;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .card-header {
+            color: white;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            padding: 0.75rem;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #000;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .card-subtitle {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #f5f5f5;
+            font-style: italic;
+        }
+
+        .card-content {
+            padding: 3mm;
+            flex-grow: 1;
+            font-size: 9pt;
+            /* Empêche les ruptures de colonnes à l'intérieur */
+            column-count: 1;
+        }
+
+        .section-title {
+            font-size: 8.5pt;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 1.5mm;
+            background: #e8e8e8;
+            padding: 1mm 2mm;
+            border-left: 3pt solid #666;
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 3mm 0;
+        }
+
+        .item-list li {
+            padding: 1mm 0 1mm 4mm;
+            font-size: 8.5pt;
+            color: #333;
+            position: relative;
+            line-height: 1.3;
+        }
+
+        .item-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #666;
+            font-size: 10pt;
+        }
+
+        .highlight {
+            background: #ffffcc;
+            font-weight: bold;
+        }
+
+        /* Thèmes de couleurs (non modifiés) */
+        .card[data-theme="blue"] .card-header {
+            background: linear-gradient(135deg, #82DDFF 0%, #82DDFF 100%);
+        }
+        .card[data-theme="blue"] .card-title {
+            background: #e3f2fd;
+        }
+
+        .card[data-theme="green"] .card-header {
+            background: linear-gradient(135deg, #94CC7D 0%, #94CC7D 100%);
+        }
+        .card[data-theme="green"] .card-title {
+            background: #e8ffdf;
+        }
+
+        .card[data-theme="brown"] .card-header {
+            background: linear-gradient(135deg, #C78E66 0%, #C78E66 100%);
+        }
+        .card[data-theme="brown"] .card-title {
+            background: #d4b39b;
+        }
+
+        .card[data-theme="orange"] .card-header {
+            background: linear-gradient(135deg, #FAB565 0%, #FAB565 100%);
+        }
+        .card[data-theme="orange"] .card-title {
+            background: #fcdbb5;
+        }
+
+        .card[data-theme="yellow"] .card-header {
+            background: linear-gradient(135deg, #FDDC34 0%, #FDDC34 100%);
+        }
+        .card[data-theme="yellow"] .card-title {
+            background: #ffea8f;
+        }
+
+        .card[data-theme="pink"] .card-header {
+            background: linear-gradient(135deg, #FFBDCA 0%, #FFBDCA 100%);
+        }
+        .card[data-theme="pink"] .card-title {
+            background: #ffe1e7;
+        }
+
+        .card[data-theme="dark-blue"] .card-header {
+            background: linear-gradient(135deg, #86BCC8 0%, #86BCC8 100%);
+        }
+        .card[data-theme="dark-blue"] .card-title {
+            background: #e9fbff;
+        }
+
+        .card[data-theme="beige"] .card-header {
+            background: linear-gradient(135deg, #fff1ab 0%, #FEF3BA 100%);
+        }
+        .card[data-theme="beige"] .card-title {
+            background: #fcf8e4;
+        }
+
+        .card[data-theme="grey"] .card-header {
+            background: linear-gradient(135deg, #B8B8B8 0%, #B8B8B8 100%);
+        }
+        .card[data-theme="grey"] .card-title {
+            background: rgb(245, 245, 245);
+        }
+
+        .card[data-theme="white"] .card-header {
+            background: linear-gradient(135deg, #cfcfcf 0%, #F0F0F0 100%);
+        }
+        .card[data-theme="white"] .card-title {
+            background: #F0F0F0;
+        }
+        /* Fin des thèmes de couleurs */
+        @page {
+            size: A4;
+            margin: 0;
+            bleed: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="card-grid">
+            <div class="card" data-theme="blue">
+            <div class="card-header">
+                <span>E3</span>
+            </div>
+            <div class="card-title">Condition State</div>
+            <div class="card-subtitle">Superclasses & subclasses</div>
+            <div class="card-content">
+                <div>E2 Temporal Entity</div>
+                <div class="section-title highlight">E3 Condition State</div>
+            </div>
+            </div>
+
+            <div class="card" data-theme="blue">
+                <div class="card-header">
+                    <span>E12</span>
+                </div>
+                <div class="card-title">Production</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E11 Modification</div>
+                    <div>E63 Beginning of Existence</div>
+                    <div class="section-title highlight">E12 Production</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="pink">
+                <div class="card-header">
+                    <span>E21</span>
+                </div>
+                <div class="card-title">Person</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E20 Biological Object</div>
+                    <div>E39 Actor</div>
+                    <div class="section-title highlight">E21 Person</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>E30</span>
+                </div>
+                <div class="card-title">Right</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E89 Propositional Object</div>
+                    <div class="section-title highlight">E30 Right</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="beige">
+                <div class="card-header">
+                    <span>E35</span>
+                </div>
+                <div class="card-title">Title</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E33 Linguistic Object</div>
+                    <div>E41 Appellation</div>
+                    <div class="section-title highlight">E35 Title</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="beige">
+                <div class="card-header">
+                    <span>E42</span>
+                </div>
+                <div class="card-title">Identifier</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E41 Appellation</div>
+                    <div class="section-title highlight">E42 Identifier</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="dark-blue">
+                <div class="card-header">
+                    <span>E52</span>
+                </div>
+                <div class="card-title">Time-Span</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E1 CRM Entity</div>
+                    <div class="section-title highlight">E52 Time-Span</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="green">
+                <div class="card-header">
+                    <span>E53</span>
+                </div>
+                <div class="card-title">Place</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E1 CRM Entity</div>
+                    <div class="section-title highlight">E53 Place</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="grey">
+                <div class="card-header">
+                    <span>E54</span>
+                </div>
+                <div class="card-title">Dimension</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E1 CRM Entity</div>
+                    <div class="section-title highlight">E54 Dimension</div>
+                    <ul class="item-list">
+                        <li>E97 Monetary Amount</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="card-grid">
+            <div class="card" data-theme="orange">
+                <div class="card-header">
+                    <span>E55</span>
+                </div>
+                <div class="card-title">Type</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E28 Conceptual Object</div>
+                    <div class="section-title highlight">E55 Type</div> 
+                    <ul class="item-list">
+                        <li>E56 Language</li>
+                        <li>E57 Material</li>
+                        <li>E58 Measurement Unit</li>
+                        <li>E99 Product Type</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" data-theme="orange">
+                <div class="card-header">
+                    <span>E56</span>
+                </div>
+                <div class="card-title">Language</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E55 Type</div>
+                    <div class="section-title highlight">E56 Language</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="orange">
+                <div class="card-header">
+                    <span>E57</span>
+                </div>
+                <div class="card-title">Material</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E55 Type</div>
+                    <div class="section-title highlight">E57 Material</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header">
+                    <span>E60</span>
+                </div>
+                <div class="card-title">Number</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E59 Primitive Value</div>
+                    <div class="section-title highlight">E60 Number</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="blue">
+                <div class="card-header">
+                    <span>E67</span>
+                </div>
+                <div class="card-title">Birth</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E63 Begining of Existence</div>
+                    <div class="section-title highlight">E67 Birth</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="blue">
+                <div class="card-header">
+                    <span>E69</span>
+                </div>
+                <div class="card-title">Death</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E64 End of Existence</div>
+                    <div class="section-title highlight">E69 Death</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="pink">
+                <div class="card-header">
+                    <span>E74</span>
+                </div>
+                <div class="card-title">Group</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E39 Actor</div>
+                    <div class="section-title highlight">E74 Group</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>E89</span>
+                </div>
+                <div class="card-title">Propositional Object</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E28 Conceptual Object</div>
+                    <div class="section-title highlight">E89 Propositional Object</div>
+                    <ul class="item-list">
+                        <li>E30 Right</li>
+                        <li>E73 Information Object</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>E90</span>
+                </div>
+                <div class="card-title">Symbolic Object</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E28 Conceptual Object</div>
+                    <div>E72 Legal Object</div>
+                    <div class="section-title highlight">E90 Symbolic Object</div>
+                    <ul class="item-list">
+                        <li>E41 Appellation</li>
+                        <li>E73 Information Object</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="card-grid">
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>F1</span>
+                </div>
+                <div class="card-title">Work</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E89 Propositional Object</div>
+                    <div class="section-title highlight">F1 Work</div>
+                        <ul class="item-list">
+                            <li>F18 Serial Work [PRESSoo class]</li>
+                        </ul>
+                    </div>
+                </div>
+            
+
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>F2</span>
+                </div>
+                <div class="card-title">Expression</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E73 Information Object</div>
+                    <div class="section-title highlight">F2 Expression</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>F3</span>
+                </div>
+                <div class="card-title">Manifestation</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E73 Information Object</div>
+                    <div class="section-title highlight">F3 Manifestation</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="brown">
+                <div class="card-header">
+                    <span>F5</span>
+                </div>
+                <div class="card-title">Item</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E24 Physical Human-Made Thing</div>
+                    <div class="section-title highlight">F5 Item</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="blue">
+                <div class="card-header">
+                    <span>F27</span>
+                </div>
+                <div class="card-title">Work Creation</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E65 Creation</div>
+                    <div class="section-title highlight">F27 Work Creation</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="blue">
+                <div class="card-header">
+                    <span>F28</span>
+                </div>
+                <div class="card-title">Expression Creation</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E12 Production</div>
+                    <div class="section-title highlight">F28 Expression Creation</div> <ul class="item-list">
+                        <li>E65 Creation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>F30</span>
+                </div>
+                <div class="card-title">Manifestation Creation</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E12 Production</div>
+                    <div>E65 Creation</div>
+                    <div class="section-title highlight">F30 Manifestation Creation</div>
+                        <ul class="item-list">
+                            <li>F33 Reproduction Event</li>
+                        </ul>
+                    </div>
+                </div>
+            
+            <div class="card" data-theme="yellow">
+                <div class="card-header">
+                    <span>D1</span>
+                </div>
+                <div class="card-title">Digital Object</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E73 Information Object</div>
+                    <div class="section-title highlight">D1 Digital Object</div>
+                    <ul class="item-list">
+                        <li>D9 Data Object</li>
+                        <li>D14 Software</li>
+                        <li>D35 Area</li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="card" data-theme="blue">
+                <div class="card-header">
+                    <span>D2</span>
+                </div>
+                <div class="card-title">Digitization Process</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>D11 Digital Measurement Event</div>
+                    <div class="section-title highlight">D2 Digitization Process</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page">
+        <div class="card-grid">
+            <div class="card" data-theme="white">
+                <div class="card-header">
+                    <span>D13</span>
+                </div>
+                <div class="card-title">Digital Information Carrier</div>
+                <div class="card-subtitle">Superclasses & subclasses</div>
+                <div class="card-content">
+                    <div>E84 Information Carrier</div>
+                    <div class="section-title highlight">D13 Digital Information Carrier</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+            
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+            
+            <div class="card" data-theme="white">
+                <div class="card-header"><span>-</span></div>
+                <div class="card-title">Entité Factice</div>
+                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-content">
+                    <div class="section-title highlight">Placeholder</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

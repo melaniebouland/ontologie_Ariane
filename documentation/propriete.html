@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramme des Propriétés</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .page {
+            page-break-after: always;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fff;
+            border: 2px solid #ddd;
+        }
+
+        .card {
+            background: white;
+            border-right: 2px solid #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
+            padding: 0;
+            height: 250px;
+            display: flex;
+            position: relative;
+        }
+
+        .card:nth-child(4n) {
+            border-right: none;
+        }
+
+        .card:nth-child(13), .card:nth-child(14), .card:nth-child(15), .card:nth-child(16) {
+            border-bottom: none;
+        }
+
+        .sidebar-left {
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            padding: 10px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+        }
+
+        .sidebar-right {
+            writing-mode: vertical-lr;
+            padding: 10px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 30px;
+        }
+
+        .card-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f8f8f8;
+        }
+
+        .card-header {
+            padding: 8px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .card-title {
+            padding: 15px 12px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            background: white;
+        }
+
+        .card-subtitle {
+            padding: 8px 12px;
+            font-size: 10px;
+            color: #999;
+            font-style: italic;
+            min-height: 26px;
+        }
+
+        .card-content {
+            padding: 12px;
+            font-size: 8px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        .item-tag {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item-tag li {
+            padding: 3px 0 3px 12px;
+            font-size: 7px;
+            color: #555;
+            position: relative;
+        }
+
+        .item-tag li:before {
+            content: "▲";
+            position: absolute;
+            left: 0;
+            color: #999;
+            font-size: 8px;
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .item-list li {
+            padding: 3px 0 3px 12px;
+            font-size: 7px;
+            color: #555;
+            position: relative;
+        }
+
+        .item-list li:before {
+            content: "▼";
+            position: absolute;
+            left: 0;
+            color: #999;
+            font-size: 8px;
+        }
+                /* Permettre une couleur distincte pour chaque sidebar via un attribut data-color
+                     Exemple HTML:
+                         <div class="sidebar-left" data-color="yellow">E1 CRM Entity</div>
+                         <div class="sidebar-right" data-color="beige">E41 Appellation</div>
+                     Les règles ci-dessous associent un nom à une couleur. Les valeurs supportées
+                     sont: yellow, orange, beige, blue, dark-blue, grey, green, pink, brown, white,
+                     cyan, teal, lightblue, gray.
+                */
+
+                .sidebar-left[data-color="yellow"], .sidebar-right[data-color="yellow"] { background: #FDDC34; }
+                .sidebar-left[data-color="orange"], .sidebar-right[data-color="orange"] { background: #FAB565; }
+                .sidebar-left[data-color="beige"], .sidebar-right[data-color="beige"] { background: #FEF3BA; }
+                .sidebar-left[data-color="blue"], .sidebar-right[data-color="blue"] { background: #82DDFF; }
+                .sidebar-left[data-color="dark-blue"], .sidebar-right[data-color="dark-blue"] { background: #86BCC8; }
+                .sidebar-left[data-color="grey"], .sidebar-right[data-color="grey"] { background: #B8B8B8; }
+                .sidebar-left[data-color="green"], .sidebar-right[data-color="green"] { background: #94CC7D; }
+                .sidebar-left[data-color="pink"], .sidebar-right[data-color="pink"] { background: #FFBDCA; }
+                .sidebar-left[data-color="brown"], .sidebar-right[data-color="brown"] { background: #C78E66; }
+                .sidebar-left[data-color="white"], .sidebar-right[data-color="white"] { background: #f0f0f0d7; }
+                /* Fin: fallback to existing theme rules if no data-color is set on the sidebars */
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .page {
+                page-break-after: always;
+                margin-bottom: 0;
+            }
+            .page-title {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="container">
+            <!-- P1 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P1</div>
+                    <div class="card-title">is identified by</div>
+                    <div class="card-subtitle">P1i identifies</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P48 has preferred identifier</li>
+                            <li>P102 has title</li>
+                            <li>P168 place is defined by</li>
+                            <li>P169i spacetime volume is defined by</li>
+                            <li>P170i time is defined by</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E41 Appellation</div>
+            </div>
+
+            <!-- P2 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P2</div>
+                    <div class="card-title">has type</div>
+                    <div class="card-subtitle">P2i is type of</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P137 exemplifies</li>
+                            <li>P177 assigned property of type</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="orange">E55 Type</div>
+            </div>
+
+            <!-- P4 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E2 Temporal Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P4</div>
+                    <div class="card-title">has time-span</div>
+                    <div class="card-subtitle">P4i is time-span of</div>
+                </div>
+                <div class="sidebar-right" data-color="dark-blue">E52 Time-Span</div>
+            </div>
+
+            <!-- P7 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E4 Period</div>
+                <div class="card-main">
+                    <div class="card-header">P7</div>
+                    <div class="card-title">took place at</div>
+                    <div class="card-subtitle">P7i witnessed</div>
+                </div>
+                <div class="sidebar-right" data-color="green">E53 Place</div>
+            </div>
+
+            <!-- P14 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E7 Activity</div>
+                <div class="card-main">
+                    <div class="card-header">P14</div>
+                    <div class="card-title">carried out by</div>
+                    <div class="card-subtitle">P14i performed</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P11 had participant</li>
+                        </ul>
+                        <ul class="item-list">
+                            <li>P22 transferred title to</li>
+                            <li>P23 transferred title from</li>
+                            <li>P28 custody surrendered by</li>
+                            <li>P29 custody received by</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="pink">E39 Actor</div>
+            </div>
+
+            <!-- P16 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E7 Activity</div>
+                <div class="card-main">
+                    <div class="card-header">P16</div>
+                    <div class="card-title">used specific object</div>
+                    <div class="card-subtitle">P16i was used for</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P12 occurred in the presence of</li>
+                            <li>P15 was influenced by</li>
+                        </ul>
+                        <ul class="item-list">
+                            <li>P33 used specific technique</li>
+                            <li>P111 added</li>
+                            <li>P142 used constituent</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="white">E70 Thing</div>
+            </div>
+
+            <!-- P43 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E70 Thing</div>
+                <div class="card-main">
+                    <div class="card-header">P43</div>
+                    <div class="card-title">has dimension</div>
+                    <div class="card-subtitle">P43i is dimension of</div>
+                </div>
+                <div class="sidebar-right" data-color="grey">E54 Dimension</div>
+            </div>
+
+            <!-- P44 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="brown">E18 Physical Thing</div>
+                <div class="card-main">
+                    <div class="card-header">P44</div>
+                    <div class="card-title">has condition</div>
+                    <div class="card-subtitle">P44i is condition of</div>
+                </div>
+                <div class="sidebar-right" data-color="blue">E3 Condition State</div>
+            </div>
+
+            <!-- P45 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="brown">E18 Physical Thing</div>
+                <div class="card-main">
+                    <div class="card-header">P45</div>
+                    <div class="card-title">consists of</div>
+                    <div class="card-subtitle">P45i is incorporated in</div>
+                </div>
+                <div class="sidebar-right" data-color="orange">E57 Material</div>
+            </div>
+
+            <!-- P46 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="brown">E18 Physical Thing</div>
+                <div class="card-main">
+                    <div class="card-header">P46</div>
+                    <div class="card-title">is composed of</div>
+                    <div class="card-subtitle">P46i forms part of</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P56 bears feature</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="brown">E18 Physical Thing</div>
+            </div>
+
+            <!-- P48 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P48</div>
+                    <div class="card-title">has preferred identifier</div>
+                    <div class="card-subtitle">P48i is preferred identifier of</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P15 was influenced by</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E42 Identifier</div>
+            </div>
+
+            <!-- P67 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="yellow">E89 Propositional Object</div>
+                <div class="card-main">
+                    <div class="card-header">P67</div>
+                    <div class="card-title">refers to</div>
+                    <div class="card-subtitle">P67i is referred to by</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P15 was influenced by</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="white">E1 CRM Entity</div>
+            </div>
+
+            <!-- P82 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="dark-blue">E52 Time-Span</div>
+                <div class="card-main">
+                    <div class="card-header">P82</div>
+                    <div class="card-title">at some time within</div>
+                    <div class="card-subtitle">motivated</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P82a begin of the begin</li>
+                            <li>P82b end of the end</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E62 Time Primitive</div>
+            </div>
+
+            <!-- P82a -->
+            <div class="card">
+                <div class="sidebar-left" data-color="dark-blue">E52 Time-Span</div>
+                <div class="card-main">
+                    <div class="card-header">P82a</div>
+                    <div class="card-title">begin of the begin</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P82 at some time within</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E62 Time Primitive</div>
+            </div>
+
+            <!-- P82b -->
+            <div class="card">
+                <div class="sidebar-left" data-color="dark-blue">E52 Time-Span</div>
+                <div class="card-main">
+                    <div class="card-header">P82b</div>
+                    <div class="card-title">end of the end</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P82 at some time within</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E62 Time Primitive</div>
+            </div>
+
+            <!-- P86 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="dark-blue">E52 Time-Span</div>
+                <div class="card-main">
+                    <div class="card-header">P86</div>
+                    <div class="card-title">falls within</div>
+                    <div class="card-subtitle">P86i contains</div>
+                </div>
+                <div class="sidebar-right" data-color="dark-blue">E52 Time-Span</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="page">
+        <div class="container">
+            <!-- P90 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="grey">E54 Dimension</div>
+                <div class="card-main">
+                    <div class="card-header">P90</div>
+                    <div class="card-title">has value</div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E60 Number</div>
+            </div>
+
+            <!-- P98 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E67 Birth</div>
+                <div class="card-main">
+                    <div class="card-header">P98</div>
+                    <div class="card-title">brought into life</div>
+                    <div class="card-subtitle">P98i was born</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P92 brought into existence</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="pink">E21 Person</div>
+            </div>
+
+            <!-- P100 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E69 Death</div>
+                <div class="card-main">
+                    <div class="card-header">P100</div>
+                    <div class="card-title">was death of</div>
+                    <div class="card-subtitle">P100i died in</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P93 took out of existence</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="pink">E21 Person</div>
+            </div>
+
+            <!-- P104 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E72 Legal Object</div>
+                <div class="card-main">
+                    <div class="card-header">P104</div>
+                    <div class="card-title">is subject of</div>
+                    <div class="card-subtitle">P104i applies to</div>
+                    
+                </div>
+                <div class="sidebar-right" data-color="yellow">E30 Right</div>
+            </div>
+
+            <!-- P108 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E12 Production</div>
+                <div class="card-main">
+                    <div class="card-header">P108</div>
+                    <div class="card-title">has produced</div>
+                    <div class="card-subtitle">P108i was produced by</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P31 has modified</li>
+                            <li>P92 brought into existence</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="brown">E24 Physical Human-Made Thing</div>
+            </div>
+
+            <!-- P128 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="brown">E18 Physical Thing</div>
+                <div class="card-main">
+                    <div class="card-header">P128</div>
+                    <div class="card-title">carries</div>
+                    <div class="card-subtitle">P128i is carried by</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P130 shows features of</li>
+                        </ul>
+                        <ul class="item-list">
+                            <li>P65 shows visual item</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">E90 Symbolic Object</div>
+            </div>
+
+            <!-- P148 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="yellow">E89 Propositional Object</div>
+                <div class="card-main">
+                    <div class="card-header">P148</div>
+                    <div class="card-title">has component</div>
+                    <div class="card-subtitle">P148i is component of</div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">E89 Propositional Object</div>
+            </div>
+
+            <!-- P150 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="orange">E55 Type</div>
+                <div class="card-main">
+                    <div class="card-header">P150</div>
+                    <div class="card-title">defines typical parts of</div>
+                    <div class="card-subtitle">P150i defines typical wholes for</div>
+                </div>
+                <div class="sidebar-right" data-color="orange">E55 Type</div>
+            </div>
+
+            <!-- P191 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="dark-blue">E52 Time-Span</div>
+                <div class="card-main">
+                    <div class="card-header">P191</div>
+                    <div class="card-title">has duration</div>
+                    <div class="card-subtitle">P191i was duration of</div>
+                </div>
+                <div class="sidebar-right" data-color="grey">E54 Dimension</div>
+            </div>
+
+            <!-- R3 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="yellow">F1 Work</div>
+                <div class="card-main">
+                    <div class="card-header">R3</div>
+                    <div class="card-title">is realised in</div>
+                    <div class="card-subtitle">R3i realises</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P130 shows features of</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F2 Expression</div>
+            </div>
+
+            <!-- R4 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="yellow">F3 Manifestation</div>
+                <div class="card-main">
+                    <div class="card-header">R4</div>
+                    <div class="card-title">embodies</div>
+                    <div class="card-subtitle">R4i is embodied in</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P165 incorporates</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F2 Expression</div>
+            </div>
+
+            <!-- R7 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="brown">F5 Item</div>
+                <div class="card-main">
+                    <div class="card-header">R7</div>
+                    <div class="card-title">exemplifies</div>
+                    <div class="card-subtitle">R7i is exemplified by</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P128 carries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F3 Manifestation</div>
+            </div>
+
+            <!-- R16 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">F27 Work Creation</div>
+                <div class="card-main">
+                    <div class="card-header">R16</div>
+                    <div class="card-title">created</div>
+                    <div class="card-subtitle">R16i was created by</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P94 has created</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F1 Work</div>
+            </div>
+
+            <!-- R17 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">F28 Expression Creation</div>
+                <div class="card-main">
+                    <div class="card-header">R17</div>
+                    <div class="card-title">created</div>
+                    <div class="card-subtitle">R17i was created by</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P94 has created</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F2 Expression</div>
+            </div>
+
+            <!-- R24 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">F30 Manifestation Creation</div>
+                <div class="card-main">
+                    <div class="card-header">R24</div>
+                    <div class="card-title">created</div>
+                    <div class="card-subtitle">R24i was created through</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P94 has created</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F3 Manifestation</div>
+            </div>
+
+            <!-- R71 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="yellow">F3 Manifestation</div>
+                <div class="card-main">
+                    <div class="card-header">R71</div>
+                    <div class="card-title">has part</div>
+                    <div class="card-subtitle">R71i is part of</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P148 has component</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F3 Manifestation</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3 -->
+    <div class="page">
+        <div class="container">
+            <!-- R78 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="yellow">F3 Manifestation</div>
+                <div class="card-main">
+                    <div class="card-header">R78</div>
+                    <div class="card-title">has alternate</div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">F3 Manifestation</div>
+            </div>
+
+            <!-- L1 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">D2 Digitization Process</div>
+                <div class="card-main">
+                    <div class="card-header">L1</div>
+                    <div class="card-title">digitized</div>
+                    <div class="card-subtitle">L1i was digitized by</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P39 measured</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="brown">E18 Physical Thing</div>
+            </div>
+
+            <!-- L11 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">D7 Digital Machine Event</div>
+                <div class="card-main">
+                    <div class="card-header">L11</div>
+                    <div class="card-title">had output</div>
+                    <div class="card-subtitle">L11i was output of</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P94 has created</li>
+                        </ul>
+                        <ul class="item-list">
+                            <li>L20 has created</li>
+                            <li>L22 created derivative</li>
+                            <li>L24 created logfile</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">D1 Digital Object</div>
+            </div>
+
+            <!-- L19 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">D13 Digital Information Carrier</div>
+                <div class="card-main">
+                    <div class="card-header">L19</div>
+                    <div class="card-title">stores</div>
+                    <div class="card-subtitle">L19i is stored on</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P128 carries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="yellow">D1 Digital Object</div>
+            </div>
+
+            <!-- L56 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">D9 Data Object</div>
+                <div class="card-main">
+                    <div class="card-header">L56</div>
+                    <div class="card-title">has pixel width</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P90 has value</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L57 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">D9 Data Object</div>
+                <div class="card-main">
+                    <div class="card-header">L57</div>
+                    <div class="card-title">has pixel height</div>
+                    <div class="card-content">
+                        <ul class="item-tag">
+                            <li>P90 has value</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- P1 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P1</div>
+                    <div class="card-title">is identified by</div>
+                    <div class="card-subtitle">P1i identifies</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P48 has preferred identifier</li>
+                            <li>P102 has title</li>
+                            <li>P168 place is defined by</li>
+                            <li>P169i spacetime volume is defined by</li>
+                            <li>P170i time is defined by</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E41 Appellation</div>
+            </div>
+
+            <!-- P2 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P2</div>
+                    <div class="card-title">has type</div>
+                    <div class="card-subtitle">P2i is type of</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P137 exemplifies</li>
+                            <li>P177 assigned property of type</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="orange">E55 Type</div>
+            </div>
+
+            <!-- P4 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E2 Temporal Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P4</div>
+                    <div class="card-title">has time-span</div>
+                    <div class="card-subtitle">P4i is time-span of</div>
+                </div>
+                <div class="sidebar-right" data-color="dark-blue">E52 Time-Span</div>
+            </div>
+
+            <!-- P2 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P2</div>
+                    <div class="card-title">has type</div>
+                    <div class="card-subtitle">P2i is type of</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P137 exemplifies</li>
+                            <li>P177 assigned property of type</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="orange">E55 Type</div>
+            </div>
+
+            <!-- P4 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E2 Temporal Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P4</div>
+                    <div class="card-title">has time-span</div>
+                    <div class="card-subtitle">P4i is time-span of</div>
+                </div>
+                <div class="sidebar-right" data-color="dark-blue">E52 Time-Span</div>
+            </div>
+
+            <!-- P7 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E4 Period</div>
+                <div class="card-main">
+                    <div class="card-header">P7</div>
+                    <div class="card-title">took place at</div>
+                    <div class="card-subtitle">P7i witnessed</div>
+                </div>
+                <div class="sidebar-right" data-color="green">E53 Place</div>
+            </div>
+
+            <!-- P1 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P1</div>
+                    <div class="card-title">is identified by</div>
+                    <div class="card-subtitle">P1i identifies</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P48 has preferred identifier</li>
+                            <li>P102 has title</li>
+                            <li>P168 place is defined by</li>
+                            <li>P169i spacetime volume is defined by</li>
+                            <li>P170i time is defined by</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="beige">E41 Appellation</div>
+            </div>
+
+            <!-- P2 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="white">E1 CRM Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P2</div>
+                    <div class="card-title">has type</div>
+                    <div class="card-subtitle">P2i is type of</div>
+                    <div class="card-content">
+                        <ul class="item-list">
+                            <li>P137 exemplifies</li>
+                            <li>P177 assigned property of type</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-right" data-color="orange">E55 Type</div>
+            </div>
+
+            <!-- P4 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E2 Temporal Entity</div>
+                <div class="card-main">
+                    <div class="card-header">P4</div>
+                    <div class="card-title">has time-span</div>
+                    <div class="card-subtitle">P4i is time-span of</div>
+                </div>
+                <div class="sidebar-right" data-color="dark-blue">E52 Time-Span</div>
+            </div>
+
+            <!-- P7 -->
+            <div class="card">
+                <div class="sidebar-left" data-color="blue">E4 Period</div>
+                <div class="card-main">
+                    <div class="card-header">P7</div>
+                    <div class="card-title">took place at</div>
+                    <div class="card-subtitle">P7i witnessed</div>
+                </div>
+                <div class="sidebar-right" data-color="green">E53 Place</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
