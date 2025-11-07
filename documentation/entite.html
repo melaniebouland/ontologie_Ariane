@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modèle d'entités temporelles (3x3 par Page)</title>
+    <title>CIDOC CRM Entity Cards - Printable Set</title>
     <style>
         * {
             margin: 0;
@@ -27,42 +27,37 @@
         }
 
         .page {
-            /* Styles pour simuler une page A4 */
             width: 210mm;
             min-height: 297mm;
             background: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             padding: 20mm;
             margin-bottom: 2rem;
-            break-after: page; /* Important pour les sauts de page à l'impression */
+            break-after: page;
             break-inside: avoid;
         }
 
-        /* Conteneur principal pour toutes les cartes de la page */
         .card-grid {
-            /* La grille 3x3 est appliquée ici */
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr); /* Assure 3 lignes */
-            gap: 1.5rem 1rem; /* Marge entre les cartes */
+            grid-template-rows: repeat(3, 1fr);
+            gap: 1.5rem 1rem;
             margin: 1rem 0;
-            /* Hauteur approximative pour 9 cartes sur A4 (297mm - 40mm de padding - 2rem de margin/gap) */
-            height: calc(297mm - 40mm - 2rem); 
+            height: calc(297mm - 40mm - 2rem);
             break-inside: avoid;
         }
         
-        /* Les conteneurs internes ne doivent pas interférer avec la grille 3x3 */
         .main-container, .container, .definitions-container {
-            display: contents; /* Permet aux éléments enfants d'être dans la grille de .card-grid */
+            display: contents;
         }
-        /* Fin des modifications de structure pour 3x3 */
 
+        /* Entity Card Styles */
         .card {
             background: white;
             border: 1px solid #333;
             display: flex;
             flex-direction: column;
-            min-height: 0; 
+            min-height: 0;
             break-inside: avoid;
             page-break-inside: avoid;
             overflow: hidden;
@@ -70,7 +65,7 @@
         }
 
         .card-header {
-            color: white;
+            color: black;
             padding: 0.5rem 0.75rem;
             font-size: 0.875rem;
             font-weight: 600;
@@ -103,7 +98,6 @@
             padding: 3mm;
             flex-grow: 1;
             font-size: 9pt;
-            /* Empêche les ruptures de colonnes à l'intérieur */
             column-count: 1;
         }
 
@@ -144,7 +138,60 @@
             font-weight: bold;
         }
 
-        /* Thèmes de couleurs (non modifiés) */
+        /* Definition Card Styles */
+        .definitions-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 3mm;
+            margin-bottom: 8mm;
+            height: calc(297mm - 40mm - 8mm);
+        }
+
+        .definition-card {
+            background: white;
+            border: 1.5pt solid #333;
+            overflow: hidden;
+            page-break-inside: avoid;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .definition-header {
+            background: #333;
+            color: white;
+            padding: 2.5mm 3mm;
+            font-weight: bold;
+            font-size: 10pt;
+            text-align: center;
+        }
+
+        .definition-content {
+            padding: 3mm;
+            font-size: 7pt;
+            line-height: 1.4;
+            color: #333;
+            text-align: justify;
+            flex-grow: 1;
+        }
+
+        .definition-footer {
+            padding: 2.5mm 3mm;
+            border-top: 1pt solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+            margin-top: auto;
+        }
+
+        .cidoc-label {
+            font-size: 7pt;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Color Themes */
         .card[data-theme="blue"] .card-header {
             background: linear-gradient(135deg, #82DDFF 0%, #82DDFF 100%);
         }
@@ -214,15 +261,58 @@
         .card[data-theme="white"] .card-title {
             background: #F0F0F0;
         }
-        /* Fin des thèmes de couleurs */
+
+        @media print {
+            html {
+                background: none;
+            }
+            
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+                min-height: 0;
+            }
+            
+            .page {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 15mm;
+                box-shadow: none;
+                break-after: page;
+            }
+            
+            .page:last-child {
+                break-after: avoid;
+            }
+
+            .card-grid {
+                gap: 5mm;
+                margin: 0;
+                height: calc(297mm - 30mm);
+            }
+
+            .definitions-container {
+                gap: 3mm;
+                margin: 0;
+                height: calc(297mm - 30mm);
+            }
+
+            .card, .definition-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
+
         @page {
             size: A4;
             margin: 0;
-            bleed: 0;
         }
     </style>
 </head>
 <body>
+    <!-- PAGE 1: ENTITIES -->
     <div class="page">
         <div class="card-grid">
             <div class="card" data-theme="blue">
@@ -340,7 +430,103 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- PAGE 2: DEFINITIONS FOR PAGE 1 -->
+    <div class="page">
+        <div class="definitions-container">
+            <div class="definition-card">
+                <div class="definition-header">E21 Person</div>
+                <div class="definition-content">
+                    This class comprises real persons who live or are assumed to have lived. Legendary figures that may have existed, such as Ulysses and King Arthur, fall into this class if the documentation refers to them as historical figures. In cases where doubt exists as to whether several persons are in fact identical, multiple instances can be created and linked to indicate their relationship. The CIDOC CRM does not propose a specific form to support reasoning about possible identity. 
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E12 Production</div>
+                <div class="definition-content">
+                    This class comprises activities that are designed to, and succeed in, creating one or more new items. It specializes the notion of modification into production. The decision as to whether or not an object is regarded as new is context sensitive. Normally, items are considered "new" if there is no obvious overall similarity between them and the consumed items and material used in their production. In other cases, an item is considered "new" because it becomes relevant to documentation by a modification.
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E3 Condition State</div>
+                <div class="definition-content">
+                    This class comprises all things in the universe of discourse of the CIDOC Conceptual Reference Model. It is an abstract concept providing for three general properties: Identification by name or appellation, and in particular by a preferred identifier Classification by type, allowing further refinement of the specific subclass an instance belongs to Attachment of free text and other unstructured data for the expression of anything not captured by formal properties.                    
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E42 Identifier</div>
+                <div class="definition-content">
+                    This class comprises strings or codes assigned to instances of E1 CRM Entity in order to identify them uniquely and permanently within the context of one or more organisations. Such codes are often known as inventory numbers, registration codes, etc. and are typically composed of alphanumeric sequences. Postal addresses, telephone numbers, URLs and e-mail addresses are characteristic examples of identifiers used by services transporting things between clients. The class E42 Identifier is not normally used for machine-generated identifiers used for automated processing unless these are also used by human agents.
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E35 Title</div>
+                <div class="definition-content">
+                    This class comprises textual strings that within a cultural context can be clearly identified as titles due to their form. Being a subclass of E41 Appellation, E35 Title can only be used when such a string is actually used as a title of a work, such as a text, an artwork, or a piece of music. Titles are proper noun phrases or verbal phrases, and should not be confused with generic object names such as "chair", "painting" or "book" (the latter are common nouns that stand for instances of E55 Type). Titles may be assigned by the creator of the work itself, or by a social group.
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E30 Right</div>
+                <div class="definition-content">
+                    This class comprises legal privileges concerning material and immaterial things or their derivatives. These include reproduction and property rights.
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E54 Dimension</div>
+                <div class="definition-content">
+                    This class comprises quantifiable properties that can be measured by some calibrated means and can be approximated by values, i.e., by points or regions in a mathematical or conceptual space, such as natural or real numbers, RGB values etc. An instance of E54 Dimension represents the empirical or theoretically derived quantity, including the precision tolerances resulting from the particular method or calculation. The identity of an instance of E54 Dimension depends on the method of its determination because each method may produce different values even when determining comparable qualities.
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E53 Place</div>
+                <div class="definition-content">
+                    This class comprises extents in the natural space we live in, in particular on the surface of the Earth, in the pure sense of physics: independent from temporal phenomena and matter. They may serve describing the physical location of things or phenomena or other areas of interest. Geometrically, instances of E53 Place constitute single contiguous areas or a finite aggregation of disjoint areas in space which are each individually contiguous. They may have fuzzy boundaries.
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-header">E52 Time-Span</div>
+                <div class="definition-content">
+                    This class comprises abstract temporal extents, in the sense of Galilean physics, having a beginning, an end and a duration. Instances of E52 Time-Span have no semantic connotations about phenomena happening within the temporal extent they represent. They do not convey any meaning other than a positioning on the "time-line" of chronology. The actual extent of an instance of E52 Time-Span can be approximated by properties of E52 Time-Span giving inner and outer bounds in the form of dates (instances of E61 Time Primitive).
+                </div>
+                <div class="definition-footer">
+                    <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: ENTITIES -->
     <div class="page">
         <div class="card-grid">
             <div class="card" data-theme="orange">
@@ -468,6 +654,105 @@
         </div>
     </div>
 
+    <!-- PAGE 4: DEFINITIONS FOR PAGE 3 -->
+    <div class="page">
+        <div class="main-container">
+            <div class="definitions-container">
+                
+                <div class="definition-card">
+                    <div class="definition-header">E57 Material</div>
+                    <div class="definition-content"> 
+                        This class is a specialization of E55 Type and comprises the concepts of materials. Instances of E57 Material may denote properties of matter before its use, during its use, and as incorporated in an object, such as ultramarine powder, tempera paste, reinforced concrete. Discrete pieces of raw-materials kept in museums, such as bricks, sheets of fabric, pieces of metal, should be modelled individually in the same way as other objects. Discrete used or processed pieces, such as the stones from Nefer Titi's temple, should be modelled as parts (cf. P46 is composed of (forms part of): E18 Physical Thing). This type is used categorically in the model without reference to instances of it, i.e., the Model...                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">E56 Language</div>
+                    <div class="definition-content"> 
+                        This class is a specialization of E55 Type and comprises the natural languages in the sense of concepts. This type is used categorically in the model without reference to instances of it, i.e., the Model does not foresee the description of instances of instances of E56 Language, e.g.: “instances of Mandarin Chinese”. It is recommended that internationally or nationally agreed codes and terminology are used to denote instances of E56 Language, such as those defined in ISO 639-2:1998 and later versions.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">E55 Type</div>
+                    <div class="definition-content"> 
+                        This class comprises concepts denoted by terms from thesauri and controlled vocabularies used to characterize and classify instances of CIDOC CRM classes. Instances of E55 Type represent concepts in contrast to instances of E41 Appellation which are used to name instances of CIDOC CRM classes. E55 Type is the CIDOC CRM’s interface to domain specific ontologies and thesauri. These can be represented in the CIDOC CRM as subclasses of E55 Type, forminghierarchies of terms, i.e., instances of E55 Type linked via P127 has broader term (has narrower term): E55 Type. Such hierarchies may be extended with additional properties.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">E69 Death</div>
+                    <div class="definition-content"> 
+                        This class comprises the deaths of human beings. If a person is killed, the death should be documented as an instance of both E69 Death and E7 Activity. The death or perishing of other living beings should be documented as instances of E64 End of Existence.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">E67 Birth</div>
+                    <div class="definition-content"> 
+                        This class comprises the births of human beings. E67 Birth is a biological event focussing on the context of people cominginto life. (E63 Beginning of Existence comprises the coming into life of any living being). Twins, triplets etc. are typically brought into life by the same instance of E67 Birth. The introduction of E67 Birth as a documentation element allows the description of a range of family relationships in a simple model. Suitable extensions may describe more details and the complexity of motherhood with the intervention of modern medicine. In this model, the biological father is not seen as a necessary participant in the birth.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">E60 Number</div>
+                    <div class="definition-content"> 
+                        This class comprises any encoding of computable (algebraic) values such as integers, real numbers, complex numbers, vectors, tensors, etc., including intervals of these values to express limited precision.
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header">E90 Symbolic Object</div>
+                    <div class="definition-content"> 
+                        This class comprises identifiable symbols and any aggregation of symbols, such as characters, identifiers, traffic signs, emblems, texts, data sets, images, musical scores, multimedia objects, computer program code or mathematical formulae that have an objectively recognizable structure and that are documented as single units. It includes sets of signs of any nature, which may serve to designate something, or to communicate some propositional content. An instance of E90 Symbolic Object may or may not have a specific meaning, for example an arbitrary character string. In some cases, the content of an instance of  E90 Symbolic Object may completely be represented by a serialized digital content model,...                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header">E89 Propositional Object</div>
+                    <div class="definition-content">  
+                        This class comprises immaterial items, including but not limited to stories, plots, procedural prescriptions, algorithms, laws of physics or images that are, or represent in some sense, sets of propositions about real or imaginary things and that are documented as single units or serve as topic of discourse. This class also comprises items that are “about” something in the sense of a subject. In the wider sense, this class includes expressions of psychological value such as non-figural art and musical themes. However, conceptual items such as types and classes are not instances of E89 Propositional Object. This should not be confused with the definition of a type, which is indeed an instance of...                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">E74 Group</div>
+                    <div class="definition-content"> 
+                        This class comprises any gatherings or organizations of human individuals or groups that act collectively or in a similar way due to any form of unifying relationship. In the widersense this class also comprises official positions which used to be regarded in certain contexts as one actor, independent of the current holder of the office, such as the president of a country. In such cases, it may happen that the group never had more than one member. A joint pseudonym (i.e., a name that seems indicative of an individual but that is actually used as a persona by two or more people) is a particular case of E74 Group. A gathering of people becomes an instance of E74 Group when it exhibits organizational...                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CIDOC CRM v.7.1.3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: ENTITES -->
     <div class="page">
         <div class="card-grid">
             <div class="card" data-theme="yellow">
@@ -594,7 +879,106 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- PAGE 6: DEFINITIONS FOR PAGE 5-->
+     <div class="page">
+        <div class="main-container">
+            <div class="definitions-container">
+
+                <div class="definition-card">
+                    <div class="definition-header">F3 Manifestation</div>
+                    <div class="definition-content"> 
+                        This class comprises products rendering one or more Expressions. A Manifestation is defined by both the overall content and the form of its presentation. The substance of F3 Manifestation is not only signs, but also the manner in which they are presented to be consumed by users, including the kind of media adopted. An F3 Manifestation is the outcome of a publication process where one or more F2 Expressions are prepared for public dissemination, but it may also be a unique form created directly on some material carrier without the intent of being formally published.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">F2 Expression</div>
+                    <div class="definition-content"> 
+                        This class comprises the intellectual or artistic realisations of Works in the form of identifiable immaterial objects, such as texts, poems, jokes, musical or choreographic notations, movement pattern, sound pattern, images, multimedia objects, or any combination of such forms. The substance of F2 Expression is signs. An Expression is the outcome of the intellectual or creative process of realizing a Work. Subsequent expressions conveying the same work may be created over time. Expressions do not depend on a specific physical carrier and can exist on one                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">F1 Work</div>
+                    <div class="definition-content"> 
+                        This class comprises distinct intellectual ideas conveyed in artistic and intellectual creations, such a poems, stories or musical compositions. A Work is the outcome of an intellectual process of one or more persons. Inherent to the notion of work is the existence of recognisable realizations of the work in the form of one or more expressions. Works are often regarded as finished and discrete e.g. when declared as such by the creator of the work or based on the elaboration or logical coherence of its content. However, works may be recognized as existing but unfinished e.g. if the creators deliberately or accidentally never explicitly finished a particular Expression but have left behind partial expressions.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">F28 Expresion Creation</div>
+                    <div class="definition-content"> 
+                        This class comprises activities that result in instances of F2 Expression coming into existence. An instance of F2 Expression is considered to be created when it is captured on a carrier other than the creator’s brain. Although F2 Expression is an abstract entity, a conceptual object, the creation of an expression inevitably also affects the physical world: when you scribble the first draft of a poem on a sheet of paper, you produce an instance of F3 Manifestation and an instance of F5 Item.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header">F27 Work Creation</div>
+                    <div class="definition-content">  
+                        This class comprises activities by which instances of F1 Work come into existence. An instance of F27 Work Creation can serve to document the period a work was coming into existence and the circumstances of it, when these are known. An instance of F27 Work Creation marks the initial creation of an instance of F1 Work through expressions or other externalisations that are sufficiently elaborated so that the characteristic conceptual identity of the work could be recognized as existing.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header">F5 Item</div>
+                    <div class="definition-content"> 
+                        This class comprises physical objects (printed books, scores, CDs, DVDs, CD-ROMS, etc.) that were produced by (P186i) an industrial process involving a given instance of F3 Manifestation. As a result, all the instances of F5 Item associated with a given instance of F3 Manifestation are expected to carry the content defined in that instance of F3 Manifestation, although some or even all of them may happen to carry a content that significantly differs from it, due to either an accident in the course of industrial production, or subsequent physical modification or degradation.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header">D2 Digitization Process</div>
+                    <div class="definition-content">  
+                        This class comprises events that result in the creation of instances of D9 Data Object that represent the appearance and/or form of an instance of E18 Physical Thing such as paper documents, statues, buildings, paintings, etc. A particular case is the analogue-to-digital conversion of audiovisual material. This class represents the transition from a material thing to an immaterial representation of it. The characteristic subsequent processing steps on digital objects are regarded as instances of D3 Formal Derivation.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CRMdig v.3.2.1</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">D1 Digital Object</div>
+                    <div class="definition-content"> 
+                        This class comprises identifiable immaterial items that can be represented as sets of bit sequences, such as data sets, e-texts, images, audio or video items, software, etc., and are documented as single units. Any aggregation of instances of D1 Digital Object into a whole treated as single unit is also regarded as an instance of D1 Digital Object.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CRMdig v.3.2.1</div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">F30 Manifestation Creation</div>
+                    <div class="definition-content">  
+                        This class comprises the activities of selecting, arranging and presenting one or more instances of F2 Expression on a carrier or other persistent presentation means with the purpose of communicating it to some public. It includes the specification of the presentation as to sensory impression (such as visual appearance or audio rendition).                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">LRMoo v.1.0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--PAGE 7: ENTITIES-->
     <div class="page">
         <div class="card-grid">
             <div class="card" data-theme="white">
@@ -610,77 +994,176 @@
             </div>
 
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
 
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
 
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
 
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
 
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
             
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
 
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
             
             <div class="card" data-theme="white">
-                <div class="card-header"><span>-</span></div>
-                <div class="card-title">Entité Factice</div>
-                <div class="card-subtitle">À Remplacer</div>
+                <div class="card-header"><span></span></div>
+                <div class="card-title"></div>
+                <div class="card-subtitle"></div>
                 <div class="card-content">
-                    <div class="section-title highlight">Placeholder</div>
+                    <div class="section-title highlight"></div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!--PAGE 8: DEFINITION FOR PAGE 7-->
+    <div class="page">
+        <div class="main-container">
+            <div class="definitions-container">
+
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content"> 
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content"> 
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header">D13 Digital Information Carrier</div>
+                    <div class="definition-content"> 
+                        This class comprises all instances of E84 Information Carrier that are explicitly designed to be used as persistent digital physical carriers of instances of D1 Digital Object. A D13 Digital Information Carrier may or may not contain information, e.g., an empty diskette.                    
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label">CRMdig v.3.2.1</div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content">  
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content"> 
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content">  
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content"> 
+                                            
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+                
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content">  
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+
+                <div class="definition-card">
+                    <div class="definition-header"></div>
+                    <div class="definition-content">  
+                        
+                    </div>
+                    <div class="definition-footer">
+                        <div class="cidoc-label"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
