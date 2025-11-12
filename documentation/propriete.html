@@ -217,10 +217,7 @@
             background: #e8e8e8;
             display: flex;
             flex-direction: column;
-            height: 180px;
-            /* ESSENTIEL : Évite la coupure de la définition entre deux pages */
-            page-break-inside: avoid;
-            break-inside: avoid; /* Compatibilité étendue */
+            height: 160px;
         }
 
         .property-card .card-header {
@@ -247,9 +244,8 @@
         }
 
         .property-card .card-content {
-            padding: 8px;
             font-size: 8pt;
-            line-height: 1.3;
+            line-height: 1;
             text-align: justify;
             flex-grow: 1;
             background: white;
@@ -319,8 +315,6 @@
             }
 
             .definitions-container {
-                gap: 3mm;
-                margin: 0;
                 /* CORRECTION 3 : La hauteur disponible devient 210mm - 30mm de marges */
                 height: calc(210mm - 30mm);
             }
@@ -597,7 +591,8 @@
                     P7 took place at
                 </div>
                 <div class="card-content">
-                    This property describes the spatial location of an instance of E4 Period. The related instance of E53 Place should be seen as a wider approximation of the geometric area within which the phenomena that characterise the period in question occurred, see below. P7 took place at (witnessed) does not convey any meaning other than spatial positioning (frequently on the surface of the earth).                </div>
+                    This property describes the spatial location of an instance of E4 Period. P7 took place at (witnessed) does not convey any meaning other than spatial positioning (frequently on the surface of the earth).
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -609,7 +604,7 @@
                     P4 has time-span
                 </div>
                 <div class="card-content">
-                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going. The associated instance of E52 Time-Span is understood as the real time-span during which the phenomena making up the temporal entity instance were active.
+                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -622,7 +617,7 @@
                     P2 has type
                 </div>
                 <div class="card-content">
-                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus. The CIDOC CRM is intended to provide a common semantic framework and relationships needed to describe data structures. Consequently, it does not specialise entities any further than is required for this immediate...
+                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus. 
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -635,7 +630,7 @@
                     P1 is identified by
                 </div>
                 <div class="card-content">
-                    This property describes the naming or identification of any real-world item by a name or any other identifier. This property is intended for identifiers in general use, which form part of the world the CRM intends to describe, and not merely for internal database identifiers which are specific to a technical system, unless these latter also have a more general...
+                    This property describes the naming or identification of any real-world item by a name or any other identifier.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -648,7 +643,10 @@
                 <div class="card-header">
                     P44 has condition
                 </div>
-                <div class="card-content">This property records an E3 Condition State for some E18 Physical Thing. This property is a shortcut of the more fully developed path from E18 Physical Thing through P34i was assessed by, E14 Condition Assessment, P35 has identified to E3 Condition State. It offers no information about how and when the E3 Condition State was established, nor by whom.</div>                <div class="card-footer">
+                <div class="card-content">
+                    This property records an E3 Condition State for some E18 Physical Thing. This property is a shortcut of the more fully developed path from E18 Physical Thing through P34i was assessed by, E14 Condition Assessment, P35 has identified to E3 Condition State.
+                </div>                
+                <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
                 </div>
@@ -658,7 +656,9 @@
                 <div class="card-header">
                     P43 has dimension                    
                 </div>
-                <div class="card-content"> This property records an instance of E54 Dimension of some instance of E70 Thing. In the case that the recorded property is a result of a measurement of an instance of E18 Physical Thing, this property is a shortcut of the more fully developed path from E18 Physical Thing through P39i was measured by, E16 Measurement, P40 observed dimension to E54 Dimension.                </div>
+                <div class="card-content"> 
+                    This property records an instance of E54 Dimension of some instance of E70 Thing.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -669,7 +669,9 @@
                 <div class="card-header">
                     P16 used specific object                    
                 </div>
-                <div class="card-content">This property describes the use of material or immaterial things in a way essential to the performance or the outcome of an instance of E7 Activity. This property typically applies to tools, instruments, moulds, raw materials and items embedded in a product. It implies that the presence of the object in question was a necessary condition for the action.                </div>
+                <div class="card-content">
+                    This property describes the use of material or immaterial things in a way essential to the performance or the outcome of an instance of E7 Activity.               
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -680,7 +682,9 @@
                 <div class="card-header">
                     P14 carried out by
                 </div>
-                <div class="card-content">This property describes the active participation of an instance of E39 Actor in an instance of E7 Activity. It implies causal or legal responsibility. The P14.1 in the role of property of the property specifies the nature of an Actor’s participation.                </div>
+                <div class="card-content">
+                    This property describes the active participation of an instance of E39 Actor in an instance of E7 Activity.                 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -692,7 +696,9 @@
                 <div class="card-header">
                     P67 refers to
                 </div>
-                <div class="card-content">This property documents that an instance of E89 Propositional Object makes a statement about an instance of E1 CRM Entity. P67 refers to (is referred to by) has the P67.1 has type link to an instance of E55 Type. This is intended to allow a more detailed description of the type of reference.</div>
+                <div class="card-content">
+                    This property documents that an instance of E89 Propositional Object makes a statement about an instance of E1 CRM Entity. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -703,7 +709,9 @@
                 <div class="card-header">
                     P48 has preferred identifier
                 </div>
-                <div class="card-content">This property records the preferred instance of E42 Identifier that was used to identify an instance of E1 CRM Entity at the time this property was recorded. More than one preferred identifier may have been assigned to an item over time. Use of this property requires an external mechanism for assigning temporal validity to the respective CIDOC CRM instance.                </div>
+                <div class="card-content">
+                    This property records the preferred instance of E42 Identifier that was used to identify an instance of E1 CRM Entity at the time this property was recorded.                 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -714,7 +722,9 @@
                 <div class="card-header">
                     P46 is composed of                    
                 </div>
-                <div class="card-content">This property associates an instance of E18 Physical Thing with another instance of Physical Thing that forms part of it. The spatial extent of the composing part is included in the spatial extent of the whole. Component elements, since they are themselves instances of E18 Physical Thing, may be further analysed into sub-components, thereby creating a hierarchy of part decomposition.</div>
+                <div class="card-content">
+                    This property associates an instance of E18 Physical Thing with another instance of Physical Thing that forms part of it.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -726,7 +736,7 @@
                     P45 consists of
                 </div>
                 <div class="card-content">
-                    This property identifies the instances of E57 Materials of which an instance of E18 Physical Thing is composed. All physical things consist of physical materials. P45 consists of (is incorporated in) allows the different materials to be recorded. P45 consists of (is incorporated in) refers here to observed material as opposed to the consumed raw material.                
+                    This property identifies the instances of E57 Materials of which an instance of E18 Physical Thing is composed.                
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -739,7 +749,8 @@
                 <div class="card-header">
                     P86 falls within
                 </div>
-                <div class="card-content">This property describes the inclusion relationship between two instances of E52 Time-Span. This property supports the notion that the temporal extent of an instance of E52 Time-Span falls within the temporal extent of another instance of E52 Time-Span. It addresses temporal containment only, and no contextual link between the two instances of E52 Time-Span is implied.
+                <div class="card-content">
+                    This property describes the inclusion relationship between two instances of E52 Time-Span. 
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -751,7 +762,9 @@
                 <div class="card-header">
                     P82b end of the end
                 </div>
-                <div class="card-content">This is defined as the second boundary of the property P82                </div>
+                <div class="card-content">
+                    This is defined as the second boundary of the property P82.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -762,7 +775,7 @@
                 <div class="card-header">
                     P82a begin of the begin
                 </div>
-                <div class="card-content">This is defined as the first boundary of the property P82</div>
+                <div class="card-content">This is defined as the first boundary of the property P82.</div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -773,7 +786,9 @@
                 <div class="card-header">
                     P82 at some time within
                 </div>
-                <div class="card-content">This property describes the maximum period of time within which an E52 Time-Span falls. Since Time-Spans may not have precisely known temporal extents, the CIDOC CRM supports statements about the minimum and maximum temporal extents of Time-Spans. This property allows a Time-Span’s maximum temporal extent to be assigned an E61 Time Primitive value.</div>
+                <div class="card-content">
+                    This property describes the maximum period of time within which an E52 Time-Span falls. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1030,7 +1045,9 @@
                 <div class="card-header">
                     P104 is subject to
                 </div>
-                <div class="card-content">This property links a particular instance of E72 Legal Object to the instances of E30 Right to which it is subject. The Right is held by an instance of E39 Actor as described by P75 possesses (is possessed by).</div>
+                <div class="card-content">
+                    This property links a particular instance of E72 Legal Object to the instances of E30 Right to which it is subject. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1041,7 +1058,9 @@
                 <div class="card-header">
                     P100 was death of
                 </div>
-                <div class="card-content">This property links an instance of E69 Death to the instance of E21 Person that died. An instance of E69 Death may involve multiple people, for example in the case of a battle or disaster. This is not intended for use with general natural history material, only people.</div>
+                <div class="card-content">
+                    This property links an instance of E69 Death to the instance of E21 Person that died. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1052,7 +1071,9 @@
                 <div class="card-header">
                     P98 brought into life
                 </div>
-                <div class="card-content">This property links an instance of E67 Birth event to an instance of E21 Person in the role of offspring. Twins, triplets etc. are brought into life by the same instance of E67 Birth. This is not intended for use with general Natural History material, only people. There is no explicit method for modelling conception and gestation except by using extensions.</div>
+                <div class="card-content">
+                    This property links an instance of E67 Birth event to an instance of E21 Person in the role of offspring. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1063,7 +1084,9 @@
                 <div class="card-header">
                     P90 has value
                 </div>
-                <div class="card-content">This property allows an instance of E54 Dimension to be approximated by an instance of E60 Number primitive.</div>
+                <div class="card-content">
+                    This property allows an instance of E54 Dimension to be approximated by an instance of E60 Number primitive.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1075,7 +1098,9 @@
                 <div class="card-header">
                     P150 defines typical parts of
                 </div>
-                <div class="card-content">This property associates an instance of E55 Type “A” with an instance of E55 Type “B”, when items of type “A” typically form part of items of type “B”, such as “car motors” and “cars”. It allows types to be organised into hierarchies based on one type describing a typical part of another.</div>                
+                <div class="card-content">
+                    This property associates an instance of E55 Type “A” with an instance of E55 Type “B”, when items of type “A” typically form part of items of type “B”, such as “car motors” and “cars”.
+                </div>                
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1086,7 +1111,9 @@
                 <div class="card-header">
                     P148 has component                    
                 </div>
-                <div class="card-content"> This property associates an instance of E89 Propositional Object with a structural part of it that is by itself an instance of E89 Propositional Object. This property is transitive. This property is asymmetric.</div>
+                <div class="card-content">
+                    This property associates an instance of E89 Propositional Object with a structural part of it that is by itself an instance of E89 Propositional Object.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1097,7 +1124,9 @@
                 <div class="card-header">
                     P128 carries                   
                 </div>
-                <div class="card-content">This property identifies an instance E90 Symbolic Object carried by an instance of E18 Physical Thing. Since an instance of E90 Symbolic Object is defined as an immaterial idealization over potentially multiple carriers, any individual realization on a particular physical carrier may be defective, due to deterioration or shortcomings in the process of creating the realization...</div>
+                <div class="card-content">
+                    This property identifies an instance E90 Symbolic Object carried by an instance of E18 Physical Thing.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1108,7 +1137,9 @@
                 <div class="card-header">
                     P108 has produced
                 </div>
-                <div class="card-content">This property identifies the instance of E24 Physical Human-Made Thing that came into existence as a result of the instance of E12 Production. The identity of an instance of E24 Physical Human-Made Thing is not defined by its matter, but by its existence as a subject of documentation. An E12 Production can result in the creation of multiple instances of E24...</div>
+                <div class="card-content">
+                    This property identifies the instance of E24 Physical Human-Made Thing that came into existence as a result of the instance of E12 Production.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1120,7 +1151,9 @@
                 <div class="card-header">
                     R7 exemplifies
                 </div>
-                <div class="card-content">This property associates an instance of F3 Manifestation with an instance of F5 Item that is one of its exemplars or its only exemplar. Instances of F5 Item correspond to the kinds of physical unit(s) specified in the manifestation, regardless of possible later changes.</div>
+                <div class="card-content">
+                    This property associates an instance of F3 Manifestation with an instance of F5 Item that is one of its exemplars or its only exemplar.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1131,7 +1164,9 @@
                 <div class="card-header">
                     R4 embodies
                 </div>
-                <div class="card-content">This property associates an instance of F3 Manifestation with one or more instances of F2 Expression which are rendered by this instance of F3 Manifestation. The manifestation formats the expression(s) in the way they are to be presented to some public, including specifying the intended sensory impression (such as visual appearance or audio rendition).</div>
+                <div class="card-content">
+                    This property associates an instance of F3 Manifestation with one or more instances of F2 Expression which are rendered by this instance of F3 Manifestation.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1142,7 +1177,9 @@
                 <div class="card-header">
                     R3 is realised in                    
                 </div>
-                <div class="card-content">This property associates an instance of F2 Expression with an instance of F1 Work. This property expresses the association that exists between an expression and the work that this expression conveys. Our factual knowledge of how a given work is historically realised into expressions is often limited.</div>
+                <div class="card-content">
+                    This property associates an instance of F2 Expression with an instance of F1 Work. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1153,7 +1190,9 @@
                 <div class="card-header">
                     P191 has duration
                 </div>
-                <div class="card-content">This property describes the length of time covered by an instance of E52 Time-Span. It allows an instance of E52 Time-Span to be associated with an instance of E54 Dimension representing duration independent from the actual beginning and end. Indeterminacy of the duration value can be expressed by assigning a numerical interval to the property P90 has value of E54 Dimension.</div>
+                <div class="card-content">
+                    This property describes the length of time covered by an instance of E52 Time-Span. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1165,7 +1204,9 @@
                 <div class="card-header">
                     R71 has part
                 </div>
-                <div class="card-content">This property associates an instance of F3 Manifestation with a structural part of it that is itself an instance of F3 Manifestation. This property is transitive, asymmetric and irreflexive.</div>
+                <div class="card-content">
+                    This property associates an instance of F3 Manifestation with a structural part of it that is itself an instance of F3 Manifestation. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1176,7 +1217,9 @@
                 <div class="card-header">
                     R24 created
                 </div>
-                <div class="card-content">This property associates the instance of F3 Manifestation that was created during a particular instance of F30 Manifestation Creation with that instance of F30 Manifestation Creation event.</div>
+                <div class="card-content">
+                    This property associates the instance of F3 Manifestation that was created during a particular instance of F30 Manifestation Creation with that instance of F30 Manifestation Creation event.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1187,7 +1230,9 @@
                 <div class="card-header">
                     R17 created
                 </div>
-                <div class="card-content">This property associates an instance of F2 Expression that was externalised during a particular instance of F28 Expression Creation event with that particular creation event. An instance of expression creation creates an instance of expression and also creates any expressions that are parts of that expression.</div>
+                <div class="card-content">
+                    This property associates an instance of F2 Expression that was externalised during a particular instance of F28 Expression Creation event with that particular creation event.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1198,7 +1243,9 @@
                 <div class="card-header">
                     R16 created
                 </div>
-                <div class="card-content">This property associates the initial creation of a work and the instance of F1 Work that was created.</div>
+                <div class="card-content">
+                    This property associates the initial creation of a work and the instance of F1 Work that was created.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">LRMoo v.1.0</span>
@@ -1458,7 +1505,9 @@
                 <div class="card-header">
                     L19 stores
                 </div>
-                <div class="card-content">This property associates an instance of a D13 Digital Information Carrier with the instance of Digital Object that is stored on it.</div>
+                <div class="card-content">
+                    This property associates an instance of a D13 Digital Information Carrier with the instance of Digital Object that is stored on it.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CRMdig v.3.2.1</span>
@@ -1469,7 +1518,9 @@
                 <div class="card-header">
                     L11 had output
                 </div>
-                <div class="card-content">This property associates an instance of D7 Digital Machine Event with an instance of D1 Digital Object which is the output of the activity.</div>
+                <div class="card-content">
+                    This property associates an instance of D7 Digital Machine Event with an instance of D1 Digital Object which is the output of the activity.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CRMdig v.3.2.1</span>
@@ -1480,7 +1531,9 @@
                 <div class="card-header">
                     L1 digitized
                 </div>
-                <div class="card-content">This property associates an instance of D2 Digitization Process with an instance of E18 Physical Thing which is a material thing.</div>
+                <div class="card-content">
+                    This property associates an instance of D2 Digitization Process with an instance of E18 Physical Thing which is a material thing.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CRMdig v.3.2.1</span>
@@ -1491,7 +1544,9 @@
                 <div class="card-header">
                     R78 has alternate
                 </div>
-                <div class="card-content">This property associates one instance of F3 Manifestation with another instance of F3 Manifestation that exemplifies the same instance of F2 Expression, when the two instances of F3 Manifestation can be used as alternatives for each other in particular use cases. This property is transitive and symmetric. It is irreflexive.</div>
+                <div class="card-content">
+                    This property associates one instance of F3 Manifestation with another instance of F3 Manifestation that exemplifies the same instance of F2 Expression, when the two instances of F3 Manifestation can be used as alternatives for each other in particular use cases.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CRMdig v.3.2.1</span>
@@ -1504,7 +1559,7 @@
                     P2 has type
                 </div>
                 <div class="card-content">
-                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus. The CIDOC CRM is intended to provide a common semantic framework and relationships needed to describe data structures. Consequently, it does not specialise entities any further than is required for this immediate...
+                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus. 
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1517,7 +1572,7 @@
                     P1 is identified by
                 </div>
                 <div class="card-content">
-                    This property describes the naming or identification of any real-world item by a name or any other identifier. This property is intended for identifiers in general use, which form part of the world the CRM intends to describe, and not merely for internal database identifiers which are specific to a technical system, unless these latter also have a more general...
+                    This property describes the naming or identification of any real-world item by a name or any other identifier.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1529,7 +1584,9 @@
                 <div class="card-header">
                     L57 has pixel height                   
                 </div>
-                <div class="card-content">This property records the pixel height of the data object; it approximates a dimension that is part of the image data analysis.</div>
+                <div class="card-content">
+                    This property records the pixel height of the data object; it approximates a dimension that is part of the image data analysis.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CRMdig v.3.2.1</span>
@@ -1540,7 +1597,9 @@
                 <div class="card-header">
                     L56 has pixel width
                 </div>
-                <div class="card-content">This property records the pixel width of the data object; it approximates a dimension that is part of the image data analysis.</div>
+                <div class="card-content">
+                    This property records the pixel width of the data object; it approximates a dimension that is part of the image data analysis.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CRMdig v.3.2.1</span>
@@ -1553,7 +1612,8 @@
                     P7 took place at
                 </div>
                 <div class="card-content">
-                    This property describes the spatial location of an instance of E4 Period. The related instance of E53 Place should be seen as a wider approximation of the geometric area within which the phenomena that characterise the period in question occurred, see below. P7 took place at (witnessed) does not convey any meaning other than spatial positioning (frequently on the surface of the earth).                </div>
+                    This property describes the spatial location of an instance of E4 Period. 
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1565,7 +1625,7 @@
                     P4 has time-span
                 </div>
                 <div class="card-content">
-                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going. The associated instance of E52 Time-Span is understood as the real time-span during which the phenomena making up the temporal entity instance were active.
+                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1578,7 +1638,7 @@
                     P2 has type
                 </div>
                 <div class="card-content">
-                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus. The CIDOC CRM is intended to provide a common semantic framework and relationships needed to describe data structures. Consequently, it does not specialise entities any further than is required for this immediate...
+                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1591,7 +1651,7 @@
                     P4 has time-span
                 </div>
                 <div class="card-content">
-                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going. The associated instance of E52 Time-Span is understood as the real time-span during which the phenomena making up the temporal entity instance were active.
+                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1605,7 +1665,8 @@
                     P7 took place at
                 </div>
                 <div class="card-content">
-                    This property describes the spatial location of an instance of E4 Period. The related instance of E53 Place should be seen as a wider approximation of the geometric area within which the phenomena that characterise the period in question occurred, see below. P7 took place at (witnessed) does not convey any meaning other than spatial positioning (frequently on the surface of the earth).                </div>
+                    This property describes the spatial location of an instance of E4 Period.
+                </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
                     <span class="source-label" style="margin-left: 8px;">CIDOC CRM v.7.1.3</span>
@@ -1617,7 +1678,7 @@
                     P4 has time-span
                 </div>
                 <div class="card-content">
-                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going. The associated instance of E52 Time-Span is understood as the real time-span during which the phenomena making up the temporal entity instance were active.
+                    This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1630,7 +1691,7 @@
                     P2 has type
                 </div>
                 <div class="card-content">
-                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus. The CIDOC CRM is intended to provide a common semantic framework and relationships needed to describe data structures. Consequently, it does not specialise entities any further than is required for this immediate...
+                    This property allows sub typing of CIDOC CRM entities – a form of specialisation – through the use of a terminological hierarchy, or thesaurus.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
@@ -1643,7 +1704,7 @@
                     P1 is identified by
                 </div>
                 <div class="card-content">
-                    This property describes the naming or identification of any real-world item by a name or any other identifier. This property is intended for identifiers in general use, which form part of the world the CRM intends to describe, and not merely for internal database identifiers which are specific to a technical system, unless these latter also have a more general...
+                    This property describes the naming or identification of any real-world item by a name or any other identifier.
                 </div>
                 <div class="card-footer">
                     <div class="footer-icon">⚙</div>
