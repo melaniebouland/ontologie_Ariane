@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <base href=".">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" sizes="180x180" href="assets/img/AMISLogo.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
+    <title>Ariane | CAO_CRM Documentation</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        p, li {
+            text-align: justify;
+        }
+        .dropdown:hover>.dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu {
+            position: relative;
+        }
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: block;
+        }
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+        .doc-section {
+            margin-bottom: 3rem;
+        }
+        .doc-section h2 {
+            color: #8f0006;
+            border-bottom: 2px solid #8f0006;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .doc-section h3 {
+            color: #333;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .doc-section h4 {
+            color: #555;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .example-accordion .accordion-button {
+            background-color: #f8f9fa;
+            color: #8f0006;
+            font-weight: 600;
+        }
+        .example-accordion .accordion-button:not(.collapsed) {
+            background-color: #8f0006;
+            color: white;
+        }
+        .example-accordion .accordion-body {
+            background-color: #f8f9fa;
+            border-left: 4px solid #8f0006;
+        }
+        .table-of-contents {
+            position: sticky;
+            top: 20px;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .table-of-contents h4 {
+            color: #8f0006;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .table-of-contents ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+        }
+        .table-of-contents a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        .table-of-contents a:hover {
+            color: #8f0006;
+        }
+        .intro-box {
+            background: linear-gradient(135deg, #8f0006 0%, #c41e3a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .intro-box h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .entity-card {
+            border-left: 4px solid #8f0006;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+        }
+        .hierarchy-flow {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(to right, #f8f9fa, white, #f8f9fa);
+            border-radius: 8px;
+        }
+        .hierarchy-flow strong {
+            color: #8f0006;
+            font-size: 1.3rem;
+        }
+        header.relative {
+            box-shadow: 0 0 10px rgba(143, 0, 6, 0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .header-logos img {
+            height: 60px;
+            margin-right: 1rem;
+        }
+        nav ul {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="relative bg-white mb-2 w-100" style="box-shadow: 0 0 10px rgba(143, 0, 6, 0.1);">
+        <div class="border-top border-danger"></div>
+        <div class="header-content container">
+            <div class="header-logos d-flex align-items-center">
+                <a href="https://cst-ariane.huma-num.fr/" class="me-2">
+                    <img src="assets/img/logoAriane.jpg" alt="CST-HN ARIANE logo">
+                </a>
+                <a href="https://www.huma-num.fr/"> 
+                    <img src="assets/img/HN.png" alt="Huma-Num logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="axesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Axes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="axesDropdown">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe1">Axis 1</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT1/GT1.html">GT1 - Labeling</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT2/GT2.html">GT2 - Data Acquisition and Computer Transcription</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT3/GT3.html">GT3 - Tools and Editorial Practices</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe2">Axis 2</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT4/GT4.html">GT4 - Automatic Text Analysis</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT5/GT5.html">GT5 - Metadata and Data Modeling</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT6/GT6.html">GT6 - Open French Corpus</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe3">Axis 3</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/ethique/ethique.html">Ethical Issues</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/juridique/juridique.html">Legal Questions</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="travauxDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Work
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="travauxDropdown">
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Axis 1</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT1.html">GT1 - Labeling</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT2.html">GT2 - Data Acquisition and Computer Transcription</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT3.html">GT3 - Tools and Editorial Practices</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Axis 2</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT4.html">GT4 - Automatic Text Analysis</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT5.html">GT5 - Metadata and Data Modeling</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT6.html">GT6 - Open French Corpus</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">Axis 3</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/html_pages/travaux_ethique.html">Ethical Issues</a></li>
+                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/html_pages/travaux_juridique.html">Legal Questions</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75" href="https://consortiumariane.gitpages.huma-num.fr/outils/index.html">Tools</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="actualitesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          News
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="actualitesDropdown">
+                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_1.html">Axis 1</a></li>
+                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_2.html">Axis 2</a></li>
+                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_3.html">Axis 3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75" href="https://docs.google.com/forms/d/1nxWiaj88LY7R-poxxlTiUxdvyIH5hL5eBHFjgsfsKGg/viewform?edit_requested=true">Join Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-xl transition" href="https://consortiumariane.gitpages.huma-num.fr/site_amis/index.html" style="color: rgb(143 0 6);">AMIS Project</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <main class="col-md-9 content">
+                <div class="intro-box">
+                    <h1>The Corpus Author Ontology CRM (CAO_CRM) Model</h1>
+                    <p class="lead">Presentation and User Guide</p>
+                    <p class="mb-0">A structured semantic framework for organizing, describing, and ensuring the interoperability of metadata generated for text corpora</p>
+                </div>
+
+                <div class="doc-section" id="presentation">
+                    <h2>General Presentation</h2>
+                    <p>The <a href="https://axe-2-gt5.gitpages.huma-num.fr/ontologie/CAO_CRM_V4.html">CAO_CRM</a> ontological model, developed by the HN Ariane Consortium, aims to model the relationships between metadata associated with cultural or intellectual objects, such as a document, a literary work, or a digital resource.</p>
+                    
+                    <p>Based on the <a href="https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html"><strong>CIDOC CRM</strong></a>, an international standard for modeling cultural heritage knowledge, this model also integrates the <a href="https://cidoc-crm.org/lrmoo"><strong>LRM</strong></a> (Library Reference Model) and <a href="https://cidoc-crm.org/crmdig"><strong>CRMdig</strong></a> (CRM Digital) extensions, which respectively allow for the representation of bibliographic entities and the provenance of digital objects.</p>
+
+                    <p>Designed to work in synergy with artificial intelligence systems, particularly within the framework of **RAG** (Retrieval-Augmented Generation) — a method combining document search and AI content generation — of the AMIS web application, this ontological model offers a structured semantic framework for organizing, describing, and ensuring the interoperability of text corpus metadata. It addresses key issues such as the standardization of descriptive practices, the identification of relevant metadata based on resource types, and the optimization of document search through the exploitation of semantic relationships.</p>
+
+                    <h3>Modular Organization</h3>
+                    <p>The model is organized into **recurring modules**, i.e., elements found in several parts of the model. This organization facilitates its adaptation to different types of content and usage contexts. Thanks to its flexibility and capacity for evolution, it can be used for many purposes, from the detailed description of heritage works to feeding recommendation systems or automated analysis tools in fields such as research, education, or cultural promotion.</p>
+                    <p>It allows for the organization and analysis of precise metadata while taking into account **missing or uncertain data**, which is essential for processing cultural or intellectual objects that are often partially documented. This adaptability is a major asset for artificial intelligence systems and automated analysis tools, which require a fine and dynamic understanding of the objects and the relationships that characterize them.</p>
+
+                    <h3>Purpose of the Document</h3>
+                    <p>This document aims to explain in detail the different branches of the ontological model and their interrelations, by illustrating these concepts with a concrete example: the literary work *The Red and the Black* by Stendhal. This approach helps to clarify the methodological choices of the modeling, specifying the entities and relationships used to represent the different facets of the work and associated objects. The example also serves to test the relevance and robustness of the model against a complex case. It should be noted that some information used to feed the ontology does not always come from explicitly documented or verifiable data. Therefore, this information should be considered not as absolute truths, but as plausible hypotheses, illustrating the model's flexibility. The process described highlights the ontology's capacity to support the integration of different levels of knowledge, explicit or implicit, while offering a certain margin of interpretation in metadata processing. This approach is essential for confronting the model with real-world situations, where gaps or uncertainties may exist in the available data, and for testing its robustness in managing these ambiguities.</p>
+                </div>
+
+                <div class="doc-section" id="structure">
+                    <h2>1. Structure and Modularity of CAO_CRM</h2>
+                    
+                    <h3>Modular Architecture</h3>
+                    <p>CAO_CRM is based on a stable, coherent, and, above all, **modular** architecture. This modularity allows certain specific branches of the model to be used or ignored depending on the available data and the desired level of granularity. Such an approach is particularly useful when information concerning a work is incomplete or fragmented. Thanks to its sophisticated relational mechanisms, the model maintains overall coherence.</p>
+
+                    <p>The modular architecture establishes semantic links between different entities. These connections allow for the inference of implicit information from explicit data. For example, from the identification of a physical object, such as a manuscript, the model can infer information about the underlying intellectual work (F1_Work) or its author (E21_Person) from the rest of the information present in the model or by fetching information from external databases (Wikidata, Geonames...). These inferences are possible thanks to the ontological properties and relationships inherited from international standards such as CIDOC CRM and LRM, which ensure both the logical robustness and the semantic coherence of the model.</p>
+
+                    <h3>Simplified and Didactic View</h3>
+                    <p>The CAO_CRM model is presented in this document in a simplified form, designed specifically for exploratory and pedagogical purposes. This simplified view aims to make explicit the fundamental semantic relationships as well as the key properties likely to exist between the different conceptual entities. It thus offers a structured framework for reflection on the general architecture of the model, emphasizing its essential components and the elements that can be included or omitted depending on the specific needs of each project.</p>
+
+                    <p>For the sake of readability and accessibility, the document does not present all entities and relationships, which are often numerous and complex. The following description is intended as a clear and understandable conceptual basis that allows one to grasp the potential of the model. The complete version of the latter can, in fact, become dense and difficult to apprehend without recourse to dedicated IT tools.</p>
+
+                    <h3>Methodology and Fundamental Principles</h3>
+                    <p>The model is based on a clear and fundamental distinction between four key entities, compliant with the LRMoo and CIDOC CRM standards:</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F1_Work - Intellectual Work</h5>
+                                <p class="mb-0">This is the abstract idea or concept of a work, regardless of its material form or specific realization. This entity represents the creative intention or the work in its purely conceptual dimension.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F2_Expression</h5>
+                                <p class="mb-0">This entity designates the intellectual formulation of a work, i.e., the reflection, imagination, and drafts of a work (the different conceptual "states" of elaboration). For example, it may be a manuscript text (complete or not), a more or less finished script, or a sound or visual recording. The expression implies a formulation, embryonic or more elaborate, of the original idea. It can have one or more manifestations.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F3_Manifestation</h5>
+                                <p class="mb-0">This is the tangible materialization of an expression, such as an autograph manuscript, a printed book, an edited film, or an audiovisual edition. Manifestation implies a process of developing a physical or media object that makes the expression accessible to the public (the writing of a draft, or the editing of a text, for example).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="entity-card">
+                                <h5 class="text-danger mb-2">F5_Item / D1_Digital_Object</h5>
+                                <p class="mb-0">This entity refers to the material or digital support containing the manifestation, such as a sheet, a book, a film reel, or a digital file (image, video). This is the object that can be owned and manipulated. There may be several items related to the same manifestation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Hierarchy of Entities</h3>
+                    <p>The hierarchy of entities follows a logical progression that goes from the original idea of the work to its tangible or digital materialization:</p>
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/structure_CAO_CRM_V4.html" style="border:none; width:100%;">CAO-CRM Hierarchy</iframe>
+                    </div>
+
+                    <ul>
+                        <li><strong>F1_Work → F2_Expression:</strong> the intellectual work (F1_Work) is the original concept, an idea or a creative project. It gives rise to an Expression (F2_Expression), which is its first immaterial concrete form in a specific format. The Expression reflects the intention of the work.</li>
+                        <li><strong>F2_Expression → F3_Manifestation:</strong> the Expression (F2_Expression) can be materialized in a tangible or digital form, becoming a Manifestation (F3_Manifestation). This step corresponds to the physical or digital version of the Expression, such as a printed book, a sound recording, or an edited film. This is the first level where the work can be perceived, handled, or distributed.</li>
+                        <li><strong>F3_Manifestation → F5_Item / D1_Digital_Object:</strong> the Manifestation (F3_Manifestation) is stored on a physical or digital medium, designated by the F5_Item (physical object) or D1_Digital_Object (digital object) entity. This medium contains the work in its tangible or digital form, allowing the user to consult it, own it, or use it.</li>
+                    </ul>
+
+                    <p>This summary highlights **the logical and hierarchical progression** of the entities, which goes from the abstract idea of the work to its materialization as a physical or digital medium. Each described relationship represents a key stage in the concretization of the work, transforming the initial idea into a consultable and manipulable object. This structure guarantees not only a coherent evolution from concept to object but also a **semantic and structural continuity** between the different stages of the model.</p>
+                    <p>The hierarchical and modular architecture of CAO_CRM allows for the modeling of **a wide diversity of cultural and intellectual objects** with great precision and flexibility. It maintains strong coherence between the different levels of description, thus facilitating data management while remaining adaptable to various needs. Furthermore, this flexibility allows for **extended reuse of the model in multiple contexts**, whether for heritage archives, digital libraries, or databases dedicated to the research and promotion of cultural heritage. Thanks to this hierarchy, it also becomes possible **to adjust the level of detail** according to the specific requirements of each project or field of application, while guaranteeing a homogeneous and interoperable approach to metadata. This capacity for adaptation and personalization is essential for meeting the challenges of diversity and complexity encountered in the management of cultural objects.</p>
+                </div>
+
+                <div class="doc-section" id="branches">
+                    <h2>2. The Specific Branches</h2>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/CAO_CRM_V4-modules_complet.html" style="border:none; width:100%;">All CAO-CRM Modules</iframe> 
+                    </div>
+
+                    <h3 id="branche-creation">a) The "Work Creation" Branch (F1_Work)</h3>
+                    <div>
+                        <iframe src="V4/modules/CAO_CRM_V4_concepte.html" style="border:none; width:100%;">Work Creation Branch</iframe>
+                    </div>
+
+                    <p>This section of the ontological model is dedicated to the representation of the work as an abstract entity, and to all the conceptual elements that surround it. The **F1_Work** entity, derived from CIDOC CRM, allows a work to be identified as the result of an intellectual process, independent of any physical manifestation. It is therefore not concerned here with the material object (for example, a printed copy of *The Red and the Black*), a version, or the writing process of the work, but with the idea and reflections that led to its elaboration.</p>
+                    
+                    <p>The **F1_Work** class belongs to the abstract domain and allows different forms of expressions of the same work to be linked, even if they manifest themselves in distinct physical or digital forms. The objective here is to preserve the intellectual or artistic integrity of the work, despite its multiple representations. This abstraction offers modeling flexibility, allowing the work to be seen as a unique entity, independently of the various materializations that may result from it.</p>
+
+                    <p>The **F27_Work_Creation** entity is associated with **F1_Work** and allows for the documentation of the work's creation process. It accounts for the activities that led to the elaboration of the work as an intellectual object. This class allows for specifying the creation period (**E52_Time-Span**), the historical circumstances of this creation, as well as the person(s) who participated in this process (**E21_Person**).</p>
+
+                    <p>In the case of *The Red and the Black*, this data includes the work's creation date, the historical period to which it is attached, and the literary movement (**E89_Propositional_Object**) in which it is situated. These elements contribute to establishing a clear temporal and cultural anchor. They can be enriched using shared repositories such as Periodo or Wikidata to ensure a standardized definition of the temporal or aesthetic concepts used. The use of common repositories thus guarantees interpretive coherence, limiting subjective variations in the analysis or description of works and thereby ensuring the interoperability of the ontological model.</p>
+
+                    <p>Modeling the creation of the work also allows the work to be linked to its authors (**E21_Person**). Again, it is recommended to rely on links to authority databases such as IdRef, Wikidata, or VIAF. These links allow for the retrieval of biographical information about the author, such as their date and place of birth, as well as significant events in their life. This contextual data helps to better situate the work within its historical, geographical, and cultural framework. This contextualization work not only enriches the understanding of the work but also allows for navigation between different works by the same author, or for comparison of creators from similar eras, by having access to coherent and interconnected information.</p>
+
+
+                    <div class="accordion example-accordion mt-3" id="accordionF1">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF1">
+                                    Example: The Red and the Black
+                                </button>
+                            </h2>
+                            <div id="collapseF1" class="accordion-collapse collapse" data-bs-parent="#accordionF1">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>(LRMoo) F1_Work:</strong> The Red and the Black (literary work as an intellectual entity)</li>
+                                        <li><strong>(LRMoo) F27_Work_Creation:</strong> process of creation of the work by Stendhal between 1828 and 1830</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span:</strong> creation period: 1828–1830; publication date: November 1830</li>
+                                        <li><strong>(CIDOC CRM) E21_Person:</strong> Stendhal (Marie-Henri Beyle), author of the work</li>
+                                        <li><strong>(CIDOC CRM) E53_Place:</strong> Paris</li>
+                                        <li><strong>(CIDOC CRM) E67_Birth/E69_Death:</strong> Stendhal, born in Grenoble in 1783, died in Paris in 1842</li>
+                                        <li><strong>(CIDOC CRM) E89_Propositional_Object:</strong> literary movement "realism", post-revolutionary context</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span:</strong> historical period allowing a major event of the period to be indicated with E5_Event: Revolution of 1830 (historical context influencing the work).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_Work.html" style="border:none; width:100%;">Work Creation Example</iframe>
+                    </div>
+
+                    <h3 id="branche-manifestation">c) The "Manifestation" Branch (F3_Manifestation)</h3>
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/modules/CAO_CRM_V4_manifestation.html" style="border:none; width:100%;">Manifestation Branch</iframe>
+                    </div>
+
+                    <p>In the CAO_CRM ontological model, a manifestation (represented by the **F3_Manifestation** class) corresponds to the stage where the intellectual work takes a tangible physical or digital form. This notion of manifestation is inspired by the **LRMoo** (Library Reference Model) and refers to the production of a concrete copy of the work, whether in printed, manuscript, audiovisual, or digital form.</p>
+
+                    <p>The **F3_Manifestation** structures and aggregates information related to this materialization, providing crucial details concerning the physical production of the work. In the model, a manifestation is directly linked to a manifestation creation event (**F30_Manifestation_Creation**), which allows for the description of the specific circumstances of the copy's production. This step is essential because it records elements such as the production manager, associated dates, and the location where the object was manufactured.</p>
+
+                    <h4>Key Properties of the F3_Manifestation Branch:</h4>
+                    <ul>
+                        <li><strong>Object Type:</strong> this is the identification of the type of object produced, for example, a book, a manuscript, a brochure, or an audiovisual edition. This information allows for specifying the nature of the physical or digital medium in which the work is embodied.</li>
+                        <li><strong>Physical characteristics:</strong> these properties include dimensions such as the number of pages, the format (for example, in-18, folio, etc.), or even the weight of the document. These elements allow for a precise description of the material specifications of the manifestation.</li>
+                        <li><strong>Date and place of creation:</strong> the manifestation is associated with a creation event (**F30_Manifestation_Creation**), which specifies the exact period during which the production took place, as well as the entity responsible for the creation (publisher, printer, workshop, etc.), and the location of this production.</li>
+                    </ul>
+
+                    <h4>Key Properties of the F3_Manifestation Branch according to the example *The Red and the Black* by Stendhal:</h4>
+                    <ul>
+                        <li><strong>Manifestation:</strong> the first printed edition of *The Red and the Black*, published in 1830 by the publisher Charles Gosselin in Paris, constitutes a key manifestation of the work.</li>
+                        <li><strong>Object Type:</strong> the book is a printed edition, specified as a work in in-18 format, composed of 560 pages.</li>
+                        <li><strong>Creation Event (F30_Manifestation_Creation):</strong> the creation event corresponds to the printing of this edition, carried out by the Charles Gosselin printing house in Paris, between January and March 1830.</li>
+                        <li><strong>Associated Entities:</strong> the person responsible for this edition is a legal entity responsible for the edition present on the book (**E74_Group**), the printing house is located in **Paris (E53_Place)**, and the printing period is recorded in **E52_Time-Span**, corresponding to the precise time interval (January–March 1830).</li>
+                    </ul>
+
+                    <div class="accordion example-accordion mt-3" id="accordionF3">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseF3">
+                                    Example: Original Edition of The Red and the Black
+                                </button>
+                            </h2>
+                            <div id="collapseF3" class="accordion-collapse collapse" data-bs-parent="#accordionF3">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li><strong>(LRMoo) F3_Manifestation:</strong> Original printed edition of *The Red and the Black* (1830)</li>
+                                        <li><strong>(CIDOC CRM) E55_Type (object type):</strong> Printed book, in-18</li>
+                                        <li><strong>(CIDOC CRM) P43_has_dimension:</strong> approximately 560 pages</li>
+                                        <li><strong>(LRMoo) F30_Manifestation_Creation:</strong> Printing process of the original edition</li>
+                                        <li><strong>(CIDOC CRM) E74_Group (responsible agent):</strong> Charles Gosselin (publisher)</li>
+                                        <li><strong>(CIDOC CRM) E53_Place (place of creation):</strong> Charles Gosselin Printing House, Paris</li>
+                                        <li><strong>(CIDOC CRM) E52_Time-Span (creation period):</strong> January – March 1830</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/exemple_rouge_noir/exemple_module_manifestation.html" style="border:none; width:100%;">Manifestation Example</iframe>
+                    </div>
+
+                    <p>This branch is therefore essential for precisely modeling the material production of works, while offering optimal interoperability with other cultural and heritage information management systems.</p>
+
+                    <h3 id="branche-numerique">d) The "Digital Object" Branch (D1_Digital_Object)</h3>
+
+                    <div class="hierarchy-flow">
+                        <iframe src="V4/modules/CAO_CRM_V4_objet-numerique.html" style="border:none; width:100%;">Digital Object Branch</iframe>
+                    </div>
+
+                    <p>The contemporary era is marked by the gradual digitization of content, which has introduced a new category of cultural objects. Today, literary works exist not only as physical objects but also as natively digital or digitized objects. Although these digital objects differ in their material nature, they retain a documentary and intellectual value equivalent to that of physical objects. They play a key role in the creative process, transmission, and conservation of works, particularly in a context where the preservation of cultural heritage increasingly relies on digital technology.</p>
+
+                    <p>The integration of these digital objects into the CAO_CRM ontological model is essential to ensure the coherence and interoperability of metadata, regardless of the type of representation chosen for the work. This branch of the model revolves around the **F2_Expression** entity, which allows a digital object to be associated with a precise version of the intellectual work, considering it as a specific materialization of that work, but in a digital format.</p>
+
+                    <p>The digital edition of the work is then represented by **F3_Manifestation**, which describes the material and technical conditions under which the digital expression of the work was created. This digital Manifestation may include aspects such as the file format, resolution, or the platform on which the work is accessible. The creation of this digital manifestation is modeled by **F30_Manifestation_Creation**, which implies a temporality (**E52_Time-Span**) to specify the period during which this digital version was produced. This allows the object to be situated in time, providing a contextual anchor for its evolution.</p>
+
+                    <p>When a digital object results from a **digitization process** of a physical object, it is modeled via the specific classes of **CRMdig**, an extension of CIDOC CRM dedicated to the description of digital objects and their provenance. The digitization process is represented by **D2_Digitization_Process**, while the digital object itself is modeled by **D1_Digital_Object**. This class allows for the description of the characteristics of the resulting digital file, as well as its link with the original medium.</p>
+
+                    <p>The **D1_Digital_Object** entity can be enriched by a series of technical and contextual properties, such as:</p>
+                    <ul>
+                        <li>The file format (e.g., PDF, EPUB, TXT)</li>
+                        <li>The technical standard used (e.g., ISO standards, Dublin Core, TEI)</li>
+                        <li>The document version (original or enriched version)</li>
+                        <li>The title attributed to the digital object</li>
+                        <li>The digital dimensions, particularly the required storage volume</li>
+                        <li>The place of conservation or the dissemination platform (e.g., repository, Gallica, etc.).</li>
+                    </ul>
+                    <p>This branch of the ontological model allows for the rigorous formalization of the digitization of cultural and intellectual objects, ensuring both technical documentation and the preservation of digital objects within an interoperable framework. It thus plays a key role in conservation, archiving, and making digitized works available projects.</p>
+
+
+                    <div class="doc-section" id="item">
+                        <h2>3. The "Items"</h2>
+                        <h3 id="manuscrit">a) The Manuscript</h3>
+                        <p>In the context of the CAO_CRM ontological model, "Items" represent specific physical or digital copies of a work, thereby allowing the documentation of their existence, conservation, and transformation. To better understand this branch, let's take the example of the original manuscript of *The Red and the Black* by Stendhal, published in 1830, to illustrate this structure. This manuscript, like the author's personal archives (including correspondence, drafts, and notes), is modeled using the entities of the LRMoo and CIDOC CRM standards. For this type of object, which testifies to the creation process, the use of the **F2_Expression** entity is essential. This entity allows for the representation of the textual content and the thought process (the different "states" of the text) that will result in the final work (**F1_Work**). Each draft, each note, or each handwritten modification can thus be modeled as a distinct manifestation, while remaining linked to the underlying text expression.</p>
+                        
+                        <h3>Description of a Manuscript in the Model</h3>
+                        <p>The ontological model allows for the documentation not only of the final form of the work (the publication) but also of its creation process. In the case of a Stendhal manuscript, the latter could be modeled as follows:</p>
+                        <ul>
+                            <li><strong>F2_Expression (Expression):</strong> Stendhal's handwritten drafts are expressions of the work that testify to the evolution of the text before its publication. Each draft can be associated with metadata relating to the author (Stendhal) and the period during which he worked on these writings.</li>
+                            <li><strong>F30_Manifestation_Creation:</strong> this creation process is documented in the **F30_Manifestation_Creation** entity, which provides information on the edition of the printed work, such as the responsible publisher, the publication date, the location, and other aspects relating to the material production of the work.</li>
+                            <li><strong>F5_Item (Physical Manuscript):</strong> the physical object (for example, an autograph manuscript or a handwritten copy) is represented by an Item. This **F5_Item** can contain additional metadata such as the archive call number, the state of conservation, associated intellectual property, and even the possibility of linking this physical object to a digitization process.</li>
+                        </ul>
+                        <h3>Digitization and Digital Preservation</h3>
+                        <p>Handwritten drafts or other physical objects can then be digitized to ensure their conservation and digital accessibility. this digitization process can be modeled as follows:</p>
+                        <ul>
+                            <li><strong>D2_Digitization_Process:</strong> the digitization process of a physical manuscript is represented by the **D2_Digitization_Process** entity. This process gives rise to digital objects (**D1_Digital_Object**) and benefits from additional metadata, such as the person responsible for the digitization (**E21_Person**), the digitization period (**E52_Time-Span**), as well as the digital dimensions (**L56_has_pixel_width** and **L57_has_pixel_height**). They can be stored in a digital repository (**D13_Digital_Information_Carrier**), with a unique identifier (**E42_Identifier**) to ensure adequate traceability and conservation.</li>
+                        </ul>
+                        
+                        <h3>Summary of Relationships</h3>
+                        <ul>
+                            <li><strong>F1_Work → F2_Expression:</strong> the intellectual work (**F1_Work**) is translated into one or more expressions (**F2_Expression**) such as handwritten drafts presenting a partial version of the work or other intermediate creations.</li>
+                            <li><strong>F2_Expression → F3_Manifestation:</strong> these expressions can be published as physical or digital manifestations (**F3_Manifestation**).</li>
+                            <li><strong>F3_Manifestation → F5_Item:</strong> each manifestation takes a tangible form, or a specific copy, which becomes an **F5_Item** (for example, a physical manuscript or a printed edition).</li>
+                            <li><strong>D2_Digitization_Process → D1_Digital_Object:</strong> a physical Item can be digitized, giving rise to digital objects (**D1_Digital_Object**) which reproduce the pages of the manuscript or the edition.</li>
+                        </ul>
+                        <p>This detailed approach to the ontological model allows for capturing the entirety of the creation process, from the first handwritten draft to the final printed version, while ensuring effective conservation through the digitization of physical objects.</p>
+                        <p>The modeling allows for the identification and completion of missing metadata based on available data. Each entity can be qualified in a more or less detailed manner depending on the accessible information. For example, although the historical period is not explicitly indicated in the data, it can be deduced through contextual markers such as the literary movement of romanticism, to which Stendhal belongs, as well as his dates of birth and death, or the publication dates of his works. This approach makes it possible to fill gaps without losing sight of the overall coherence of the model.</p>
+                        <p>The model offers flexibility to integrate this missing information while maintaining a framework of structured relationships between the different entities. As data is added, the model can suggest absent entities or information, thus enriching the overall descriptive framework.</p>
+
+                        <h3 id="correspondance">b) The Correspondence</h3>
+                        <p>Correspondence, whether manuscript or electronic, also constitutes valuable archive material for the study of the creation process of a work, the context of its publication, and its author. Letters, as objects, contain key elements for understanding the relationships between individuals (authors, publishers, etc.) and for documenting the creation process. They are modeled as physical objects (**F5_Item**) with their own specific characteristics (paper, ink, dimensions) and are linked to an expression (**F2_Expression**), which in this case represents the textual content of the message itself.</p>
+                        
+                        <p>The modeling of correspondence begins by considering the content of the letter as a textual **F2_Expression**. This expression is then linked to the author of the letter (**E21_Person**) and the period of writing (**E52_Time-Span**). The material form (the paper, the envelope) is represented by **F5_Item** and is associated with the production event (**E12_Production**), its dimensions (**E54_Dimension**), its material (**E57_Material**), and its unique identifier (**E42_Identifier**).</p>
+                        
+                        <p>If the manuscript letter is digitized, the physical objects (**F5_Item**) become the source of digital objects (**D1_Digital_Object**) through a digitization process (**D2_Digitization_Process**). The resulting digital objects benefit from additional metadata, such as the person responsible for the digitization (**E21_Person**), the digitization period (**E52_Time-Span**), as well as the digital dimensions (**L56_has_pixel_width** and **L57_has_pixel_height**). They can be stored in a digital repository (**D13_Digital_Information_Carrier**), with a unique identifier (**E42_Identifier**) to ensure adequate traceability and conservation.</p>
+                        
+                        <p>Handwritten letters, typescripts, or emails are modeled according to their specific medium. For example, a handwritten letter and its envelope are treated as two distinct objects, each having its own production date—the letter according to the date inscribed by the author and the envelope according to the postal stamp. If these objects are digitized, each page of a letter is converted into a distinct digital object (**D1_Digital_Object**) via a digitization process (**D2_Digitization_Process**). Concerning electronic correspondence, emails are treated directly as digital objects, with metadata adapted to their electronic nature, such as the format (.eml, .pdf), the structuring standard (e.g., XML-TEI, MIME), and the message storage repository (**D13_Digital_Information_Carrier**).</p>
+                        
+                        <p>This modeling allows each object to be structured and contextualized precisely, thus facilitating archive management and the understanding of the intellectual and historical links that connect these documents to the main work.</p>
+                        
+                        <h3>Specific Metadata for Electronic Correspondence</h3>
+                        <ul>
+                            <li>The title (**E35_Title**), potentially different from that of the original work</li>
+                            <li>The digital dimensions (**L56_has_pixel_width** and **L57_has_pixel_height**)</li>
+                            <li>The conservation data repository (**D13_Digital_Information_Carrier**)</li>
+                            <li>The format and standard used (**E55_Type**, e.g., PDF, XML-TEI)</li>
+                            <li>The version (DOI, etc.) (**E42_Identifier**)</li>
+                        </ul>
+
+                        <div class="accordion example-accordion mt-3" id="accordionCorrespondance">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCorrespondance">
+                                        Example: Stendhal - Balzac Correspondence
+                                    </button>
+                                </h2>
+                                <div id="collapseCorrespondance" class="accordion-collapse collapse" data-bs-parent="#accordionCorrespondance">
+                                    <div class="accordion-body">
+                                        <h5 class="text-danger mt-3 mb-2">Manifestation</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F3_Manifestation:</strong> Stendhal - Balzac Correspondence</li>
+                                            <li><strong>(LRMoo) F30_Manifestation_Creation:</strong> Writing of a letter addressed to Honoré de Balzac</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Stendhal (writer)</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> 1810-1824</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> Handwritten letter</li>
+                                            <li><strong>(CIDOC CRM) E30_Right:</strong> Public domain</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Physical Object</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F5_Item:</strong> Letter from Balzac to Stendhal</li>
+                                            <li><strong>(CIDOC CRM) E12_Production:</strong> Fabrication of the sheet</li>
+                                            <li><strong>(CIDOC CRM) E42_Identifier:</strong> ID43</li>
+                                            <li><strong>(CIDOC CRM) E57_Material:</strong> Paper, black ink</li>
+                                            <li><strong>(CIDOC CRM) E54_Dimension:</strong> 21 × 29.7 cm</li>
+                                            <li><strong>(CIDOC CRM) E90_Symbolic_Object:</strong> Language: French</li>
+                                            <li><strong>(CIDOC CRM) E3_Condition_State:</strong> Good general condition</li>
+                                            <li><strong>(CIDOC CRM) F5_Item:</strong> Letter composing the entirety of the physical object</li>
+                                            <li><strong>(CIDOC CRM) F5_Item:</strong> Envelope composing the entirety of the physical object</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digitization</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D2_Digitization_Process:</strong> Digitization of the handwritten sheet</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> L. Simonnet</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> April 2012</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digital Object</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D1_Digital_Object:</strong> Digital file of the letter page (e.g., TIFF)</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> Letter ID43 - Page 1</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> TIFF, XML-TEI</li>
+                                            <li><strong>(CIDOC CRM) E54_Dimension:</strong> 45 MB</li>
+                                            <li><strong>(CIDOC CRM) L57_has_pixel_height and L56_has_pixel_width:</strong> 6000 px × 8000 px</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 id="presse">c) Press Corpora</h3>
+                        <p>Press corpora, which can be seen as collections of articles and issues, are also part of the works that can be modeled using CAO_CRM, which allows for linking articles to the journal or newspaper that published them. A newspaper or journal is first defined as an intellectual work (**F1_Work**) to identify its editorial line, structure, location, and type of publication. A first manifestation (**F3_Manifestation**) thus corresponds to the complete edition of the newspaper, as an entity carrying an editorial vision. This manifestation allows for capturing data relating to the creation of the newspaper, such as the publication period, the place of edition, and specific information about the edition (dimensions, type of content disseminated).</p>
+                        <p>Modern newspapers exist in physical and digital versions. Both versions can be modeled as distinct manifestations, each resulting from its own creation process (**F30_Manifestation_Creation**). In the case of the physical edition, the physical object (**F5_Item**) documents the classic archival details: newspaper number, dimensions, material, archive call number, and state of conservation. For digitized versions, a digitization process (**D2_Digitization_Process**) allows for the creation of a digital copy (**D1_Digital_Object**), with additional metadata specific to digital objects, such as pixel size, file format, digital version, and digitization date (**E52_Time-Span**). This digital copy of the newspaper may be composed of several pages, each digitized individually and identified as a distinct instance of **D1_Digital_Object**. These digital pages correspond to the physical pages of the newspaper and are all indexed by metadata such as the unique identifier (**E42_Identifier**) and the storage location (**D13_Digital_Information_Carrier**). Digital versions of newspapers, although born from a digital procedure, also contain metadata specific to their digital nature, such as the standard used (e.g., XML-TEI, IIIF).</p>
+                        <p>Another crucial aspect of the press concerns the articles it contains, regardless of the medium. An article is modeled as a manifestation (**F3_Manifestation**) integrating the author's specific creative expression (**F2_Expression**). Articles are therefore analyzed as independent intellectual objects and can be associated with information such as the author (**E21_Person**), the title of the article (**E35_Title**), the place of publication (**E53_Place**), and the date of publication (**E52_Time-Span**). This dual modeling of the newspaper (as a whole) and the article (as a content unit) allows for the complete management of the work's expressions in all its forms, while maintaining efficient management of contextual, physical, and digital information.</p>
+                        
+                        <div class="accordion example-accordion mt-3" id="accordionJournalDebats">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJournalDebats">
+                                        Example: Journal des débats politiques et littéraires | 1920-06-29 | Gallica
+                                    </button>
+                                </h2>
+                                <div id="collapseJournalDebats" class="accordion-collapse collapse" data-bs-parent="#accordionJournalDebats">
+                                    <div class="accordion-body">
+                                        <h5 class="text-danger mt-3 mb-2">Intellectual Work</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F1_Work:</strong> *The Red and the Black* (literary work)</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Stendhal (author)</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> 1829–1830 (creation period)</li>
+                                            <li><strong>(CIDOC CRM) E53_Place:</strong> Paris</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> *The Red and the Black*</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Expression</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F2_Expression:</strong> Critical article on Stendhal *The Red and the Black*</li>
+                                            <li><strong>(LRMoo) F28_Expression_Creation:</strong> Writing of the article in the newspaper</li>
+                                            <li><strong>(CIDOC CRM) E30_Right:</strong> Reproduction rights – Public domain (20th century period)</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Manifestation</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F3_Manifestation:</strong> Issue of the *Journal des débats* from June 29, 1920</li>
+                                            <li><strong>(LRMoo) F30_Manifestation_Creation:</strong> Printing of this issue</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Editor-in-Chief / Publisher (not specified)</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> June 29, 1920</li>
+                                            <li><strong>(CIDOC CRM) E53_Place:</strong> Paris</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> *Journal des débats politiques et littéraires*</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Physical Object (original printed newspaper)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F5_Item:</strong> Printed issue of the newspaper</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> Newspaper, in-folio</li>
+                                            <li><strong>(CIDOC CRM) E42_Identifier:</strong> Gallica ARK identifier</li>
+                                            <li><strong>(CIDOC CRM) E57_Material:</strong> Paper</li>
+                                            <li><strong>(CIDOC CRM) E3_Condition_State:</strong> Used state</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digitization</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D2_Digitization_Process:</strong> Digitization of the newspaper issue (BnF)</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Technician (not specified)</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> 2018</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digital Object (digital file of the article)</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D1_Digital_Object:</strong> Digital image of the page containing the article</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> Page of the *Journal des débats* (1920-06-29)</li>
+                                            <li><strong>(CIDOC CRM) E55_Type (format):</strong> JPEG, PDF</li>
+                                            <li><strong>(CIDOC CRM) E55_Type (standard):</strong> IIIF</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hierarchy-flow">
+                            <iframe src="V4/exemple_rouge_noir/exemple_Presse.html" style="border:none; width:100%;">Press Item Example</iframe>
+                        </div>
+
+                        <h3 id="art">d) Plastic, Artistic, and Audiovisual Works</h3>
+                        <p>In the context of Stendhal's archives, the work *The Red and the Black* may have inspired various artistic creations, such as paintings, sculptures, audiovisual works, or other productions from the artistic field. These new creations, whether directly or indirectly linked to Stendhal's work, constitute expressions (**F2_Expression**) that originate from the author's work (**F1_Work**).</p>
+                        <p>The ontological modeling of these works follows the same structure as that of other artistic manifestations. These new creations are perceived as manifestations (**F3_Manifestation**) representing the expression of an artistic idea, directly or indirectly related to the original intellectual work. Each artistic creation has its own process of realization (**F30_Manifestation_Creation**) and is embodied in a physical object (**F5_Item**) or a digital object (**D1_Digital_Object**).</p>
+                        <p>For example, a film adaptation of *The Red and the Black* is first defined by its script or screenplay, which is considered a new **F2_Expression**, distinct from the original text but originating from the **F1_Work**. This new expression has its own creation process (**F28_Expression_Creation**), with its own author (the screenwriter) and its own intellectual property rights (cinematographic license in force). The finished film, as a tangible media product, is then modeled as an **F3_Manifestation** with its own production details (director, place, date of production/editing).</p>
+                        <p>The film support itself (the physical reel or the digital master file) is an **F5_Item** or a **D1_Digital_Object**, with its own specific metadata (format, dimensions, archive inventory number, conservation status). If the physical film is digitized, the process is modeled by **D2_Digitization_Process**, creating a digital copy (**D1_Digital_Object**) with its associated technical metadata (resolution, storage location, etc.).</p>
+
+                        <div class="accordion example-accordion mt-3" id="accordionFilm">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilm">
+                                        Example: Film Adaptation
+                                    </button>
+                                </h2>
+                                <div id="collapseFilm" class="accordion-collapse collapse" data-bs-parent="#accordionFilm">
+                                    <div class="accordion-body">
+                                        <h5 class="text-danger mt-3 mb-2">Intellectual Work</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F1_Work:</strong> *The Red and the Black* (literary work)</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Expression (Script)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F2_Expression:</strong> Screenplay written by the screenwriter</li>
+                                            <li><strong>(LRMoo) F28_Expression_Creation:</strong> Screenplay writing process</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Marie Dupont (screenwriter)</li>
+                                            <li><strong>(CIDOC CRM) E30_Right:</strong> Adaptation rights – Cinematographic license</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Manifestation (produced film)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F3_Manifestation:</strong> Film “The Red and the Black” (2020 version)</li>
+                                            <li><strong>(LRMoo) F30_Manifestation_Creation:</strong> Filming and editing of the film</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Jean Martin (director)</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> 2018–2020</li>
+                                            <li><strong>(CIDOC CRM) E53_Place:</strong> Film studios, Paris</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> Feature film</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> *The Red and the Black* (film, 2020)</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Physical Object (film support)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F5_Item:</strong> Physical copy of the film on 35mm reel</li>
+                                            <li><strong>(CIDOC CRM) E12_Production:</strong> Production of the reel support</li>
+                                            <li><strong>(CIDOC CRM) E42_Identifier:</strong> Cinémathèque Inventory #F2020-001</li>
+                                            <li><strong>(CIDOC CRM) E57_Material:</strong> 35mm reel</li>
+                                            <li><strong>(CIDOC CRM) E54_Dimension:</strong> 35mm format, duration 120 minutes</li>
+                                            <li><strong>(CIDOC CRM) E3_Condition_State:</strong> Good condition</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digitization (film digitalization)</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D2_Digitization_Process:</strong> 4K digitization of the film on reel</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Digitization technician, Cinémathèque Française</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> June 2022</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digital Object (digital version of the film)</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D1_Digital_Object:</strong> Digital file of the film (e.g., DCP)</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> *The Red and the Black* (DCP Master)</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> DCP (Digital Cinema Package)</li>
+                                            <li><strong>(CIDOC CRM) E42_Identifier:</strong> DCP-R&N-2020-MASTER</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion example-accordion mt-3" id="accordionPeinture">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePeinture">
+                                        Example: Plastic Art Work
+                                    </button>
+                                </h2>
+                                <div id="collapsePeinture" class="accordion-collapse collapse" data-bs-parent="#accordionPeinture">
+                                    <div class="accordion-body">
+                                        <h5 class="text-danger mt-3 mb-2">Intellectual Work</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F1_Work:</strong> *The Red and the Black* (literary work)</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Expression (Conceptual Project)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F2_Expression:</strong> Conceptual project for a painting based on the work</li>
+                                            <li><strong>(LRMoo) F28_Expression_Creation:</strong> Creation of the conceptual project</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Jean Dupont (painter)</li>
+                                            <li><strong>(CIDOC CRM) E30_Right:</strong> Intellectual property rights in force</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Manifestation (physical plastic work)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F3_Manifestation:</strong> Painting "Scene from The Red and the Black" (final version)</li>
+                                            <li><strong>(LRMoo) F30_Manifestation_Creation:</strong> Physical realization of the painting</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Jean Dupont (contemporary painter)</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> 2018</li>
+                                            <li><strong>(CIDOC CRM) E53_Place:</strong> Jean Dupont's studio, Paris</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> Oil on canvas painting</li>
+                                            <li><strong>(CIDOC CRM) E54_Dimension:</strong> 100 cm × 150 cm</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> "Scene from The Red and the Black"</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Physical Object (original painting)</h5>
+                                        <ul>
+                                            <li><strong>(LRMoo) F5_Item:</strong> Canvas painted by Jean Dupont</li>
+                                            <li><strong>(CIDOC CRM) E12_Production:</strong> Production of the canvas</li>
+                                            <li><strong>(CIDOC CRM) E42_Identifier:</strong> Inv. Museum of Modern Art #2018-45</li>
+                                            <li><strong>(CIDOC CRM) E57_Material:</strong> Canvas, oil paint</li>
+                                            <li><strong>(CIDOC CRM) E54_Dimension:</strong> 100 cm × 150 cm</li>
+                                            <li><strong>(CIDOC CRM) E3_Condition_State:</strong> Excellent condition</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digitization (photograph of the work)</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D2_Digitization_Process:</strong> High-resolution photograph of the painting</li>
+                                            <li><strong>(CIDOC CRM) E21_Person:</strong> Museum photographer</li>
+                                            <li><strong>(CIDOC CRM) E52_Time-Span:</strong> October 2018</li>
+                                        </ul>
+                                        <h5 class="text-danger mt-3 mb-2">Digital Object (digital image file)</h5>
+                                        <ul>
+                                            <li><strong>(CRMdig) D1_Digital_Object:</strong> Digital file (image of the painting)</li>
+                                            <li><strong>(CIDOC CRM) E35_Title:</strong> Painting image - Inv. #2018-45</li>
+                                            <li><strong>(CIDOC CRM) E55_Type:</strong> TIFF, JPEG</li>
+                                            <li><strong>(CIDOC CRM) L57_has_pixel_height and L56_has_pixel_width:</strong> 12000 px × 18000 px</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <aside class="col-md-3">
+                    <div class="table-of-contents">
+                        <h4>Table of Contents</h4>
+                        <ul>
+                            <li><a href="#presentation" class="toc-link">General Presentation</a></li>
+                            <li><a href="#structure" class="toc-link">1. Structure and Modularity of CAO_CRM</a></li>
+                            <li><a href="#branches" class="toc-link">2. The Specific Branches</a>
+                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                    <li><a href="#branche-creation" class="toc-link">a) Work Creation</a></li>
+                                    <li><a href="#branche-manifestation" class="toc-link">c) Manifestation</a></li>
+                                    <li><a href="#branche-numerique" class="toc-link">d) Digital Object</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#item" class="toc-link">3. The "Items"</a>
+                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                    <li><a href="#manuscrit" class="toc-link">a) The Manuscript</a></li>
+                                    <li><a href="#correspondance" class="toc-link">b) The Correspondence</a></li>
+                                    <li><a href="#presse" class="toc-link">c) Press Corpora</a></li>
+                                    <li><a href="#art" class="toc-link">d) Plastic, Artistic, and Audiovisual Works</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-light py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="text-center flex-grow-1 me-5">
+                <p class="mb-0">&copy; 2024 Consortium HN Ariane. All rights reserved.</p>
+            </div>
+            <div class="ms-5">
+                <a href="https://consortiumariane.gitpages.huma-num.fr/axe1/credits.html" class="mx-2">Credits</a>
+            </div>
+            <div class="ms-5">
+                <a href="https://hal.science/CONSORTIUM-HN-ARIANE" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/img/HAL_logotype-rvb_fond-clair_fr.png" class="img-fluid">
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Smooth scroll with offset for the header
+    document.querySelectorAll('.toc-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 20; // 20px margin
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
