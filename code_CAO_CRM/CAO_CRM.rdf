@@ -351,6 +351,33 @@ The identity of an instance of E24 Physical Human-Made Thing is not defined by i
     
 
 
+    <!-- http://www.cidoc-crm.org/cidoc-crm/P127_has_broader_term -->
+
+    <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P127_has_broader_term">
+        <owl:inverseOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P127i_has_narrower_term"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
+        <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E55_Type"/>
+        <rdfs:comment xml:lang="en">This property associates an instance of E55 Type with another instance of E55 Type that has a broader meaning.
+It allows instances of E55 Types to be organised into hierarchies. This is the sense of “broader term generic (BTG)” as defined in ISO 25964-2:2013 (International Organization for Standardization 2013).
+This property is transitive. This property is asymmetric.</rdfs:comment>
+        <rdfs:label xml:lang="fr">a pour terme général</rdfs:label>
+        <rdfs:label xml:lang="en">has broader term</rdfs:label>
+        <rdfs:label xml:lang="de">hat den Oberbegriff</rdfs:label>
+        <rdfs:label xml:lang="pt">tem termo genérico</rdfs:label>
+        <rdfs:label xml:lang="el">έχει ευρύτερο όρο</rdfs:label>
+        <rdfs:label xml:lang="ru">имeeт вышeстоящий тeрмин</rdfs:label>
+        <rdfs:label xml:lang="zh">上位词</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.cidoc-crm.org/cidoc-crm/P127i_has_narrower_term -->
+
+    <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P127i_has_narrower_term"/>
+    
+
+
     <!-- http://www.cidoc-crm.org/cidoc-crm/P128_carries -->
 
     <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P128_carries">
@@ -425,6 +452,7 @@ The identity of an instance of E24 Physical Human-Made Thing is not defined by i
 
     <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P130_shows_features_of">
         <owl:inverseOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P130i_features_are_also_found_on"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
         <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E70_Thing"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E70_Thing"/>
     </owl:ObjectProperty>
@@ -903,6 +931,7 @@ The fact that an identifier is a preferred one for an organisation can be better
 
     <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span">
         <owl:inverseOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P4i_is_time-span_of"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E2_Temporal_Entity"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E52_Time-Span"/>
         <rdfs:comment xml:lang="en">This property associates an instance of E2 Temporal Entity with the instance of E52 Time-Span during which it was on-going. The associated instance of E52 Time-Span is understood as the real time-span during which the phenomena making up the temporal entity instance were active. More than one instance of E2 Temporal Entity may share a common instance of E52 Time-Span only if they come into being and end being due to identical declarations or events.</rdfs:comment>
@@ -951,6 +980,7 @@ The fact that an identifier is a preferred one for an organisation can be better
 
     <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at">
         <owl:inverseOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P7i_witnessed"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E4_Period"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E53_Place"/>
         <rdfs:comment xml:lang="en">This property describes the spatial location of an instance of E4 Period.
@@ -1035,6 +1065,8 @@ This property supports the notion that the temporal extent of an instance of E52
 
     <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P94_has_created">
         <owl:inverseOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P94i_was_created_by"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E65_Creation"/>
         <rdfs:range rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object"/>
     </owl:ObjectProperty>
@@ -1987,6 +2019,7 @@ These items are either intellectual products or human-made physical things, and 
     <!-- http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object -->
 
     <owl:Class rdf:about="http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object">
+        <owl:equivalentClass rdf:resource="http://www.ics.forth.gr/isl/CRMdig/D1_Digital_Object"/>
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E89_Propositional_Object"/>
         <rdfs:subClassOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/E90_Symbolic_Object"/>
         <rdfs:comment xml:lang="en">This class comprises identifiable immaterial items, such as poems, jokes, data sets, images, texts, multimedia objects, procedural prescriptions, computer program code, algorithm or mathematical formulae, that have an objectively recognizable structure and are documented as single units. The encoding structure known as a “named graph” also falls under this class, so that each “named graph” is an instance of E73 Information Object.
