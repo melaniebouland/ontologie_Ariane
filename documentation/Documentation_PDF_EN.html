@@ -63,14 +63,13 @@
             border-left: 4px solid #8f0006;
         }
         .table-of-contents {
-            position: sticky;
-            top: 20px;
+            /* MODIFICATION : Suppression de position: sticky */
             background: #f8f9fa;
             padding: 1.5rem;
             border-radius: 8px;
             border: 1px solid #ddd;
-            max-height: 90vh;
-            overflow-y: auto;
+            margin-bottom: 2rem;
+            /* MODIFICATION : Suppression de max-height et overflow-y */
         }
         .table-of-contents h4 {
             color: #8f0006;
@@ -140,102 +139,7 @@
     </style>
 </head>
 <body>
-    <header class="relative bg-white mb-2 w-100" style="box-shadow: 0 0 10px rgba(143, 0, 6, 0.1);">
-        <div class="border-top border-danger"></div>
-        <div class="header-content container">
-            <div class="header-logos d-flex align-items-center">
-                <a href="https://cst-ariane.huma-num.fr/" class="me-2">
-                    <img src="assets/img/logoAriane.jpg" alt="CST-HN ARIANE logo">
-                </a>
-                <a href="https://www.huma-num.fr/"> 
-                    <img src="assets/img/HN.png" alt="Huma-Num logo">
-                </a>
-            </div>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="axesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Axes
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="axesDropdown">
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe1">Axis 1</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT1/GT1.html">GT1 - Labeling</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT2/GT2.html">GT2 - Data Acquisition and Computer Transcription</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/GT3/GT3.html">GT3 - Tools and Editorial Practices</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe2">Axis 2</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT4/GT4.html">GT4 - Automatic Text Analysis</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT5/GT5.html">GT5 - Metadata and Data Modeling</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/GT6/GT6.html">GT6 - Open French Corpus</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="https://consortiumariane.gitpages.huma-num.fr/axe3">Axis 3</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/ethique/ethique.html">Ethical Issues</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/juridique/juridique.html">Legal Questions</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="travauxDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Work
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="travauxDropdown">
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#">Axis 1</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT1.html">GT1 - Labeling</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT2.html">GT2 - Data Acquisition and Computer Transcription</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/html_pages/travaux_GT3.html">GT3 - Tools and Editorial Practices</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#">Axis 2</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT4.html">GT4 - Automatic Text Analysis</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT5.html">GT5 - Metadata and Data Modeling</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe2/html_pages/travaux_GT6.html">GT6 - Open French Corpus</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#">Axis 3</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/html_pages/travaux_ethique.html">Ethical Issues</a></li>
-                                    <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe3/html_pages/travaux_juridique.html">Legal Questions</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75" href="https://consortiumariane.gitpages.huma-num.fr/outils/index.html">Tools</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75 dropdown-toggle" href="#" id="actualitesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          News
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="actualitesDropdown">
-                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_1.html">Axis 1</a></li>
-                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_2.html">Axis 2</a></li>
-                            <li><a class="dropdown-item" href="https://consortiumariane.gitpages.huma-num.fr/axe1/calendrier_pages/Axe_3.html">Axis 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-gray-400 text-xl transition hover:text-gray-400/75" href="https://forms.gle/Ar2WSduuLQrk3zxC8">Join Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-xl transition" href="https://consortiumariane.gitpages.huma-num.fr/site_amis/index.html" style="color: rgb(143 0 6);">AMIS Project</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    
 
     <div class="container-fluid">
         <div class="row">
@@ -244,6 +148,29 @@
                     <h1>The Corpus Author Ontology CRM (CAO_CRM) Model</h1>
                     <p class="lead">Presentation and User Guide</p>
                     <p class="mb-0">A structured semantic framework for organizing, describing, and ensuring the interoperability of metadata generated for text corpora</p>
+                </div>
+
+                <div class="table-of-contents">
+                    <h4>Table of Contents</h4>
+                    <ul>
+                        <li><a href="#presentation" class="toc-link">General Presentation</a></li>
+                        <li><a href="#structure" class="toc-link">1. Structure and Modularity of CAO_CRM</a></li>
+                        <li><a href="#branches" class="toc-link">2. The Specific Branches</a>
+                            <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                <li><a href="#branche-creation" class="toc-link">a) Work Creation</a></li>
+                                <li><a href="#branche-manifestation" class="toc-link">c) Manifestation</a></li>
+                                <li><a href="#branche-numerique" class="toc-link">d) Digital Object</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#item" class="toc-link">3. The "Items"</a>
+                            <ul style="padding-left: 1rem; margin-top: 0.3rem;">
+                                <li><a href="#manuscrit" class="toc-link">a) The Manuscript</a></li>
+                                <li><a href="#correspondance" class="toc-link">b) The Correspondence</a></li>
+                                <li><a href="#presse" class="toc-link">c) Press Corpora</a></li>
+                                <li><a href="#art" class="toc-link">d) Plastic, Artistic, and Audiovisual Works</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="doc-section" id="presentation">
@@ -737,50 +664,10 @@
                             </div>
                         </div>
                     </div>
-                </main>
-
-                <aside class="col-md-3">
-                    <div class="table-of-contents">
-                        <h4>Table of Contents</h4>
-                        <ul>
-                            <li><a href="#presentation" class="toc-link">General Presentation</a></li>
-                            <li><a href="#structure" class="toc-link">1. Structure and Modularity of CAO_CRM</a></li>
-                            <li><a href="#branches" class="toc-link">2. The Specific Branches</a>
-                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
-                                    <li><a href="#branche-creation" class="toc-link">a) Work Creation</a></li>
-                                    <li><a href="#branche-manifestation" class="toc-link">c) Manifestation</a></li>
-                                    <li><a href="#branche-numerique" class="toc-link">d) Digital Object</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#item" class="toc-link">3. The "Items"</a>
-                                <ul style="padding-left: 1rem; margin-top: 0.3rem;">
-                                    <li><a href="#manuscrit" class="toc-link">a) The Manuscript</a></li>
-                                    <li><a href="#correspondance" class="toc-link">b) The Correspondence</a></li>
-                                    <li><a href="#presse" class="toc-link">c) Press Corpora</a></li>
-                                    <li><a href="#art" class="toc-link">d) Plastic, Artistic, and Audiovisual Works</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </aside>
-            </div>
+                </div>
+            </main>
         </div>
     </div>
-    <footer class="bg-light py-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <div class="text-center flex-grow-1 me-5">
-                <p class="mb-0">&copy; 2024 Consortium HN Ariane. All rights reserved.</p>
-            </div>
-            <div class="ms-5">
-                <a href="https://consortiumariane.gitpages.huma-num.fr/axe1/credits.html" class="mx-2">Credits</a>
-            </div>
-            <div class="ms-5">
-                <a href="https://hal.science/CONSORTIUM-HN-ARIANE" target="_blank" rel="noopener noreferrer">
-                    <img src="assets/img/HAL_logotype-rvb_fond-clair_fr.png" class="img-fluid">
-                </a>
-            </div>
-        </div>
-    </footer>
     <script>
     // Smooth scroll with offset for the header
     document.querySelectorAll('.toc-link').forEach(link => {
