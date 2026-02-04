@@ -302,7 +302,9 @@ The Right is held by an instance of E39 Actor as described by P75 possesses (is 
 
     <!-- http://www.cidoc-crm.org/cidoc-crm/P104i_applies_to -->
 
-    <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P104i_applies_to"/>
+    <owl:ObjectProperty rdf:about="http://www.cidoc-crm.org/cidoc-crm/P104i_applies_to">
+        <rdfs:comment xml:lang="en">Opposite property of P104 is subject to</rdfs:comment>
+    </owl:ObjectProperty>
     
 
 
